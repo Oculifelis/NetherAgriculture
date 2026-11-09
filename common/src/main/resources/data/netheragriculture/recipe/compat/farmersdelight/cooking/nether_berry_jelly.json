@@ -3,15 +3,12 @@
   "cookingtime": 200,
   "experience": 1.0,
   "recipe_book_tab": "meals",
-  "ingredients": [{
-    "item": "netheragriculture:crimson_berry"
-  }, {
-    "item": "netheragriculture:warped_berry"
-  }, {
-    "tag": "c:bones"
-  }, {
-    "item": "minecraft:sugar"
-  }],
+  "ingredients": [
+    "netheragriculture:crimson_berry",
+    "netheragriculture:warped_berry",
+    "#c:bones",
+    "minecraft:sugar"
+  ],
   "container": {
     "id": "minecraft:bowl",
     "count": 1
@@ -20,14 +17,19 @@
     "id": "netheragriculture:nether_berry_jelly",
     "count": 1
   },
-
-  "neoforge:conditions": [{
-    "type": "neoforge:mod_loaded",
-    "modid": "farmersdelight"
-  }],
-  "fabric:load_conditions": [{
-    "condition": "fabric:registry_contains",
-    "registry": "minecraft:recipe_serializer",
-    "values": ["farmersdelight:cooking"]
-  }]
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:registry_contains",
+      "registry": "minecraft:recipe_serializer",
+      "values": [
+        "farmersdelight:cooking"
+      ]
+    }
+  ]
 }

@@ -1,5 +1,7 @@
 package ru.netherdon.netheragriculture.blocks;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import ru.netherdon.netheragriculture.registries.NABlocks;
@@ -28,7 +30,7 @@ public class AzureMelonCropBlock extends Block
     public static final MapCodec<AzureMelonCropBlock> CODEC = simpleCodec(AzureMelonCropBlock::new);
 
     public static final BooleanProperty ATTACHED = BlockStateProperties.ATTACHED;
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final VoxelShape SHAPE_EAST = box(10, 0, 5, 16, 9, 11);
     public static final VoxelShape SHAPE_WEST = box(0, 0, 5, 6, 9, 11);
@@ -61,14 +63,14 @@ public class AzureMelonCropBlock extends Block
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random)
     {
         if (!facingState.is(NABlocks.ATTACHED_AZURE_MELON_STEM.value()) && facing == state.getValue(FACING))
         {
             return state.setValue(ATTACHED, false);
         }
 
-        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+        return super.updateShape(state, level, ticks, currentPos, facing, facingPos, facingState, random);
     }
 
     @Override
@@ -87,7 +89,7 @@ public class AzureMelonCropBlock extends Block
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState)
+    protected ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean includeData)
     {
         return NAItems.AZURE_MELON.value().getDefaultInstance();
     }

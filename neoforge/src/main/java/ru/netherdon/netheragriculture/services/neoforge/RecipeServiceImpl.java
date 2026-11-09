@@ -1,12 +1,12 @@
 package ru.netherdon.netheragriculture.services.neoforge;
 
 import net.minecraft.world.inventory.RecipeBookType;
-import ru.netherdon.netheragriculture.neoforge.registries.NARecipeBookTypes;
 
 public final class RecipeServiceImpl
 {
+    // 26.x: RecipeBookType can no longer be extended; the black furnace shares the furnace book state
     public static RecipeBookType getBlackFurnaceRecipeBookType()
     {
-        return NARecipeBookTypes.blackFurnace();
+        return RecipeBookType.FURNACE;
     }
 }

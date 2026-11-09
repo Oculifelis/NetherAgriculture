@@ -45,7 +45,7 @@ public final class BlockEventHandler
         Block originalBlock = state.getBlock();
         if (DOUBLE_PLANTS.get().containsKey(originalBlock))
         {
-            if (level.isClientSide)
+            if (level.isClientSide())
             {
                 ParticleUtils.spawnParticleInBlock(level, pos, 15, ParticleTypes.HAPPY_VILLAGER);
             }

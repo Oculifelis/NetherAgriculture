@@ -1,12 +1,10 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:bowl"
-  }, {
-    "item": "netheragriculture:glowing_fungus"
-  }, {
-    "item": "netheragriculture:glowing_fungus"
-  }],
+  "ingredients": [
+    "minecraft:bowl",
+    "netheragriculture:glowing_fungus",
+    "netheragriculture:glowing_fungus"
+  ],
   "result": {
     "id": "netheragriculture:glowing_mushroom_stew",
     "count": 1

@@ -1,14 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "${id}",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "${name}",
+  "name": "${mod_name}",
   "description": "${description}",
   "authors": [
-    "${author}"
+    "NetherDon",
+    "Oculifelis"
   ],
   "contact": {
-    "homepage": ""
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/netheragriculture",
+    "sources": "https://github.com/Oculifelis/NetherAgriculture"
   },
   "license": "${license}",
   "icon": "assets/netheragriculture/icon.png",
@@ -23,12 +25,6 @@
     "jei_mod_plugin": [
       "ru.netherdon.netheragriculture.compat.jei.NAJeiPlugin"
     ],
-    "emi": [
-      "ru.netherdon.netheragriculture.compat.emi.NAEmiPlugin"
-    ],
-    "mm:early_risers": [
-      "ru.netherdon.netheragriculture.fabric.NetherAgricultureASM"
-    ],
     "modmenu": [
       "ru.netherdon.netheragriculture.fabric.compat.modmenu.NAModMenuPlugin"
     ]
@@ -37,16 +33,12 @@
     "netheragriculture.mixins.json",
     "netheragriculture.fabric.mixins.json"
   ],
-  "accessWidener": "${id}.fabric.accesswidener",
+  "accessWidener": "netheragriculture.fabric.accesswidener",
   "depends": {
-    "fabricloader": ">=0.16.14",
-    "minecraft": "~1.21.1",
-    "java": ">=21",
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "${minecraft_version}",
+    "java": ">=${java_version}",
     "fabric-api": "*",
-    "mm": "*",
     "forgeconfigapiport": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }

@@ -8,7 +8,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -47,14 +47,14 @@ public class GlowingSporesBlock extends Block
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult)
+    protected InteractionResult useItemOn(ItemStack itemStack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult)
     {
         if (itemStack.is(this.getContainer()))
         {
             level.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 11);
             ItemStack glowingSporesStack = new ItemStack(this.asItem());
             player.setItemInHand(interactionHand, ItemUtils.createFilledResult(itemStack, player, glowingSporesStack));
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         }
 
         return super.useItemOn(itemStack, blockState, level, blockPos, player, interactionHand, blockHitResult);
@@ -113,7 +113,7 @@ public class GlowingSporesBlock extends Block
     {
         if (this.container == null)
         {
-            this.container = BuiltInRegistries.ITEM.getOrThrow(this.containerKey);
+            this.container = BuiltInRegistries.ITEM.getOrThrow(this.containerKey).value();
         }
 
         return this.container;

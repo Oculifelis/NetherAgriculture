@@ -1,128 +1,142 @@
 package ru.netherdon.netheragriculture.registries;
 
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Items;
+import ru.netherdon.netheragriculture.items.properties.NAFood;
 
-import static ru.netherdon.netheragriculture.services.ItemService.withEffect;
-import static ru.netherdon.netheragriculture.services.ItemService.withEffects;
-
+// 26.x: FoodProperties no longer carries effects or a remainder. Each NAFood keeps the
+// 1.21.1 nutrition, saturation, eat speed and effect chances, and builds the matching
+// FoodProperties + Consumable (one ApplyStatusEffects entry per effect, rolled separately)
+// and the use remainder when the item is constructed.
 public final class NAFoods
 {
-    public static final FoodProperties CRIMSON_BERRY = new FoodProperties.Builder()
+    public static final NAFood CRIMSON_BERRY = NAFood.builder()
         .nutrition(2).saturationModifier(0.2f).fast()
         .build();
 
-    public static final FoodProperties WARPED_BERRY = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(NAMobEffects.WARP, 400), 0.15f
-        )
+    public static final NAFood WARPED_BERRY = NAFood.builder()
         .nutrition(3).saturationModifier(0.2f).fast()
+        .effect(() -> new MobEffectInstance(NAMobEffects.WARP, 400), 0.15f)
         .build();
 
-    public static final FoodProperties LOTHUN = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(MobEffects.CONFUSION, 300), 0.2f
-        )
+    public static final NAFood LOTHUN = NAFood.builder()
         .nutrition(4).saturationModifier(0.7F)
+        .effect(() -> new MobEffectInstance(MobEffects.NAUSEA, 300), 0.2f)
         .build();
 
-    public static final FoodProperties SINFUL_EYES = new FoodProperties.Builder()
+    public static final NAFood SINFUL_EYES = NAFood.builder()
         .nutrition(2).saturationModifier(0.4F)
         .build();
 
-    public static final FoodProperties MORTOFRUCT = new FoodProperties.Builder()
-        .nutrition(3).saturationModifier(0.5f).build();
-
-    public static final FoodProperties AZURE_MELON_SLICE = new FoodProperties.Builder()
-        .nutrition(3).saturationModifier(0.2f).build();
-
-    public static final FoodProperties BLAZE_FRUIT = new FoodProperties.Builder()
-        .nutrition(1).saturationModifier(0.05f).build();
-
-    public static final FoodProperties HOGLIN_MEAT = new FoodProperties.Builder()
-        .nutrition(4).saturationModifier(0.3f).build();
-
-    public static final FoodProperties COOKED_HOGLIN_MEAT = new FoodProperties.Builder()
-        .nutrition(9).saturationModifier(0.7f).build();
-
-    public static final FoodProperties STRIDER_LEG = new FoodProperties.Builder()
-        .nutrition(2).saturationModifier(0.2f).build();
-
-    public static final FoodProperties COOKED_STRIDER_LEG = new FoodProperties.Builder()
-        .nutrition(7).saturationModifier(0.6f).build();
-
-    public static final FoodProperties BLAZE_CREAM_SOUP = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(NAMobEffects.BLAZE_FLIGHT, 200), 1f
-        )
-        .nutrition(11).saturationModifier(0.7f).usingConvertsTo(Items.BOWL).alwaysEdible()
+    public static final NAFood MORTOFRUCT = NAFood.builder()
+        .nutrition(3).saturationModifier(0.5f)
         .build();
 
-    public static final FoodProperties GLAZED_HOGLIN_MEAT = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 300), 0.9f
-        )
-        .nutrition(12).saturationModifier(1.05f).usingConvertsTo(Items.BOWL).alwaysEdible()
+    public static final NAFood AZURE_MELON_SLICE = NAFood.builder()
+        .nutrition(3).saturationModifier(0.2f)
         .build();
 
-    public static final FoodProperties AZURE_MELON_PUREE = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(MobEffects.LUCK, 200), 1f
-        )
+    public static final NAFood BLAZE_FRUIT = NAFood.builder()
+        .nutrition(1).saturationModifier(0.05f)
+        .build();
+
+    public static final NAFood HOGLIN_MEAT = NAFood.builder()
+        .nutrition(4).saturationModifier(0.3f)
+        .build();
+
+    public static final NAFood COOKED_HOGLIN_MEAT = NAFood.builder()
+        .nutrition(9).saturationModifier(0.7f)
+        .build();
+
+    public static final NAFood STRIDER_LEG = NAFood.builder()
+        .nutrition(2).saturationModifier(0.2f)
+        .build();
+
+    public static final NAFood COOKED_STRIDER_LEG = NAFood.builder()
+        .nutrition(7).saturationModifier(0.6f)
+        .build();
+
+    public static final NAFood BLAZE_CREAM_SOUP = NAFood.builder()
+        .nutrition(11).saturationModifier(0.7f).alwaysEdible()
+        .effect(() -> new MobEffectInstance(NAMobEffects.BLAZE_FLIGHT, 200), 1f)
+        .usingConvertsTo(Items.BOWL)
+        .build();
+
+    public static final NAFood GLAZED_HOGLIN_MEAT = NAFood.builder()
+        .nutrition(12).saturationModifier(1.05f).alwaysEdible()
+        .effect(() -> new MobEffectInstance(MobEffects.STRENGTH, 300), 0.9f)
+        .usingConvertsTo(Items.BOWL)
+        .build();
+
+    public static final NAFood AZURE_MELON_PUREE = NAFood.builder()
         .nutrition(9).saturationModifier(0.35f).alwaysEdible()
+        .effect(() -> new MobEffectInstance(MobEffects.LUCK, 200), 1f)
         .build();
 
-    public static final FoodProperties NETHER_MUSHROOM_STEW = new FoodProperties.Builder()
-        .nutrition(6).saturationModifier(0.6f).usingConvertsTo(Items.BOWL).build();
-
-    public static final FoodProperties GLOWING_MUSHROOM_STEW = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(MobEffects.GLOWING, 100), 1f
-        )
-        .nutrition(6).saturationModifier(0.6f).usingConvertsTo(Items.BOWL).build();
-
-    public static final FoodProperties NETHER_FRUIT_SALAD = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(MobEffects.REGENERATION, 200), 1f
-        )
-        .nutrition(8).saturationModifier(0.55f).usingConvertsTo(Items.BOWL).alwaysEdible()
+    public static final NAFood NETHER_MUSHROOM_STEW = NAFood.builder()
+        .nutrition(6).saturationModifier(0.6f)
+        .usingConvertsTo(Items.BOWL)
         .build();
 
-    public static final FoodProperties AZURE_MELON_JELLY = new FoodProperties.Builder()
-        .nutrition(8).saturationModifier(0.4f).usingConvertsTo(Items.BOWL).alwaysEdible()
+    public static final NAFood GLOWING_MUSHROOM_STEW = NAFood.builder()
+        .nutrition(6).saturationModifier(0.6f)
+        .effect(() -> new MobEffectInstance(MobEffects.GLOWING, 100), 1f)
+        .usingConvertsTo(Items.BOWL)
         .build();
 
-    public static final FoodProperties NETHER_BERRY_JELLY = new FoodProperties.Builder()
-        .nutrition(8).saturationModifier(0.3f).usingConvertsTo(Items.BOWL).alwaysEdible()
+    public static final NAFood NETHER_FRUIT_SALAD = NAFood.builder()
+        .nutrition(8).saturationModifier(0.55f).alwaysEdible()
+        .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 200), 1f)
+        .usingConvertsTo(Items.BOWL)
         .build();
 
-    public static final FoodProperties CRIMSON_BERRY_JAM = new FoodProperties.Builder()
+    public static final NAFood AZURE_MELON_JELLY = NAFood.builder()
+        .nutrition(8).saturationModifier(0.4f).alwaysEdible()
+        .usingConvertsTo(Items.BOWL)
+        .build();
+
+    public static final NAFood NETHER_BERRY_JELLY = NAFood.builder()
+        .nutrition(8).saturationModifier(0.3f).alwaysEdible()
+        .usingConvertsTo(Items.BOWL)
+        .build();
+
+    public static final NAFood CRIMSON_BERRY_JAM = NAFood.builder()
         .nutrition(5).saturationModifier(0.5f).alwaysEdible()
+        .drink(SoundEvents.HONEY_DRINK, 40)
         .build();
 
-    public static final FoodProperties WARPED_BERRY_JAM = new FoodProperties.Builder()
+    public static final NAFood WARPED_BERRY_JAM = NAFood.builder()
         .nutrition(8).saturationModifier(0.10f).alwaysEdible()
+        .drink(SoundEvents.HONEY_DRINK, 40)
         .build();
 
-    public static final FoodProperties NETHER_PORK_ROAST = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100), 0.7f
-        )
-        .nutrition(15).saturationModifier(0.7f).usingConvertsTo(Items.BOWL).alwaysEdible()
+    public static final NAFood NETHER_PORK_ROAST = NAFood.builder()
+        .nutrition(15).saturationModifier(0.7f).alwaysEdible()
+        .effect(() -> new MobEffectInstance(MobEffects.RESISTANCE, 100), 0.7f)
+        .usingConvertsTo(Items.BOWL)
         .build();
 
-    public static final FoodProperties STRIDER_WITH_VEGETABLES = withEffect(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300), 0.85f
-        )
-        .nutrition(10).saturationModifier(1f).usingConvertsTo(Items.BOWL).alwaysEdible()
+    public static final NAFood STRIDER_WITH_VEGETABLES = NAFood.builder()
+        .nutrition(10).saturationModifier(1f).alwaysEdible()
+        .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300), 0.85f)
+        .usingConvertsTo(Items.BOWL)
         .build();
 
-    public static final FoodProperties NETHER_BARBECUE_ON_A_STICK = new FoodProperties.Builder()
-        .nutrition(9).saturationModifier(0.9f).usingConvertsTo(Items.STICK)
+    public static final NAFood NETHER_BARBECUE_ON_A_STICK = NAFood.builder()
+        .nutrition(9).saturationModifier(0.9f)
+        .usingConvertsTo(Items.STICK)
         .build();
 
-    public static final FoodProperties BLAZING_BLEND = new FoodProperties.Builder()
+    public static final NAFood BLAZING_BLEND = NAFood.builder()
         .nutrition(2).saturationModifier(0.2f).alwaysEdible()
+        .drink(SoundEvents.HONEY_DRINK, 40)
         .build();
 
-    public static final FoodProperties BLAZING_GOLDEN_LOTHUN = withEffects(new FoodProperties.Builder(),
-            () -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600),
-            () -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300)
-        )
+    public static final NAFood BLAZING_GOLDEN_LOTHUN = NAFood.builder()
         .nutrition(7).saturationModifier(0.7f).alwaysEdible()
+        .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600), 1f)
+        .effect(() -> new MobEffectInstance(MobEffects.SPEED, 300), 1f)
         .build();
 }

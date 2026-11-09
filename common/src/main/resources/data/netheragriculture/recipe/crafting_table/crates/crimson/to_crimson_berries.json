@@ -1,8 +1,6 @@
 {
   "type": "netheragriculture:emptying_storage",
-  "input": {
-    "item": "netheragriculture:crimson_crate_of_crimson_berries"
-  },
+  "input": "netheragriculture:crimson_crate_of_crimson_berries",
   "storage": {
     "id": "netheragriculture:crimson_crate"
   },

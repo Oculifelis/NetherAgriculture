@@ -1,13 +1,13 @@
 package ru.netherdon.netheragriculture.client.particles;
 
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraft.util.RandomSource;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.state.level.QuadParticleRenderState;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleGroup;
+import net.minecraft.core.particles.ParticleLimit;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,7 +16,6 @@ import ru.netherdon.netheragriculture.client.particles.options.GlowingSporeAirPa
 import java.util.List;
 import java.util.Optional;
 
-@Environment(EnvType.CLIENT)
 public class GlowingSporeParticle extends SuspendedParticle implements ISourcedParticle
 {
     private static final float SPEED = 0.03f;
@@ -26,9 +25,9 @@ public class GlowingSporeParticle extends SuspendedParticle implements ISourcedP
     private final BlockPos sourcePos;
     private final Block sourceBlock;
 
-    public GlowingSporeParticle(ClientLevel level, BlockPos sourcePos, Block sourceBlock, SpriteSet spriteSet, List<LifetimeAlpha> faders, double x, double y, double z, double dx, double dy, double dz)
+    public GlowingSporeParticle(ClientLevel level, BlockPos sourcePos, Block sourceBlock, TextureAtlasSprite sprite, List<LifetimeAlpha> faders, double x, double y, double z, double dx, double dy, double dz)
     {
-        super(level, spriteSet, x, y, z, dx, dy, dz);
+        super(level, x, y, z, dx, dy, dz, sprite);
         this.sourcePos = sourcePos;
         this.sourceBlock = sourceBlock;
         this.faders = faders;
@@ -37,7 +36,7 @@ public class GlowingSporeParticle extends SuspendedParticle implements ISourcedP
     }
 
     @Override
-    public Optional<ParticleGroup> getParticleGroup()
+    public Optional<ParticleLimit> getParticleLimit()
     {
         return Optional.of(NAParticleGroups.GLOWING_SPORES);
     }
@@ -62,7 +61,7 @@ public class GlowingSporeParticle extends SuspendedParticle implements ISourcedP
     }
 
     @Override
-    public void render(VertexConsumer vertexConsumer, Camera camera, float partialTick)
+    public void extract(QuadParticleRenderState renderState, Camera camera, float partialTick)
     {
         this.setAlpha(
             this.faders.stream()
@@ -72,13 +71,13 @@ public class GlowingSporeParticle extends SuspendedParticle implements ISourcedP
                 .orElse(1f)
         );
 
-        super.render(vertexConsumer, camera, partialTick);
+        super.extract(renderState, camera, partialTick);
     }
 
     @Override
-    protected int getLightColor(float partialTick)
+    protected int getLightCoords(float partialTick)
     {
-        int oldLight = super.getLightColor(partialTick);
+        int oldLight = super.getLightCoords(partialTick);
         int j = oldLight & 0xff;
         int k = oldLight >> 16 & 0xff;
         j += (int)(this.alpha * 15f * 16f);
@@ -91,12 +90,11 @@ public class GlowingSporeParticle extends SuspendedParticle implements ISourcedP
     }
 
     @Override
-    public ParticleRenderType getRenderType()
+    public SingleQuadParticle.Layer getLayer()
     {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+        return SingleQuadParticle.Layer.TRANSLUCENT;
     }
 
-    @Environment(EnvType.CLIENT)
     public static class GlowingSporeAirProvider implements ParticleProvider<GlowingSporeAirParticleOptions>
     {
         private final SpriteSet sprites;
@@ -107,13 +105,13 @@ public class GlowingSporeParticle extends SuspendedParticle implements ISourcedP
         }
 
         @Override
-        public Particle createParticle(GlowingSporeAirParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed)
+        public Particle createParticle(GlowingSporeAirParticleOptions options, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource random)
         {
-            int lifetime = Mth.randomBetweenInclusive(level.random, 60, 100);
+            int lifetime = Mth.randomBetweenInclusive(random, 60, 100);
             LifetimeAlpha faderIn = new LifetimeAlpha(0f, 1f, 0f, (float)FADE_TIME / lifetime);
             LifetimeAlpha faderOut = new LifetimeAlpha(1f, 0f, (float)(lifetime - FADE_TIME) / lifetime, 1f);
 
-            var particle = new GlowingSporeParticle(level, options.pos(), options.block(), this.sprites, List.of(faderIn, faderOut), x, y, z, xSpeed, ySpeed, zSpeed);
+            var particle = new GlowingSporeParticle(level, options.pos(), options.block(), this.sprites.get(random), List.of(faderIn, faderOut), x, y, z, xSpeed, ySpeed, zSpeed);
             particle.setLifetime(lifetime);
             particle.xd *= SPEED;
             particle.yd *= SPEED;

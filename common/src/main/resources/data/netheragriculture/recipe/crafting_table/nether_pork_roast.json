@@ -1,16 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:bowl"
-  }, {
-    "tag": "c:foods/cooked_hoglin"
-  }, {
-    "item": "netheragriculture:lothun"
-  }, {
-    "item": "netheragriculture:mortofruct_half"
-  }, {
-    "tag": "netheragriculture:nether_spices"
-  }],
+  "ingredients": [
+    "minecraft:bowl",
+    "#c:foods/cooked_hoglin",
+    "netheragriculture:lothun",
+    "netheragriculture:mortofruct_half",
+    "#netheragriculture:nether_spices"
+  ],
   "result": {
     "id": "netheragriculture:nether_pork_roast",
     "count": 1

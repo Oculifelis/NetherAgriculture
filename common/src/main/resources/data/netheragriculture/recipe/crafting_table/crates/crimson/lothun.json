@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "netheragriculture:lothun" },
-    { "item": "netheragriculture:lothun" },
-    { "item": "netheragriculture:lothun" },
-    { "item": "netheragriculture:lothun" },
-    { "item": "netheragriculture:crimson_crate" },
-    { "item": "netheragriculture:lothun" },
-    { "item": "netheragriculture:lothun" },
-    { "item": "netheragriculture:lothun" },
-    { "item": "netheragriculture:lothun" }
+    "netheragriculture:lothun",
+    "netheragriculture:lothun",
+    "netheragriculture:lothun",
+    "netheragriculture:lothun",
+    "netheragriculture:crimson_crate",
+    "netheragriculture:lothun",
+    "netheragriculture:lothun",
+    "netheragriculture:lothun",
+    "netheragriculture:lothun"
   ],
   "result": {
     "id": "netheragriculture:crimson_crate_of_lothun",

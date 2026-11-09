@@ -1,15 +1,13 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-		"###"
-    ],
-    "key": {
-		"#": {
-			"item": "netheragriculture:warped_crate"
-		}
-    },
-    "result": {
-		"id": "netheragriculture:small_warped_crate",
-		"count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": "netheragriculture:warped_crate"
+  },
+  "result": {
+    "id": "netheragriculture:small_warped_crate",
+    "count": 6
+  }
 }

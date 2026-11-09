@@ -1,5 +1,6 @@
 package ru.netherdon.netheragriculture.blocks;
 
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,14 +39,14 @@ public class NetherFarmlandBlock extends Block
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random)
     {
         if (direction == Direction.UP && !state.canSurvive(level, pos))
         {
-            level.scheduleTick(pos, this, 1);
+            ticks.scheduleTick(pos, this, 1);
         }
 
-        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+        return super.updateShape(state, level, ticks, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override
@@ -75,9 +76,9 @@ public class NetherFarmlandBlock extends Block
     }
 
     @Override
-    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance)
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance)
     {
-        if (!level.isClientSide && EntityService.canTrample(entity, state, pos, fallDistance))
+        if (!level.isClientSide() && EntityService.canTrample(entity, state, pos, (float) fallDistance))
         {
             turnToNetherrack(entity, state, level, pos);
         }

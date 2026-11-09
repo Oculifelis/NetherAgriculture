@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "netheragriculture:small_crimson_crate" },
-    { "item": "netheragriculture:sinful_eyes" },
-    { "item": "netheragriculture:sinful_eyes" },
-    { "item": "netheragriculture:sinful_eyes" },
-    { "item": "netheragriculture:sinful_eyes" }
+    "netheragriculture:small_crimson_crate",
+    "netheragriculture:sinful_eyes",
+    "netheragriculture:sinful_eyes",
+    "netheragriculture:sinful_eyes",
+    "netheragriculture:sinful_eyes"
   ],
   "result": {
     "id": "netheragriculture:small_crimson_crate_of_sinful_eyes",

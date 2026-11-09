@@ -1,36 +1,11 @@
 package ru.netherdon.netheragriculture.fabric.registries;
 
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.minecraft.client.renderer.RenderType;
-import ru.netherdon.netheragriculture.registries.NABlocks;
-
 public final class NABlockRenderTypes
 {
+    // 26.x: the chunk section layer (solid/cutout/translucent) is picked per quad from the sprite's transparency,
+    // so the 1.21.1 cutout list (azure melon stems and crop, berry roots and sprouts, blaze fruit, dead vines, lothuns,
+    // nether roots, tall roots, sinful eyes, glowing fungus, glowing door and trapdoor) needs no registration.
     public static void initialize()
     {
-        BlockRenderLayerMap.INSTANCE.putBlocks(
-            RenderType.cutout(),
-            NABlocks.ATTACHED_AZURE_MELON_STEM.value(),
-            NABlocks.AZURE_MELON_STEM.value(),
-            NABlocks.BLAZE_FRUIT.value(),
-            NABlocks.CRIMSON_BERRY_ROOTS.value(),
-            NABlocks.CRIMSON_BERRY_SPROUTS.value(),
-            NABlocks.DEAD_VINES.value(),
-            NABlocks.LOTHUNS.value(),
-            NABlocks.NETHER_ROOTS.value(),
-            NABlocks.TALL_CRIMSON_ROOTS.value(),
-            NABlocks.TALL_WARPED_ROOTS.value(),
-            NABlocks.WARPED_BERRY_ROOTS.value(),
-            NABlocks.WARPED_BERRY_SPROUTS.value(),
-            NABlocks.WILD_LOTHUN.value(),
-            NABlocks.AZURE_MELON.value(),
-            NABlocks.AZURE_MELON_CROP.value(),
-            NABlocks.SINFUL_EYES.value(),
-            NABlocks.WILD_SINFUL_EYES.value(),
-            NABlocks.WILD_AZURE_MELON.value(),
-            NABlocks.GLOWING_FUNGUS.value(),
-            NABlocks.GLOWING_DOOR.value(),
-            NABlocks.GLOWING_TRAPDOOR.value()
-        );
     }
 }

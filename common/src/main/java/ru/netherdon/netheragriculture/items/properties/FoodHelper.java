@@ -6,30 +6,43 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
-import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
+import net.minecraft.world.item.consume_effects.ConsumeEffect;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class FoodHelper
 {
-    public static void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag)
+    // 26.x: food effects moved from FoodProperties to the CONSUMABLE component's ApplyStatusEffects entries
+    public static void appendTooltip(ItemStack stack, Item.TooltipContext context, Consumer<Component> tooltipComponents, TooltipFlag tooltipFlag)
     {
-        FoodProperties food = stack.get(DataComponents.FOOD);
-        if (food != null)
+        if (stack.get(DataComponents.FOOD) == null)
         {
-            appendTooltip(food, context, tooltipComponents, tooltipFlag);
+            return;
+        }
+        Consumable consumable = stack.get(DataComponents.CONSUMABLE);
+        if (consumable != null)
+        {
+            appendTooltip(consumable, context, tooltipComponents, tooltipFlag);
         }
     }
 
-    public static void appendTooltip(FoodProperties food, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag)
+    public static void appendTooltip(Consumable consumable, Item.TooltipContext context, Consumer<Component> tooltipComponents, TooltipFlag tooltipFlag)
     {
-        for (FoodProperties.PossibleEffect effect : food.effects())
+        for (ConsumeEffect consumeEffect : consumable.onConsumeEffects())
         {
-            Component text = createEffectTooltip(effect.effect(), effect.probability(), context, tooltipFlag);
-            tooltipComponents.add(text);
+            if (consumeEffect instanceof ApplyStatusEffectsConsumeEffect apply)
+            {
+                for (MobEffectInstance effect : apply.effects())
+                {
+                    Component text = createEffectTooltip(effect, apply.probability(), context, tooltipFlag);
+                    tooltipComponents.accept(text);
+                }
+            }
         }
     }
 

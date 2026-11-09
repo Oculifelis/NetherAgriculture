@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "netheragriculture:blazing_golden_lothun" },
-    { "item": "netheragriculture:blazing_golden_lothun" },
-    { "item": "netheragriculture:blazing_golden_lothun" },
-    { "item": "netheragriculture:blazing_golden_lothun" },
-    { "item": "netheragriculture:glowing_crate" },
-    { "item": "netheragriculture:blazing_golden_lothun" },
-    { "item": "netheragriculture:blazing_golden_lothun" },
-    { "item": "netheragriculture:blazing_golden_lothun" },
-    { "item": "netheragriculture:blazing_golden_lothun" }
+    "netheragriculture:blazing_golden_lothun",
+    "netheragriculture:blazing_golden_lothun",
+    "netheragriculture:blazing_golden_lothun",
+    "netheragriculture:blazing_golden_lothun",
+    "netheragriculture:glowing_crate",
+    "netheragriculture:blazing_golden_lothun",
+    "netheragriculture:blazing_golden_lothun",
+    "netheragriculture:blazing_golden_lothun",
+    "netheragriculture:blazing_golden_lothun"
   ],
   "result": {
     "id": "netheragriculture:glowing_crate_of_blazing_golden_lothun",

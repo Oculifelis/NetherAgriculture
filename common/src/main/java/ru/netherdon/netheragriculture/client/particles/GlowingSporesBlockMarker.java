@@ -1,7 +1,7 @@
 package ru.netherdon.netheragriculture.client.particles;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraft.util.RandomSource;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
@@ -13,16 +13,14 @@ import org.jetbrains.annotations.Nullable;
 import ru.netherdon.netheragriculture.blocks.GlowingSporesBlock;
 import ru.netherdon.netheragriculture.registries.NABlocks;
 
-@Environment(EnvType.CLIENT)
-public class GlowingSporesBlockMarker extends TextureSheetParticle implements ISourcedParticle
+public class GlowingSporesBlockMarker extends SingleQuadParticle implements ISourcedParticle
 {
     private final BlockPos sourcePos;
     private final GlowingSporesBlock sourceBlock;
 
-    protected GlowingSporesBlockMarker(ClientLevel level, GlowingSporesBlock sourceBlock, SpriteSet sprites, double x, double y, double z)
+    protected GlowingSporesBlockMarker(ClientLevel level, GlowingSporesBlock sourceBlock, TextureAtlasSprite sprite, double x, double y, double z)
     {
-        super(level, x, y, z);
-        this.pickSprite(sprites);
+        super(level, x, y, z, sprite);
         this.sourceBlock = sourceBlock;
         this.gravity = 0f;
         this.lifetime = 80;
@@ -60,9 +58,9 @@ public class GlowingSporesBlockMarker extends TextureSheetParticle implements IS
     }
 
     @Override
-    public ParticleRenderType getRenderType()
+    public SingleQuadParticle.Layer getLayer()
     {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+        return SingleQuadParticle.Layer.OPAQUE;
     }
 
     @Override
@@ -71,7 +69,6 @@ public class GlowingSporesBlockMarker extends TextureSheetParticle implements IS
         return 0.5f;
     }
 
-    @Environment(EnvType.CLIENT)
     public static class Provider implements ParticleProvider<SimpleParticleType>
     {
         private final SpriteSet sprites;
@@ -82,9 +79,9 @@ public class GlowingSporesBlockMarker extends TextureSheetParticle implements IS
         }
 
         @Override
-        public @Nullable Particle createParticle(SimpleParticleType options, ClientLevel level, double x, double y, double z, double dx, double dy, double dz)
+        public @Nullable Particle createParticle(SimpleParticleType options, ClientLevel level, double x, double y, double z, double dx, double dy, double dz, RandomSource random)
         {
-            return new GlowingSporesBlockMarker(level, NABlocks.GLOWING_SPORES.value(), this.sprites, x, y, z);
+            return new GlowingSporesBlockMarker(level, NABlocks.GLOWING_SPORES.value(), this.sprites.get(random), x, y, z);
         }
     }
 }

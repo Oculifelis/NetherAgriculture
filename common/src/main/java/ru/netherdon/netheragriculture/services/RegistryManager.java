@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.services;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.Registry;
 import org.jetbrains.annotations.Contract;
 import ru.netherdon.netheragriculture.registries.IRegistryProvider;
@@ -25,10 +24,9 @@ public final class RegistryManager
         return (IRegistryProvider<T>) PROVIDERS.get(registry);
     }
 
-    @ExpectPlatform
     @Contract(pure = true)
     private static <T> IRegistryProvider<T> createProvider(Registry<T> registry)
     {
-        throw new UnsupportedOperationException();
+        return Services.PLATFORM.createProvider(registry);
     }
 }

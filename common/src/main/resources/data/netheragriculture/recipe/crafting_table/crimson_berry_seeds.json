@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-      "item": "netheragriculture:crimson_berry"
-  }],
+  "ingredients": [
+    "netheragriculture:crimson_berry"
+  ],
   "result": {
     "id": "netheragriculture:crimson_berry_seeds",
     "count": 1

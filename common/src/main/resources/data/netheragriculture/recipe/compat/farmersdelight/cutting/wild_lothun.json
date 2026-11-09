@@ -1,31 +1,37 @@
 {
   "type": "farmersdelight:cutting",
-  "tool": {
-    "tag": "c:tools/knife"
-  },
-  "ingredients": [{
-    "item": "netheragriculture:wild_lothun"
-  }],
-  "result": [{
-    "item": {
-      "id": "netheragriculture:lothun",
-      "count": 1
-    }
-  }, {
-    "item": {
-      "id": "netheragriculture:crushed_warped_roots",
-      "count": 1
+  "tool": "#c:tools/knife",
+  "ingredients": [
+    "netheragriculture:wild_lothun"
+  ],
+  "result": [
+    {
+      "item": {
+        "id": "netheragriculture:lothun",
+        "count": 1
+      }
     },
-    "chance": 0.5
-  }],
-
-  "neoforge:conditions": [{
-    "type": "neoforge:mod_loaded",
-    "modid": "farmersdelight"
-  }],
-  "fabric:load_conditions": [{
-    "condition": "fabric:registry_contains",
-    "registry": "minecraft:recipe_serializer",
-    "values": ["farmersdelight:cutting"]
-  }]
+    {
+      "item": {
+        "id": "netheragriculture:crushed_warped_roots",
+        "count": 1
+      },
+      "chance": 0.5
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:registry_contains",
+      "registry": "minecraft:recipe_serializer",
+      "values": [
+        "farmersdelight:cutting"
+      ]
+    }
+  ]
 }

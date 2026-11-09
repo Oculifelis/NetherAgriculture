@@ -1,8 +1,12 @@
 package ru.netherdon.netheragriculture.registries;
 
+import ru.netherdon.netheragriculture.blocks.NetherRootsBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -62,7 +66,7 @@ public final class NABlocks
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.TERRACOTTA_RED)
             .instabreak()
-            .noCollission()
+            .noCollision()
             .randomTicks()
             .sound(SoundType.TWISTING_VINES)
             .pushReaction(PushReaction.DESTROY)
@@ -71,7 +75,7 @@ public final class NABlocks
     public static final Holder<NetherCropBlock> CRIMSON_BERRY_ROOTS = registerBlock("crimson_berry_roots", CrimsonBerryRootsBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.NETHER)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .pushReaction(PushReaction.DESTROY)
@@ -80,7 +84,7 @@ public final class NABlocks
     public static final Holder<NetherBerrySproutsBlock> CRIMSON_BERRY_SPROUTS = registerBlock("crimson_berry_sprouts", NetherBerrySproutsBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.NETHER)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
@@ -90,7 +94,7 @@ public final class NABlocks
     public static final Holder<NetherCropBlock> WARPED_BERRY_ROOTS = registerBlock("warped_berry_roots", WarpedBerryRootsBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_CYAN)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .pushReaction(PushReaction.DESTROY)
@@ -99,7 +103,7 @@ public final class NABlocks
     public static final Holder<NetherBerrySproutsBlock> WARPED_BERRY_SPROUTS = registerBlock("warped_berry_sprouts", NetherBerrySproutsBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_CYAN)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
@@ -109,7 +113,7 @@ public final class NABlocks
     public static final Holder<NetherCropBlock> LOTHUNS = registerBlock("lothuns", LothunBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_CYAN)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .pushReaction(PushReaction.DESTROY)
@@ -118,7 +122,7 @@ public final class NABlocks
     public static final Holder<WildLothunBlock> WILD_LOTHUN = registerBlock("wild_lothun", WildLothunBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_CYAN)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
@@ -128,7 +132,7 @@ public final class NABlocks
     public static final Holder<NetherCropBlock> BLAZE_FRUIT = registerBlock("blaze_fruit", BlazeFruitBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_CYAN)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .pushReaction(PushReaction.DESTROY)
@@ -138,7 +142,7 @@ public final class NABlocks
     public static final Holder<SinfulEyesBlock> SINFUL_EYES = registerBlock("sinful_eyes", SinfulEyesBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.GOLD)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .pushReaction(PushReaction.DESTROY)
@@ -147,7 +151,7 @@ public final class NABlocks
     public static final Holder<WildSinfulEyesBlock> WILD_SINFUL_EYES = registerBlock("wild_sinful_eyes", WildSinfulEyesBlock::new,
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.GOLD)
-            .noCollission()
+            .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
@@ -158,7 +162,7 @@ public final class NABlocks
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.NETHER)
             .instabreak()
-            .noCollission()
+            .noCollision()
             .replaceable()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
@@ -169,7 +173,7 @@ public final class NABlocks
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.NETHER)
             .instabreak()
-            .noCollission()
+            .noCollision()
             .replaceable()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
@@ -180,22 +184,22 @@ public final class NABlocks
         BlockBehaviour.Properties.of()
             .mapColor(MapColor.NETHER)
             .instabreak()
-            .noCollission()
+            .noCollision()
             .replaceable()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
             .pushReaction(PushReaction.DESTROY)
     );
 
-    public static final Holder<FungusBlock> GLOWING_FUNGUS = REGISTER.register("glowing_fungus", () -> new GlowingFungusBlock(
+    public static final Holder<NetherFungusBlock> GLOWING_FUNGUS = REGISTER.register("glowing_fungus", (id) -> new GlowingFungusBlock(
         NAConfiguredFeatures.GLOWING_FUNGUS,
-        BlockBehaviour.Properties.of()
+        id(id, BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_YELLOW)
             .instabreak()
-            .noCollission()
+            .noCollision()
             .sound(SoundType.FUNGUS)
             .lightLevel(maxLight())
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.DESTROY))
     ) {});
 
     public static final Holder<Block> GLOWING_WART_BLOCK = registerSimpleBlock("glowing_wart_block",
@@ -251,9 +255,9 @@ public final class NABlocks
             .sound(SoundType.NETHER_WOOD)
     );
 
-    public static final Holder<StairBlock> GLOWING_STAIRS = REGISTER.register("glowing_stairs", () -> new StairBlock(
+    public static final Holder<StairBlock> GLOWING_STAIRS = REGISTER.register("glowing_stairs", (id) -> new StairBlock(
         GLOWING_PLANKS.value().defaultBlockState(),
-        BlockBehaviour.Properties.ofFullCopy(GLOWING_PLANKS.value())
+        id(id, BlockBehaviour.Properties.ofFullCopy(GLOWING_PLANKS.value()))
     ) {});
 
     public static final Holder<SlabBlock> GLOWING_SLAB = registerBlock("glowing_slab", SlabBlock::new,
@@ -264,94 +268,94 @@ public final class NABlocks
         () -> BlockBehaviour.Properties.ofFullCopy(GLOWING_PLANKS.value())
     );
 
-    public static final Holder<FenceGateBlock> GLOWING_FENCE_GATE = REGISTER.register("glowing_fence_gate", () -> new FenceGateBlock(
+    public static final Holder<FenceGateBlock> GLOWING_FENCE_GATE = REGISTER.register("glowing_fence_gate", (id) -> new FenceGateBlock(
         NAWoodTypes.GLOWING,
-        BlockBehaviour.Properties.ofFullCopy(GLOWING_PLANKS.value())
+        id(id, BlockBehaviour.Properties.ofFullCopy(GLOWING_PLANKS.value()))
     ));
 
-    public static final Holder<DoorBlock> GLOWING_DOOR = REGISTER.register("glowing_door", () -> new DoorBlock(
+    public static final Holder<DoorBlock> GLOWING_DOOR = REGISTER.register("glowing_door", (id) -> new DoorBlock(
         NAWoodTypes.GLOWING_BLOCK_SET,
-        BlockBehaviour.Properties.of()
+        id(id, BlockBehaviour.Properties.of()
             .mapColor(GLOWING_PLANKS.value().defaultMapColor())
             .instrument(NoteBlockInstrument.BASS)
             .strength(3f)
             .lightLevel(maxLight())
             .noOcclusion()
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.DESTROY))
     ) {});
 
-    public static final Holder<TrapDoorBlock> GLOWING_TRAPDOOR = REGISTER.register("glowing_trapdoor", () -> new TrapDoorBlock(
+    public static final Holder<TrapDoorBlock> GLOWING_TRAPDOOR = REGISTER.register("glowing_trapdoor", (id) -> new TrapDoorBlock(
         NAWoodTypes.GLOWING_BLOCK_SET,
-        BlockBehaviour.Properties.of()
+        id(id, BlockBehaviour.Properties.of()
             .mapColor(GLOWING_PLANKS.value().defaultMapColor())
             .instrument(NoteBlockInstrument.BASS)
             .strength(3f)
             .lightLevel(maxLight())
             .noOcclusion()
-            .isValidSpawn(NABlocks::never)
+            .isValidSpawn(NABlocks::never))
     ) {});
 
-    public static final Holder<PressurePlateBlock> GLOWING_PRESSURE_PLATE = REGISTER.register("glowing_pressure_plate", () -> new PressurePlateBlock(
+    public static final Holder<PressurePlateBlock> GLOWING_PRESSURE_PLATE = REGISTER.register("glowing_pressure_plate", (id) -> new PressurePlateBlock(
         NAWoodTypes.GLOWING_BLOCK_SET,
-        BlockBehaviour.Properties.of()
+        id(id, BlockBehaviour.Properties.of()
             .mapColor(GLOWING_PLANKS.value().defaultMapColor())
             .forceSolidOn()
             .instrument(NoteBlockInstrument.BASS)
-            .noCollission()
+            .noCollision()
             .strength(0.5f)
             .lightLevel(maxLight())
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.DESTROY))
     ) {});
 
-    public static final Holder<ButtonBlock> GLOWING_BUTTON = REGISTER.register("glowing_button", () -> new ButtonBlock(
+    public static final Holder<ButtonBlock> GLOWING_BUTTON = REGISTER.register("glowing_button", (id) -> new ButtonBlock(
         NAWoodTypes.GLOWING_BLOCK_SET,
         30,
-        BlockBehaviour.Properties.of()
-            .noCollission()
+        id(id, BlockBehaviour.Properties.of()
+            .noCollision()
             .strength(0.5f)
             .lightLevel(maxLight())
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.DESTROY))
     ) {});
 
-    public static final Holder<CustomStandingSignBlock> GLOWING_SIGN = REGISTER.register("glowing_sign", () -> new CustomStandingSignBlock(
+    public static final Holder<CustomStandingSignBlock> GLOWING_SIGN = REGISTER.register("glowing_sign", (id) -> new CustomStandingSignBlock(
         NAWoodTypes.GLOWING,
-        BlockBehaviour.Properties.of()
+        id(id, BlockBehaviour.Properties.of()
             .mapColor(GLOWING_PLANKS.value().defaultMapColor())
             .instrument(NoteBlockInstrument.BASS)
             .forceSolidOn()
-            .noCollission()
+            .noCollision()
             .strength(1f)
-            .lightLevel(maxLight())
+            .lightLevel(maxLight()))
     ));
 
-    public static final Holder<CustomWallSignBlock> GLOWING_WALL_SIGN = REGISTER.register("glowing_wall_sign", () -> new CustomWallSignBlock(
+    public static final Holder<CustomWallSignBlock> GLOWING_WALL_SIGN = REGISTER.register("glowing_wall_sign", (id) -> new CustomWallSignBlock(
         NAWoodTypes.GLOWING,
-        BlockBehaviour.Properties.ofFullCopy(GLOWING_SIGN.value())
-            .dropsLike(GLOWING_SIGN.value())
+        id(id, BlockBehaviour.Properties.ofFullCopy(GLOWING_SIGN.value())
+            .overrideLootTable(GLOWING_SIGN.value().getLootTable()))
     ));
 
-    public static final Holder<CustomCeilingHangingSignBlock> GLOWING_HANGING_SIGN = REGISTER.register("glowing_hanging_sign", () -> new CustomCeilingHangingSignBlock(
+    public static final Holder<CustomCeilingHangingSignBlock> GLOWING_HANGING_SIGN = REGISTER.register("glowing_hanging_sign", (id) -> new CustomCeilingHangingSignBlock(
         NAWoodTypes.GLOWING,
-        BlockBehaviour.Properties.of()
+        id(id, BlockBehaviour.Properties.of()
             .mapColor(GLOWING_PLANKS.value().defaultMapColor())
             .forceSolidOn()
             .instrument(NoteBlockInstrument.BASS)
-            .noCollission()
+            .noCollision()
             .strength(1f)
-            .lightLevel(maxLight())
+            .lightLevel(maxLight()))
     ));
 
-    public static final Holder<CustomWallHangingSignBlock> GLOWING_WALL_HANGING_SIGN = REGISTER.register("glowing_wall_hanging_sign", () -> new CustomWallHangingSignBlock(
+    public static final Holder<CustomWallHangingSignBlock> GLOWING_WALL_HANGING_SIGN = REGISTER.register("glowing_wall_hanging_sign", (id) -> new CustomWallHangingSignBlock(
         NAWoodTypes.GLOWING,
-        BlockBehaviour.Properties.ofFullCopy(GLOWING_HANGING_SIGN.value())
-            .dropsLike(GLOWING_HANGING_SIGN.value())
+        id(id, BlockBehaviour.Properties.ofFullCopy(GLOWING_HANGING_SIGN.value())
+            .overrideLootTable(GLOWING_HANGING_SIGN.value().getLootTable()))
     ));
 
     public static final Holder<GlowingSporesBlock> GLOWING_SPORES = registerBlock("glowing_spores",
         (properties) -> new GlowingSporesBlock(NAItemKeys.GLASS_BOTTLE, properties),
         BlockBehaviour.Properties.of()
             .instabreak()
-            .noCollission()
+            .noCollision()
             .lightLevel(maxLight())
             .randomTicks()
             .replaceable()
@@ -439,6 +443,16 @@ public final class NABlocks
         return registerBlock(name, Block::new, properties);
     }
 
+    private static Holder<Block> registerSimpleBlock(String name, Supplier<BlockBehaviour.Properties> properties)
+    {
+        return registerBlock(name, Block::new, properties);
+    }
+
+    private static BlockBehaviour.Properties id(Identifier id, BlockBehaviour.Properties properties)
+    {
+        return properties.setId(ResourceKey.create(Registries.BLOCK, id));
+    }
+
     private static <T extends Block> Holder<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> constructor, BlockBehaviour.Properties properties)
     {
         return registerBlock(name, constructor, () -> properties);
@@ -446,7 +460,7 @@ public final class NABlocks
 
     private static <T extends Block> Holder<T> registerBlock(String name, Function<BlockBehaviour.Properties, T> constructor, Supplier<BlockBehaviour.Properties> properties)
     {
-        return REGISTER.register(name, () -> constructor.apply(properties.get()));
+        return REGISTER.register(name, (id) -> constructor.apply(id(id, properties.get())));
     }
 
     public static void initialize() {}

@@ -1,18 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "tag": "c:ingots/gold"
-  }, {
-    "tag": "c:ingots/gold"
-  }, {
-    "tag": "c:drinks/blazing_blend"
-  }, {
-    "tag": "c:drinks/blazing_blend"
-  }, {
-    "tag": "c:drinks/blazing_blend"
-  }, {
-    "tag": "c:drinks/blazing_blend"
-  }],
+  "ingredients": [
+    "#c:ingots/gold",
+    "#c:ingots/gold",
+    "#c:drinks/blazing_blend",
+    "#c:drinks/blazing_blend",
+    "#c:drinks/blazing_blend",
+    "#c:drinks/blazing_blend"
+  ],
   "result": {
     "id": "netheragriculture:blazing_gold_ingot",
     "count": 1

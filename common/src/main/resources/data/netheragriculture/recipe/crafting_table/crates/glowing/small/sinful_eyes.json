@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "netheragriculture:small_glowing_crate" },
-    { "item": "netheragriculture:sinful_eyes" },
-    { "item": "netheragriculture:sinful_eyes" },
-    { "item": "netheragriculture:sinful_eyes" },
-    { "item": "netheragriculture:sinful_eyes" }
+    "netheragriculture:small_glowing_crate",
+    "netheragriculture:sinful_eyes",
+    "netheragriculture:sinful_eyes",
+    "netheragriculture:sinful_eyes",
+    "netheragriculture:sinful_eyes"
   ],
   "result": {
     "id": "netheragriculture:small_glowing_crate_of_sinful_eyes",

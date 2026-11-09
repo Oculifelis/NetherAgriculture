@@ -1,20 +1,21 @@
 {
-  "neoforge:conditions": [{
-    "type": "neoforge:not",
-    "value": {
-      "type": "neoforge:mod_loaded",
-      "modid": "mynethersdelight"
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "mynethersdelight"
+      }
     }
-  }],
-
+  ],
   "type": "netheragriculture:replace_item",
-  "conditions": [{
-    "condition": "neoforge:loot_table_id",
-    "loot_table_id": "minecraft:entities/hoglin"
-  }],
-  "from": {
-    "item": "minecraft:porkchop"
-  },
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/hoglin"
+    }
+  ],
+  "from": "minecraft:porkchop",
   "to": {
     "id": "netheragriculture:hoglin_meat"
   }

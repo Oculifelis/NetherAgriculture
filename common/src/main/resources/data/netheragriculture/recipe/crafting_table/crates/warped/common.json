@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-		" S ",
-		"SPS",
-		" S "
-    ],
-    "key": {
-		"P": {
-			"item": "minecraft:warped_planks"
-		},
-		"S": {
-			"item": "minecraft:warped_slab"
-		}
-    },
-    "result": {
-		"id": "netheragriculture:warped_crate",
-		"count": 2
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "P": "minecraft:warped_planks",
+    "S": "minecraft:warped_slab"
+  },
+  "result": {
+    "id": "netheragriculture:warped_crate",
+    "count": 2
+  }
 }

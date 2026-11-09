@@ -6,12 +6,12 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class NetherBerrySproutsBlock extends BushBlock
+public class NetherBerrySproutsBlock extends VegetationBlock
 {
     public static final MapCodec<NetherBerrySproutsBlock> CODEC = Block.simpleCodec(NetherBerrySproutsBlock::new);
 

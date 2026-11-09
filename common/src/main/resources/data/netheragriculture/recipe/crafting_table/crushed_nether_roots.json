@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "netheragriculture:nether_roots"
-  }],
+  "ingredients": [
+    "netheragriculture:nether_roots"
+  ],
   "result": {
     "id": "netheragriculture:crushed_nether_roots",
     "count": 1

@@ -1,5 +1,7 @@
 package ru.netherdon.netheragriculture.blocks;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,7 +12,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import ru.netherdon.netheragriculture.registries.NABlocks;
@@ -19,11 +21,11 @@ import ru.netherdon.netheragriculture.registries.NAItems;
 import java.util.EnumMap;
 import java.util.Map;
 
-public class AttachedAzureMelonStemBlock extends BushBlock
+public class AttachedAzureMelonStemBlock extends VegetationBlock
 {
     public static final MapCodec<AttachedAzureMelonStemBlock> CODEC = simpleCodec(AttachedAzureMelonStemBlock::new);
 
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
     public static final VoxelShape SHAPE_NORTH = box(5, 0, 0, 11, 13, 11);
     public static final VoxelShape SHAPE_SOUTH = box(5, 0, 5, 11, 13, 16);
@@ -44,14 +46,14 @@ public class AttachedAzureMelonStemBlock extends BushBlock
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random)
     {
         if (!facingState.is(NABlocks.AZURE_MELON_CROP.value()) && facing == state.getValue(FACING))
         {
             return NABlocks.AZURE_MELON_STEM.value().defaultBlockState().trySetValue(NetherCropBlock.AGE, 7);
         }
 
-        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+        return super.updateShape(state, level, ticks, currentPos, facing, facingPos, facingState, random);
     }
 
     @Override
@@ -68,7 +70,7 @@ public class AttachedAzureMelonStemBlock extends BushBlock
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState)
+    protected ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean includeData)
     {
         return NAItems.AZURE_MELON_SEEDS.value().getDefaultInstance();
     }

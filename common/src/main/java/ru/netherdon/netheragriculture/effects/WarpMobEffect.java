@@ -1,5 +1,6 @@
 package ru.netherdon.netheragriculture.effects;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -16,10 +17,10 @@ public class WarpMobEffect extends MobEffect
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity livingEntity, int amplifier)
+    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity livingEntity, int amplifier)
     {
         Level level = livingEntity.level();
-        if (!level.isClientSide)
+        if (!level.isClientSide())
         {
             RandomSource rand = RandomSource.create();
             if (rand.nextInt(10) == 0)
@@ -31,7 +32,7 @@ public class WarpMobEffect extends MobEffect
             }
         }
 
-        return super.applyEffectTick(livingEntity, amplifier);
+        return super.applyEffectTick(serverLevel, livingEntity, amplifier);
     }
 
     @Override

@@ -6,6 +6,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 
+// 1.21.1 overrode getDescriptionId to use the item key; 26.x Item.Properties defaults to the item key
 public class GlowingSporesInBottleItem extends BlockItem
 {
     private final Item container;
@@ -37,9 +38,4 @@ public class GlowingSporesInBottleItem extends BlockItem
         return interactionResult;
     }
 
-    @Override
-    public String getDescriptionId()
-    {
-        return this.getOrCreateDescriptionId();
-    }
 }

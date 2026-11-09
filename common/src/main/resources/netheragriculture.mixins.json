@@ -5,11 +5,14 @@
   "minVersion": "0.8",
   "client": [
     "ClientLevelMixin",
-    "ParticleEngineMixin"
+    "ClientRecipeBookMixin",
+    "ParticleEngineMixin",
+    "ParticleGroupMixin"
   ],
   "mixins": [
     "LevelMixin",
     "RecipeManagerMixin",
+    "RecipePropertySetAccessor",
     "StriderMixin"
   ],
   "injectors": {

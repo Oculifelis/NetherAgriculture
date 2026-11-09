@@ -1,17 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-      "PP",
-      "PP",
-      "PP"
-    ],
-    "key": {
-		"P": {
-			"item": "netheragriculture:glowing_planks"
-		}
-    },
-    "result": {
-		"id": "netheragriculture:glowing_door",
-		"count": 3
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": "netheragriculture:glowing_planks"
+  },
+  "result": {
+    "id": "netheragriculture:glowing_door",
+    "count": 3
+  }
 }

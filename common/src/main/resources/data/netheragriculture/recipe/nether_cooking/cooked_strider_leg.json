@@ -1,12 +1,10 @@
 {
-    "type": "netheragriculture:nether_cooking",
-    "category": "food",
-    "experience": 0.5,
-    "cookingtime": 200,
-    "ingredient": {
-        "item": "netheragriculture:strider_leg"
-    },
-    "result": {
-        "id": "netheragriculture:cooked_strider_leg"
-    }
+  "type": "netheragriculture:nether_cooking",
+  "category": "food",
+  "experience": 0.5,
+  "cookingtime": 200,
+  "ingredient": "netheragriculture:strider_leg",
+  "result": {
+    "id": "netheragriculture:cooked_strider_leg"
+  }
 }

@@ -1,25 +1,24 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:bowl"
-  }, {
-    "item": "netheragriculture:azure_melon_slice"
-  }, {
-    "item": "netheragriculture:azure_melon_slice"
-  }, {
-    "tag": "c:bones"
-  }, {
-    "item": "minecraft:sugar"
-  }],
+  "ingredients": [
+    "minecraft:bowl",
+    "netheragriculture:azure_melon_slice",
+    "netheragriculture:azure_melon_slice",
+    "#c:bones",
+    "minecraft:sugar"
+  ],
   "result": {
     "id": "netheragriculture:azure_melon_jelly",
     "count": 1
   },
-
-  "neoforge:conditions": [{
-    "type": "netheragriculture:farmers_delight_integration"
-  }],
-  "fabric:load_conditions": [{
-    "condition": "netheragriculture:farmers_delight_integration"
-  }]
+  "neoforge:conditions": [
+    {
+      "type": "netheragriculture:farmers_delight_integration"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "netheragriculture:farmers_delight_integration"
+    }
+  ]
 }

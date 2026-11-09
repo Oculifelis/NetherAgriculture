@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "netheragriculture:blazing_gold_ingot"
-  }],
+  "ingredients": [
+    "netheragriculture:blazing_gold_ingot"
+  ],
   "result": {
     "id": "netheragriculture:blazing_gold_nugget",
     "count": 9

@@ -1,25 +1,24 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:bowl"
-  }, {
-    "item": "netheragriculture:crimson_berry"
-  }, {
-    "item": "netheragriculture:warped_berry"
-  }, {
-    "tag": "c:bones"
-  }, {
-    "item": "minecraft:sugar"
-  }],
+  "ingredients": [
+    "minecraft:bowl",
+    "netheragriculture:crimson_berry",
+    "netheragriculture:warped_berry",
+    "#c:bones",
+    "minecraft:sugar"
+  ],
   "result": {
     "id": "netheragriculture:nether_berry_jelly",
     "count": 1
   },
-
-  "neoforge:conditions": [{
-    "type": "netheragriculture:farmers_delight_integration"
-  }],
-  "fabric:load_conditions": [{
-    "condition": "netheragriculture:farmers_delight_integration"
-  }]
+  "neoforge:conditions": [
+    {
+      "type": "netheragriculture:farmers_delight_integration"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "netheragriculture:farmers_delight_integration"
+    }
+  ]
 }

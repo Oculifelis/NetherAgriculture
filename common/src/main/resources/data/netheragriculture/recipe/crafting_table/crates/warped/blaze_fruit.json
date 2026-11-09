@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "netheragriculture:blaze_fruit" },
-    { "item": "netheragriculture:blaze_fruit" },
-    { "item": "netheragriculture:blaze_fruit" },
-    { "item": "netheragriculture:blaze_fruit" },
-    { "item": "netheragriculture:warped_crate" },
-    { "item": "netheragriculture:blaze_fruit" },
-    { "item": "netheragriculture:blaze_fruit" },
-    { "item": "netheragriculture:blaze_fruit" },
-    { "item": "netheragriculture:blaze_fruit" }
+    "netheragriculture:blaze_fruit",
+    "netheragriculture:blaze_fruit",
+    "netheragriculture:blaze_fruit",
+    "netheragriculture:blaze_fruit",
+    "netheragriculture:warped_crate",
+    "netheragriculture:blaze_fruit",
+    "netheragriculture:blaze_fruit",
+    "netheragriculture:blaze_fruit",
+    "netheragriculture:blaze_fruit"
   ],
   "result": {
     "id": "netheragriculture:warped_crate_of_blaze_fruit",

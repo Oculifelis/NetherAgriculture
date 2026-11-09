@@ -1,16 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:bowl"
-  }, {
-    "tag": "c:foods/cooked_strider_leg"
-  }, {
-    "item": "netheragriculture:lothun"
-  }, {
-    "item": "netheragriculture:sinful_eyes"
-  }, {
-    "tag": "netheragriculture:nether_spices"
-  }],
+  "ingredients": [
+    "minecraft:bowl",
+    "#c:foods/cooked_strider_leg",
+    "netheragriculture:lothun",
+    "netheragriculture:sinful_eyes",
+    "#netheragriculture:nether_spices"
+  ],
   "result": {
     "id": "netheragriculture:strider_with_vegetables",
     "count": 1

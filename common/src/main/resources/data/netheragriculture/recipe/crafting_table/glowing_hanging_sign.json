@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "C C",
-		"PPP",
-        "PPP"
-    ],
-    "key": {
-		"P": {
-			"item": "netheragriculture:stripped_glowing_stem"
-		},
-        "C": {
-            "item": "minecraft:chain"
-        }
-    },
-    "result": {
-		"id": "netheragriculture:glowing_hanging_sign",
-		"count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C C",
+    "PPP",
+    "PPP"
+  ],
+  "key": {
+    "P": "netheragriculture:stripped_glowing_stem",
+    "C": "minecraft:chain"
+  },
+  "result": {
+    "id": "netheragriculture:glowing_hanging_sign",
+    "count": 6
+  }
 }

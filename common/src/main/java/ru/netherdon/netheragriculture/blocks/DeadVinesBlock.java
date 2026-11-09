@@ -1,5 +1,6 @@
 package ru.netherdon.netheragriculture.blocks;
 
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -71,7 +72,7 @@ public class DeadVinesBlock extends Block implements BonemealableBlock
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random)
     {
         if (!this.canSurvive(state, level, pos))
         {
@@ -84,7 +85,7 @@ public class DeadVinesBlock extends Block implements BonemealableBlock
             return state.setValue(ATTACHED, attached);
         }
 
-        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+        return super.updateShape(state, level, ticks, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override
@@ -133,19 +134,18 @@ public class DeadVinesBlock extends Block implements BonemealableBlock
         return super.isRandomlyTicking(state) && !state.getValue(ATTACHED);
     }
 
+    // 26.x: onRemove(state, level, pos, newState, moved) is gone. Vanilla now calls affectNeighborsAfterRemoval
+    // only when the block really changed, which matches the original "!newState.is(state.getBlock())" check.
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston)
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston)
     {
-        super.onRemove(state, level, pos, newState, movedByPiston);
+        super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
 
-        if (!newState.is(state.getBlock()))
+        BlockPos posBelow = pos.below();
+        BlockState stateBelow = level.getBlockState(posBelow);
+        if (stateBelow.is(NABlocks.MORTOFRUCT.value()))
         {
-            BlockPos posBelow = pos.below();
-            BlockState stateBelow = level.getBlockState(posBelow);
-            if (stateBelow.is(NABlocks.MORTOFRUCT.value()))
-            {
-                NABlocks.MORTOFRUCT.value().onVineBroken(level, posBelow, stateBelow);
-            }
+            NABlocks.MORTOFRUCT.value().onVineBroken(level, posBelow, stateBelow);
         }
     }
 

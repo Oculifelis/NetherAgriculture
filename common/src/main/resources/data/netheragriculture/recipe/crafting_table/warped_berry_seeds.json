@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-      "item": "netheragriculture:warped_berry"
-  }],
+  "ingredients": [
+    "netheragriculture:warped_berry"
+  ],
   "result": {
     "id": "netheragriculture:warped_berry_seeds",
     "count": 1

@@ -1,5 +1,7 @@
 package ru.netherdon.netheragriculture.blocks;
 
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -85,7 +87,7 @@ public class BlazeFruitBlock extends NetherCropBlock
         switch (axis)
         {
             case X:
-                xOffset = 0.5d + 0.3d * face.getNormal().getX();
+                xOffset = 0.5d + 0.3d * face.getUnitVec3i().getX();
                 yOffset = 0.3625d * random.nextFloat();
                 zOffset = 0.2d + 0.6d * random.nextFloat();
                 break;
@@ -97,7 +99,7 @@ public class BlazeFruitBlock extends NetherCropBlock
             case Z:
                 xOffset = 0.2d + 0.6d * random.nextFloat();
                 yOffset = 0.3625d * random.nextFloat();
-                zOffset = 0.5d + 0.3d * face.getNormal().getZ();
+                zOffset = 0.5d + 0.3d * face.getUnitVec3i().getZ();
                 break;
         }
 
@@ -107,7 +109,7 @@ public class BlazeFruitBlock extends NetherCropBlock
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity)
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise)
     {
         if (this.isMaxAge(state))
         {
@@ -120,9 +122,13 @@ public class BlazeFruitBlock extends NetherCropBlock
                 }
             }
 
-            entity.hurt(level.damageSources().inFire(), 1f);
+            // 26.x: hurt() is server-only (hurtServer); 1.21.1 hurt() did nothing on the client either
+            if (level instanceof ServerLevel serverLevel)
+            {
+                entity.hurtServer(serverLevel, level.damageSources().inFire(), 1f);
+            }
         }
-        super.entityInside(state, level, pos, entity);
+        super.entityInside(state, level, pos, entity, effectApplier, isPrecise);
     }
 
     @Override

@@ -1,37 +1,36 @@
 modLoader = "javafml"
-loaderVersion = "[4,)"
-#issueTrackerURL = ""
+loaderVersion = "${neoforge_loader_version_range}"
 license = "${license}"
 
 [[mods]]
-modId = "${id}"
+modId = "${mod_id}"
 version = "${version}"
-displayName = "${name}"
-authors = "${author}"
+displayName = "${mod_name}"
+authors = "${mod_author}"
+credits = "${credits}"
 description = '''${description}'''
 logoFile = "logo.png"
 
-enumExtensions="META-INF/enumextensions.json"
 
 [[mixins]]
-config = "${id}.mixins.json"
+config = "${mod_id}.mixins.json"
 
 [[mixins]]
-config = "${id}.neoforge.mixins.json"
+config = "${mod_id}.neoforge.mixins.json"
 
 [[accessTransformers]]
 file="META-INF/accesstransformer.cfg"
 
-[[dependencies.${id}]]
+[[dependencies.${mod_id}]]
     modId = "neoforge"
     type = "required"
-    versionRange = "[21.1,)"
+    versionRange = "[${neoforge_version},)"
     ordering = "NONE"
     side = "BOTH"
 
-[[dependencies.${id}]]
+[[dependencies.${mod_id}]]
     modId = "minecraft"
     type = "required"
-    versionRange = "[1.21.1,)"
+    versionRange = "${minecraft_version_range}"
     ordering = "NONE"
     side = "BOTH"

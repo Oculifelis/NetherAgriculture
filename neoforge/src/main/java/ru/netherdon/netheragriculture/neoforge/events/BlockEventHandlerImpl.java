@@ -17,7 +17,7 @@ import ru.netherdon.netheragriculture.registries.NABlocks;
 
 import java.util.Map;
 
-@EventBusSubscriber(modid = NetherAgriculture.ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = NetherAgriculture.ID)
 public final class BlockEventHandlerImpl
 {
     private static final Lazy<Map<Block, Block>> MY_STRIPPABLES = Lazy.of(() -> Map.of(

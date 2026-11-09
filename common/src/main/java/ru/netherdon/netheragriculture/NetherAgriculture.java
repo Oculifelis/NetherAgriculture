@@ -1,6 +1,6 @@
 package ru.netherdon.netheragriculture;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import ru.netherdon.netheragriculture.registries.*;
 
 public class NetherAgriculture
@@ -19,13 +19,14 @@ public class NetherAgriculture
         NABlockEntityTypes.initialize();
         NAMenuTypes.initialize();
         NARecipeTypes.initialize();
+        NARecipeBookCategories.initialize();
         NAParticleTypes.initialize();
         NAFeatures.initialize();
         NAWoodTypes.initialize();
     }
 
-    public static ResourceLocation location(String path)
+    public static Identifier location(String path)
     {
-        return ResourceLocation.fromNamespaceAndPath(ID, path);
+        return Identifier.fromNamespaceAndPath(ID, path);
     }
 }

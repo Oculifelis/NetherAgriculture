@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-		" S ",
-		"SPS",
-		" S "
-    ],
-    "key": {
-		"P": {
-			"item": "minecraft:crimson_planks"
-		},
-		"S": {
-			"item": "minecraft:crimson_slab"
-		}
-    },
-    "result": {
-		"id": "netheragriculture:crimson_crate",
-		"count": 2
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "P": "minecraft:crimson_planks",
+    "S": "minecraft:crimson_slab"
+  },
+  "result": {
+    "id": "netheragriculture:crimson_crate",
+    "count": 2
+  }
 }

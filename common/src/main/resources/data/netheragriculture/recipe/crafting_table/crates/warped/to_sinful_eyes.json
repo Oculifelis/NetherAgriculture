@@ -1,8 +1,6 @@
 {
   "type": "netheragriculture:emptying_storage",
-  "input": {
-    "item": "netheragriculture:warped_crate_of_sinful_eyes"
-  },
+  "input": "netheragriculture:warped_crate_of_sinful_eyes",
   "storage": {
     "id": "netheragriculture:warped_crate"
   },

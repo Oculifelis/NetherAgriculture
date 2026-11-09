@@ -3,11 +3,10 @@
   "cookingtime": 200,
   "experience": 1.0,
   "recipe_book_tab": "meals",
-  "ingredients": [{
-    "item": "netheragriculture:glowing_fungus"
-  }, {
-    "item": "netheragriculture:glowing_fungus"
-  }],
+  "ingredients": [
+    "netheragriculture:glowing_fungus",
+    "netheragriculture:glowing_fungus"
+  ],
   "container": {
     "id": "minecraft:bowl",
     "count": 1
@@ -16,14 +15,19 @@
     "id": "netheragriculture:glowing_mushroom_stew",
     "count": 1
   },
-
-  "neoforge:conditions": [{
-    "type": "neoforge:mod_loaded",
-    "modid": "farmersdelight"
-  }],
-  "fabric:load_conditions": [{
-    "condition": "fabric:registry_contains",
-    "registry": "minecraft:recipe_serializer",
-    "values": ["farmersdelight:cooking"]
-  }]
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:registry_contains",
+      "registry": "minecraft:recipe_serializer",
+      "values": [
+        "farmersdelight:cooking"
+      ]
+    }
+  ]
 }

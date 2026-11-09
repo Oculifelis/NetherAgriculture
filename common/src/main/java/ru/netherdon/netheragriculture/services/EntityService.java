@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.services;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -14,22 +13,20 @@ public final class EntityService
         return entity instanceof Player player
             && player.getAbilities().invulnerable
             || entity.fireImmune()
-            || entity.isInWaterRainOrBubble()
+            || entity.isInWaterOrRain()
             || entity.isInPowderSnow
             || EntityService.isLocalImmuneToFire(entity);
     }
 
-    @ExpectPlatform
     @Contract(pure = true)
     private static boolean isLocalImmuneToFire(Entity entity)
     {
-        throw new UnsupportedOperationException();
+        return Services.PLATFORM.isLocalImmuneToFire(entity);
     }
 
-    @ExpectPlatform
     @Contract(pure = true)
     public static boolean canTrample(Entity entity, BlockState state, BlockPos pos, float fallDistance)
     {
-        throw new UnsupportedOperationException();
+        return Services.PLATFORM.canTrample(entity, state, pos, fallDistance);
     }
 }

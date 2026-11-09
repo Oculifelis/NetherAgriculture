@@ -3,7 +3,7 @@ package ru.netherdon.netheragriculture.fabric.registries;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import ru.netherdon.netheragriculture.NetherAgriculture;
 import ru.netherdon.netheragriculture.registries.IRegistryProvider;
 
@@ -13,9 +13,9 @@ public record RegistryProvider<T>(Registry<T> registry) implements IRegistryProv
 {
     @SuppressWarnings("unchecked")
     @Override
-    public <V extends T> Holder<V> register(String name, Function<ResourceLocation, V> registryObject)
+    public <V extends T> Holder<V> register(String name, Function<Identifier, V> registryObject)
     {
-        ResourceLocation id = NetherAgriculture.location(name);
+        Identifier id = NetherAgriculture.location(name);
         return (Holder<V>) Registry.registerForHolder(this.registry, id, registryObject.apply(id));
     }
 

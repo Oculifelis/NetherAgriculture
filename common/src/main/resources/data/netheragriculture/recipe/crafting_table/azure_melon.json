@@ -1,14 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "netheragriculture:azure_melon_slice"
-  }, {
-    "item": "netheragriculture:azure_melon_slice"
-  }, {
-    "item": "netheragriculture:azure_melon_slice"
-  }, {
-    "item": "netheragriculture:azure_melon_slice"
-  }],
+  "ingredients": [
+    "netheragriculture:azure_melon_slice",
+    "netheragriculture:azure_melon_slice",
+    "netheragriculture:azure_melon_slice",
+    "netheragriculture:azure_melon_slice"
+  ],
   "result": {
     "id": "netheragriculture:azure_melon",
     "count": 1

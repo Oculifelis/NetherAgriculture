@@ -1,14 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "tag": "c:foods/cooked_hoglin"
-  }, {
-    "item": "netheragriculture:sinful_eyes"
-  }, {
-    "tag": "netheragriculture:nether_spices"
-  }, {
-    "tag": "c:rods/wooden"
-  }],
+  "ingredients": [
+    "#c:foods/cooked_hoglin",
+    "netheragriculture:sinful_eyes",
+    "#netheragriculture:nether_spices",
+    "#c:rods/wooden"
+  ],
   "result": {
     "id": "netheragriculture:nether_barbecue_on_a_stick",
     "count": 1

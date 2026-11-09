@@ -1,8 +1,6 @@
 {
   "type": "netheragriculture:emptying_storage",
-  "input": {
-    "item": "netheragriculture:crimson_crate_of_sinful_eyes"
-  },
+  "input": "netheragriculture:crimson_crate_of_sinful_eyes",
   "storage": {
     "id": "netheragriculture:crimson_crate"
   },

@@ -13,11 +13,11 @@ public final class NAPotions
     private static final IRegistryProvider<Potion> REGISTER = RegistryManager.getOrCreate(BuiltInRegistries.POTION);
 
     public static final Holder<Potion> BLAZE_FLIGHT = REGISTER.register("blaze_flight",
-        () -> new Potion(new MobEffectInstance(NAMobEffects.BLAZE_FLIGHT, 900))
+        () -> new Potion("blaze_flight", new MobEffectInstance(NAMobEffects.BLAZE_FLIGHT, 900))
     );
 
     public static final Holder<Potion> WARP = REGISTER.register("warp",
-        () -> new Potion(new MobEffectInstance(NAMobEffects.WARP, 3600))
+        () -> new Potion("warp", new MobEffectInstance(NAMobEffects.WARP, 3600))
     );
 
     public static void registerRecipes(PotionBrewing.Builder builder)

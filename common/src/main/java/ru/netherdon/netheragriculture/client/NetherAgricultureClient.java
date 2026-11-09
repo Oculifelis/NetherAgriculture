@@ -1,9 +1,7 @@
 package ru.netherdon.netheragriculture.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.blockentity.StandingSignRenderer;
 import ru.netherdon.netheragriculture.blocks.entities.IBlockEntityRendererRegister;
 import ru.netherdon.netheragriculture.client.particles.FlameEffectParticleProvider;
 import ru.netherdon.netheragriculture.client.particles.GlowingSporeParticle;
@@ -15,7 +13,6 @@ import ru.netherdon.netheragriculture.registries.NABlockEntityTypes;
 import ru.netherdon.netheragriculture.registries.NAMenuTypes;
 import ru.netherdon.netheragriculture.registries.NAParticleTypes;
 
-@Environment(EnvType.CLIENT)
 public class NetherAgricultureClient
 {
     public static void initialize()
@@ -37,7 +34,7 @@ public class NetherAgricultureClient
 
     public static void registerBlockEntityRenderers(IBlockEntityRendererRegister register)
     {
-        register.register(NABlockEntityTypes.CUSTOM_SIGN.value(), SignRenderer::new);
+        register.register(NABlockEntityTypes.CUSTOM_SIGN.value(), StandingSignRenderer::new);
         register.register(NABlockEntityTypes.CUSTOM_HANGING_SIGN.value(), HangingSignRenderer::new);
     }
 }

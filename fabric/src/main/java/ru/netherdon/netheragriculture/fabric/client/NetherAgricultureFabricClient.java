@@ -1,7 +1,7 @@
 package ru.netherdon.netheragriculture.fabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.fabricmc.fabric.impl.client.rendering.BlockEntityRendererRegistryImpl;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.particle.ParticleProvider;
@@ -29,7 +29,7 @@ public final class NetherAgricultureFabricClient implements ClientModInitializer
         @Override
         public <T extends ParticleOptions> void register(ParticleType<T> type, Function<SpriteSet, ParticleProvider<T>> factory)
         {
-            ParticleFactoryRegistry.getInstance().register(type, factory::apply);
+            ParticleProviderRegistry.getInstance().register(type, factory::apply);
         }
     };
 
@@ -42,7 +42,7 @@ public final class NetherAgricultureFabricClient implements ClientModInitializer
         NetherAgricultureClient.registerParticleProviders(PARTICLE_PROVIDER_REGISTER);
         NetherAgricultureClient.registerBlockEntityRenderers(BlockEntityRenderers::register);
 
-        Sheets.SIGN_MATERIALS.put(NAWoodTypes.GLOWING, Sheets.createSignMaterial(NAWoodTypes.GLOWING));
-        Sheets.HANGING_SIGN_MATERIALS.put(NAWoodTypes.GLOWING, Sheets.createHangingSignMaterial(NAWoodTypes.GLOWING));
+        Sheets.SIGN_SPRITES.put(NAWoodTypes.GLOWING, Sheets.createSignSprite(NAWoodTypes.GLOWING));
+        Sheets.HANGING_SIGN_SPRITES.put(NAWoodTypes.GLOWING, Sheets.createHangingSignSprite(NAWoodTypes.GLOWING));
     }
 }

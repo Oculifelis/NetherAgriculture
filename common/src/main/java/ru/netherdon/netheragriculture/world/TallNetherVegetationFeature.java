@@ -30,7 +30,7 @@ public class TallNetherVegetationFeature extends Feature<TallNetherVegetationCon
         }
 
         int i = pos.getY();
-        if (i >= level.getMinBuildHeight() + 1 && i + 1 < level.getMaxBuildHeight())
+        if (i >= level.getMinY() + 1 && i + 1 < level.getMaxY() + 1)
         {
             int j = 0;
 
@@ -51,7 +51,7 @@ public class TallNetherVegetationFeature extends Feature<TallNetherVegetationCon
                 if (
                     level.isEmptyBlock(pos2)
                     && level.isEmptyBlock(pos2Above)
-                    && pos2.getY() > level.getMinBuildHeight()
+                    && pos2.getY() > level.getMinY()
                     && config.stateBelow.canSurvive(level, pos2))
                 {
                     level.setBlock(pos2, config.stateBelow, 2);

@@ -40,7 +40,7 @@ public abstract class StriderMixin
     private void na$updateInternalHeat()
     {
         Strider na$strider = this.na$asStrider();
-        if (!na$strider.level().isClientSide)
+        if (!na$strider.level().isClientSide())
         {
             na$strider.getEntityData().set(NA$DATA_INTERNAL_HEAT, na$strider.hasEffect(NAMobEffects.INTERNAL_HEAT));
         }

@@ -1,8 +1,6 @@
 {
   "type": "netheragriculture:emptying_storage",
-  "input": {
-    "item": "netheragriculture:glowing_crate_of_crimson_berries"
-  },
+  "input": "netheragriculture:glowing_crate_of_crimson_berries",
   "storage": {
     "id": "netheragriculture:glowing_crate"
   },

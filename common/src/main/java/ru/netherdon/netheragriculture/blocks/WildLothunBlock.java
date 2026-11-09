@@ -6,13 +6,13 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class WildLothunBlock extends BushBlock
+public class WildLothunBlock extends VegetationBlock
 {
     public static final MapCodec<WildLothunBlock> CODEC = Block.simpleCodec(WildLothunBlock::new);
 
@@ -26,7 +26,7 @@ public class WildLothunBlock extends BushBlock
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
-        Vec3 offset = state.getOffset(level, pos);
+        Vec3 offset = state.getOffset(pos);
         return SHAPE.move(offset.x, offset.y, offset.z);
     }
 

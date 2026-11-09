@@ -1,23 +1,23 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:glass_bottle"
-  }, {
-    "item": "netheragriculture:warped_berry"
-  }, {
-    "item": "netheragriculture:warped_berry"
-  }, {
-    "item": "minecraft:sugar"
-  }],
+  "ingredients": [
+    "minecraft:glass_bottle",
+    "netheragriculture:warped_berry",
+    "netheragriculture:warped_berry",
+    "minecraft:sugar"
+  ],
   "result": {
     "id": "netheragriculture:warped_berry_jam",
     "count": 1
   },
-
-  "neoforge:conditions": [{
-    "type": "netheragriculture:farmers_delight_integration"
-  }],
-  "fabric:load_conditions": [{
-    "condition": "netheragriculture:farmers_delight_integration"
-  }]
+  "neoforge:conditions": [
+    {
+      "type": "netheragriculture:farmers_delight_integration"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "netheragriculture:farmers_delight_integration"
+    }
+  ]
 }

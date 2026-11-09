@@ -8,7 +8,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -45,7 +45,7 @@ public final class NALootTableModifiers
             return;
         }
 
-        ResourceLocation tableId = key.location();
+        Identifier tableId = key.identifier();
         if (tableId.equals(NETHER_BRIDGE))
         {
             if (config().fabric().isNetherBridgeEnabled())
@@ -138,14 +138,14 @@ public final class NALootTableModifiers
 
             for (LootPoolEntryContainer container : oldEntries)
             {
-                poolBuilder.with(container);
+                poolBuilder.add(container);
                 if (container instanceof LootItem lootItem && modifiers.containsKey(lootItem.item.value()))
                 {
-                    poolBuilder.with(modifiers.get(lootItem.item.value()).modify(lootItem));
+                    poolBuilder.add(modifiers.get(lootItem.item.value()).modify(lootItem));
                 }
                 else
                 {
-                    poolBuilder.with(container);
+                    poolBuilder.add(container);
                 }
             }
         });

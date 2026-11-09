@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-      "tag": "netheragriculture:glowing_stems"
-  }],
+  "ingredients": [
+    "#netheragriculture:glowing_stems"
+  ],
   "result": {
     "id": "netheragriculture:glowing_planks",
     "count": 4

@@ -33,7 +33,7 @@ public class MortofructFeature extends Feature<MortofructFeatureConfiguration>
         }
 
         int i = pos.getY();
-        if (i >= level.getMinBuildHeight() + 1 && i + 1 < level.getMaxBuildHeight())
+        if (i >= level.getMinY() + 1 && i + 1 < level.getMaxY() + 1)
         {
             int placed = 0;
 

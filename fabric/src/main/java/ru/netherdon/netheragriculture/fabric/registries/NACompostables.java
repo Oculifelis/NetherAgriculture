@@ -1,13 +1,13 @@
 package ru.netherdon.netheragriculture.fabric.registries;
 
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.CompostableRegistry;
 import ru.netherdon.netheragriculture.registries.NAItems;
 
 public final class NACompostables
 {
     public static void initialize()
     {
-        CompostingChanceRegistry registry = CompostingChanceRegistry.INSTANCE;
+        CompostableRegistry registry = CompostableRegistry.INSTANCE;
 
         registry.add(NAItems.NETHER_ROOTS.value(), 0.65f);
         registry.add(NAItems.TALL_CRIMSON_ROOTS.value(), 0.75f);

@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "netheragriculture:tall_warped_roots"
-  }],
+  "ingredients": [
+    "netheragriculture:tall_warped_roots"
+  ],
   "result": {
     "id": "netheragriculture:crushed_warped_roots",
     "count": 2

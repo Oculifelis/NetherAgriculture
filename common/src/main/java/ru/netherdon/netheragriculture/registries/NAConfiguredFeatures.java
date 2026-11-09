@@ -3,9 +3,9 @@ package ru.netherdon.netheragriculture.registries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.NetherFeatures;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.random.SimpleWeightedRandomList;
-import net.minecraft.util.random.WeightedEntry;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.random.WeightedList;
+import net.minecraft.util.random.Weighted;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NetherForestVegetationConfig;
@@ -24,30 +24,30 @@ public final class NAConfiguredFeatures
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, NetherAgriculture.location(name));
     }
 
-    public static void modify(ResourceLocation name, ConfiguredFeature<?, ?> feature)
+    public static void modify(Identifier name, ConfiguredFeature<?, ?> feature)
     {
-        if (name.equals(NetherFeatures.CRIMSON_FOREST_VEGETATION_BONEMEAL.location()))
+        if (name.equals(NetherFeatures.CRIMSON_FOREST_VEGETATION_BONEMEAL.identifier()))
         {
             if (config().isCrimsonNyliumBonemealEnabled())
             {
                 addGlowingFungus(feature, 4);
             }
         }
-        else if (name.equals(NetherFeatures.WARPED_FOREST_VEGETATION_BONEMEAL.location()))
+        else if (name.equals(NetherFeatures.WARPED_FOREST_VEGETATION_BONEMEAL.identifier()))
         {
             if (config().isWarpedNyliumBonemealEnabled())
             {
                 addGlowingFungus(feature, 4);
             }
         }
-        else if (name.equals(NetherFeatures.CRIMSON_FOREST_VEGETATION.location()))
+        else if (name.equals(NetherFeatures.CRIMSON_FOREST_VEGETATION.identifier()))
         {
             if (config().isCrimsonForestVegetationEnabled())
             {
                 addGlowingFungus(feature, 2);
             }
         }
-        else if (name.equals(NetherFeatures.WARPED_FOREST_VEGETION.location()))
+        else if (name.equals(NetherFeatures.WARPED_FOREST_VEGETION.identifier()))
         {
             if (config().isWarpedForestVegetationEnabled())
             {
@@ -63,10 +63,10 @@ public final class NAConfiguredFeatures
             && config.stateProvider instanceof WeightedStateProvider provider
         )
         {
-            SimpleWeightedRandomList.Builder<BlockState> builder = SimpleWeightedRandomList.builder();
-            for (WeightedEntry.Wrapper<BlockState> wrapper : provider.weightedList.unwrap())
+            WeightedList.Builder<BlockState> builder = WeightedList.builder();
+            for (Weighted<BlockState> wrapper : provider.weightedList.unwrap())
             {
-                builder.add(wrapper.data(), wrapper.weight().asInt());
+                builder.add(wrapper.value(), wrapper.weight());
             }
             builder.add(NABlocks.GLOWING_FUNGUS.value().defaultBlockState(), weight);
             provider.weightedList = builder.build();

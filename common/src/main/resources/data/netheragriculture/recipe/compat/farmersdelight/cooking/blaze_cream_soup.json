@@ -3,15 +3,12 @@
   "cookingtime": 600,
   "experience": 2.0,
   "recipe_book_tab": "meals",
-  "ingredients": [{
-    "item": "netheragriculture:lothun"
-  }, {
-    "item": "minecraft:warped_fungus"
-  }, {
-    "item": "netheragriculture:blaze_fruit"
-  }, {
-    "tag": "netheragriculture:nether_spices"
-  }],
+  "ingredients": [
+    "netheragriculture:lothun",
+    "minecraft:warped_fungus",
+    "netheragriculture:blaze_fruit",
+    "#netheragriculture:nether_spices"
+  ],
   "container": {
     "id": "minecraft:bowl",
     "count": 1
@@ -20,14 +17,19 @@
     "id": "netheragriculture:blaze_cream_soup",
     "count": 1
   },
-
-  "neoforge:conditions": [{
-    "type": "neoforge:mod_loaded",
-    "modid": "farmersdelight"
-  }],
-  "fabric:load_conditions": [{
-    "condition": "fabric:registry_contains",
-    "registry": "minecraft:recipe_serializer",
-    "values": ["farmersdelight:cooking"]
-  }]
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:registry_contains",
+      "registry": "minecraft:recipe_serializer",
+      "values": [
+        "farmersdelight:cooking"
+      ]
+    }
+  ]
 }

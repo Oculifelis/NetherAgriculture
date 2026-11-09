@@ -42,15 +42,15 @@ public class CrimsonBerryRootsBlock extends NetherCropBlock
         int age = this.getAge(state);
         if (age >= this.getMaxAge())
         {
-            int count = 1 + level.random.nextInt(2);
+            int count = 1 + level.getRandom().nextInt(2);
             popResource(level, pos, new ItemStack(NAItems.CRIMSON_BERRY.value(), count));
             level.playSound(
-                null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F
+                null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.getRandom().nextFloat() * 0.4F
             );
             BlockState newState = state.setValue(this.getAgeProperty(), age-1);
             level.setBlock(pos, newState, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, newState));
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         }
 
         return super.useWithoutItem(state, level, pos, player, hitResult);

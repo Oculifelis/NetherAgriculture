@@ -29,7 +29,7 @@ public class SmallCrateBlock extends SlabBlock
     {
         if (CrateBlock.tryToggleState(level, player, state, pos))
         {
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         }
 
         return super.useWithoutItem(state, level, pos, player, hitResult);

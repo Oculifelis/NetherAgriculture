@@ -1,24 +1,16 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "netheragriculture:blazing_gold_nugget"
-  }, {
-    "item": "netheragriculture:blazing_gold_nugget"
-  }, {
-    "item": "netheragriculture:blazing_gold_nugget"
-  }, {
-    "item": "netheragriculture:blazing_gold_nugget"
-  }, {
-    "item": "netheragriculture:blazing_gold_nugget"
-  }, {
-    "item": "netheragriculture:blazing_gold_nugget"
-  }, {
-    "item": "netheragriculture:blazing_gold_nugget"
-  }, {
-    "item": "netheragriculture:blazing_gold_nugget"
-  }, {
-    "item": "netheragriculture:blazing_gold_nugget"
-  }],
+  "ingredients": [
+    "netheragriculture:blazing_gold_nugget",
+    "netheragriculture:blazing_gold_nugget",
+    "netheragriculture:blazing_gold_nugget",
+    "netheragriculture:blazing_gold_nugget",
+    "netheragriculture:blazing_gold_nugget",
+    "netheragriculture:blazing_gold_nugget",
+    "netheragriculture:blazing_gold_nugget",
+    "netheragriculture:blazing_gold_nugget",
+    "netheragriculture:blazing_gold_nugget"
+  ],
   "result": {
     "id": "netheragriculture:blazing_gold_ingot",
     "count": 1

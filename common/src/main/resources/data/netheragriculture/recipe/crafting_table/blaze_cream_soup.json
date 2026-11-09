@@ -1,25 +1,24 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:bowl"
-  }, {
-    "item": "netheragriculture:lothun"
-  }, {
-    "item": "minecraft:warped_fungus"
-  }, {
-    "item": "netheragriculture:blaze_fruit"
-  }, {
-    "tag": "netheragriculture:nether_spices"
-  }],
+  "ingredients": [
+    "minecraft:bowl",
+    "netheragriculture:lothun",
+    "minecraft:warped_fungus",
+    "netheragriculture:blaze_fruit",
+    "#netheragriculture:nether_spices"
+  ],
   "result": {
     "id": "netheragriculture:blaze_cream_soup",
     "count": 1
   },
-
-  "neoforge:conditions": [{
-    "type": "netheragriculture:farmers_delight_integration"
-  }],
-  "fabric:load_conditions": [{
-    "condition": "netheragriculture:farmers_delight_integration"
-  }]
+  "neoforge:conditions": [
+    {
+      "type": "netheragriculture:farmers_delight_integration"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "netheragriculture:farmers_delight_integration"
+    }
+  ]
 }

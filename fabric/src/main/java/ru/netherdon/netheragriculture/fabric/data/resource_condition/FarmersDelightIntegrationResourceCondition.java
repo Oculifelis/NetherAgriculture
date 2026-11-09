@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
 import ru.netherdon.netheragriculture.NetherAgriculture;
 import ru.netherdon.netheragriculture.compat.OtherModNames;
@@ -18,7 +18,7 @@ public class FarmersDelightIntegrationResourceCondition implements ResourceCondi
     );
 
     @Override
-    public boolean test(@Nullable HolderLookup.Provider registryLookup)
+    public boolean test(@Nullable RegistryOps.RegistryInfoLookup registryInfo)
     {
         return !FabricLoader.getInstance().isModLoaded(OtherModNames.FARMERS_DELIGHT)
             || !NACommonConfig.get().modCompatibility.farmersDelight().isFullRecipeIntegrationEnabled();

@@ -1,14 +1,11 @@
 package ru.netherdon.netheragriculture.compat.clothconfig;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-@Environment(EnvType.CLIENT)
 public class ConfigPermission
 {
     public static final ConfigPermission ALL = new ConfigPermission(null);

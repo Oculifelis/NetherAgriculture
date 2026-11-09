@@ -12,20 +12,22 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import org.apache.logging.log4j.util.Lazy;
 import ru.netherdon.netheragriculture.items.properties.FoodHelper;
 import ru.netherdon.netheragriculture.registries.NAMobEffects;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class StriderTreatItem extends Item
 {
     private static final Lazy<List<MobEffectInstance>> EFFECTS = Lazy.lazy(() -> List.of(
         new MobEffectInstance(NAMobEffects.INTERNAL_HEAT, 6000, 0),
         new MobEffectInstance(NAMobEffects.LONG_LEGS, 6000, 0),
-        new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 6000, 0),
-        new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000, 0)
+        new MobEffectInstance(MobEffects.SPEED, 6000, 0),
+        new MobEffectInstance(MobEffects.RESISTANCE, 6000, 0)
     ));
 
     public StriderTreatItem(Properties properties)
@@ -34,22 +36,22 @@ public class StriderTreatItem extends Item
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag)
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay display, Consumer<Component> tooltip, TooltipFlag tooltipFlag)
     {
-        super.appendHoverText(itemStack, tooltipContext, tooltip, tooltipFlag);
-        tooltip.add(Component.translatable(this.getDescriptionId() + ".description").withStyle(ChatFormatting.GRAY));
+        super.appendHoverText(itemStack, tooltipContext, display, tooltip, tooltipFlag);
+        tooltip.accept(Component.translatable(this.getDescriptionId() + ".description").withStyle(ChatFormatting.GRAY));
         for (var effect : EFFECTS.get())
         {
             Component effectText = Component.literal(" ").append(
                 FoodHelper.createEffectTooltip(effect, 1f, tooltipContext, tooltipFlag)
             );
-            tooltip.add(effectText);
+            tooltip.accept(effectText);
         }
     }
 
     public void feedStrider(ItemStack stack, Level level, Strider strider, Player player)
     {
-        if (!level.isClientSide)
+        if (!level.isClientSide())
         {
             for (var effect : EFFECTS.get())
             {
@@ -63,7 +65,7 @@ public class StriderTreatItem extends Item
                 level.playSound((Player)null,
                     strider.getX(), strider.getY(), strider.getZ(),
                     SoundEvents.STRIDER_EAT, strider.getSoundSource(),
-                    1.0F, 1.0F + (level.random.nextFloat() - level.random.nextFloat()) * 0.2F
+                    1.0F, 1.0F + (level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.2F
                 );
             }
         }
@@ -76,7 +78,7 @@ public class StriderTreatItem extends Item
         if (stack.getItem() instanceof StriderTreatItem treatItem && entity instanceof Strider strider)
         {
             treatItem.feedStrider(stack, level, strider, player);
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.PASS;

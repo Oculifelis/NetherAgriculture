@@ -1,14 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "netheragriculture:mortofruct_half"
-  }, {
-    "item": "netheragriculture:blazing_golden_lothun"
-  }, {
-    "item": "minecraft:warped_fungus"
-  }, {
-    "item": "minecraft:warped_fungus"
-  }],
+  "ingredients": [
+    "netheragriculture:mortofruct_half",
+    "netheragriculture:blazing_golden_lothun",
+    "minecraft:warped_fungus",
+    "minecraft:warped_fungus"
+  ],
   "result": {
     "id": "netheragriculture:strider_treat",
     "count": 1

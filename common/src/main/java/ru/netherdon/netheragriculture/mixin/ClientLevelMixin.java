@@ -1,8 +1,6 @@
 package ru.netherdon.netheragriculture.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -18,7 +16,6 @@ import ru.netherdon.netheragriculture.blocks.GlowingSporesBlock;
 import ru.netherdon.netheragriculture.registries.NAParticleTypes;
 
 @Mixin(ClientLevel.class)
-@Environment(EnvType.CLIENT)
 public class ClientLevelMixin
 {
     @Inject(method = "doAnimateTick", at = @At(value = "TAIL"))

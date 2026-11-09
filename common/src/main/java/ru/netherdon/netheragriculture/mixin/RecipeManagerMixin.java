@@ -1,22 +1,26 @@
 package ru.netherdon.netheragriculture.mixin;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.gson.JsonElement;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.item.crafting.*;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import ru.netherdon.netheragriculture.compat.OtherModNames;
 import ru.netherdon.netheragriculture.config.NACommonConfig;
+import ru.netherdon.netheragriculture.recipes.furnace.NetherCookingRecipe;
+import ru.netherdon.netheragriculture.registries.NARecipeBookCategories;
+import ru.netherdon.netheragriculture.registries.NARecipeTypes;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Mixin(RecipeManager.class)
 public abstract class RecipeManagerMixin
@@ -28,23 +32,63 @@ public abstract class RecipeManagerMixin
         "boiled_egg_cooking", "boiled_egg_from_campfire_cooking", "boiled_egg_from_smoking"
     );
 
+    @Shadow
+    private RecipeMap recipes;
+
+    @Shadow
+    private Map<ResourceKey<RecipePropertySet>, RecipePropertySet> propertySets;
+
+    // 26.x: recipes are parsed in prepare(); the same ids are dropped from its result instead of from the JSON map.
     @Inject(
-        method = "apply(Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V",
-        at = @At("HEAD")
+        method = "prepare(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Lnet/minecraft/world/item/crafting/RecipeMap;",
+        at = @At("RETURN"),
+        cancellable = true
     )
-    public void removeRecipes(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profilerFiller, CallbackInfo ci)
+    private void na$removeRecipes(ResourceManager resourceManager, ProfilerFiller profilerFiller, CallbackInfoReturnable<RecipeMap> cir)
     {
         if (NACommonConfig.get().modCompatibility.nethersDelight().isOnlyBlackFurnaceUsed())
         {
-            na$removeRecipesFor(OtherModNames.MY_NETHERS_DELIGHT, map, NA$MYNETHERSDELIGHT_RECIPES);
+            cir.setReturnValue(na$removeRecipesFor(OtherModNames.MY_NETHERS_DELIGHT, cir.getReturnValue(), NA$MYNETHERSDELIGHT_RECIPES));
         }
     }
+
     @Unique
-    private static void na$removeRecipesFor(String modId, Map<ResourceLocation, JsonElement> map, Collection<String> recipeIds)
+    private static RecipeMap na$removeRecipesFor(String modId, RecipeMap map, Collection<String> recipeIds)
     {
+        Set<Identifier> removed = new HashSet<>();
         for (String recipeId : recipeIds)
         {
-            map.remove(ResourceLocation.fromNamespaceAndPath(modId,recipeId));
+            removed.add(Identifier.fromNamespaceAndPath(modId, recipeId));
         }
+
+        List<RecipeHolder<?>> kept = new ArrayList<>();
+        for (RecipeHolder<?> holder : map.values())
+        {
+            if (!removed.contains(holder.id().identifier()))
+            {
+                kept.add(holder);
+            }
+        }
+        return kept.size() == map.values().size() ? map : RecipeMap.create(kept);
+    }
+
+    // Black furnace input slot filter (the 1.21.1 menu asked the recipe manager directly).
+    @Inject(method = "finalizeRecipeLoading", at = @At("TAIL"))
+    private void na$addBlackFurnaceInputs(FeatureFlagSet enabledFlags, CallbackInfo ci)
+    {
+        List<Ingredient> ingredients = new ArrayList<>();
+        for (RecipeHolder<NetherCookingRecipe> holder : this.recipes.byType(NARecipeTypes.NETHER_COOKING.value()))
+        {
+            Ingredient ingredient = holder.value().input();
+            if (!holder.value().placementInfo().isImpossibleToPlace()
+                && ingredient.items().allMatch((item) -> item.value().isEnabled(enabledFlags)))
+            {
+                ingredients.add(ingredient);
+            }
+        }
+
+        Map<ResourceKey<RecipePropertySet>, RecipePropertySet> sets = new HashMap<>(this.propertySets);
+        sets.put(NARecipeBookCategories.BLACK_FURNACE_INPUT, RecipePropertySetAccessor.na$create(ingredients));
+        this.propertySets = Map.copyOf(sets);
     }
 }

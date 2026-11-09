@@ -1,20 +1,21 @@
 {
-  "neoforge:conditions": [{
-    "type": "neoforge:not",
-    "value": {
-      "type": "neoforge:mod_loaded",
-      "modid": "mynethersdelight"
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "mynethersdelight"
+      }
     }
-  }],
-
+  ],
   "type": "netheragriculture:replace_item",
-  "conditions": [{
-    "condition": "neoforge:loot_table_id",
-    "loot_table_id": "minecraft:chests/bastion_hoglin_stable"
-  }],
-  "from": {
-    "item": "minecraft:cooked_porkchop"
-  },
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/bastion_hoglin_stable"
+    }
+  ],
+  "from": "minecraft:cooked_porkchop",
   "to": {
     "id": "netheragriculture:cooked_hoglin_meat"
   }

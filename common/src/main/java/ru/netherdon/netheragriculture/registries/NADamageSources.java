@@ -10,11 +10,11 @@ public final class NADamageSources
 {
     public static DamageSource mortofruct(Entity entity)
     {
-        return mortofruct(entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE), entity);
+        return mortofruct(entity.level().registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE), entity);
     }
 
     public static DamageSource mortofruct(Registry<DamageType> damageTypes, Entity entity)
     {
-        return new DamageSource(damageTypes.getHolderOrThrow(NADamageTypes.FALLING_MORTOFRUCT), entity);
+        return new DamageSource(damageTypes.getOrThrow(NADamageTypes.FALLING_MORTOFRUCT), entity);
     }
 }

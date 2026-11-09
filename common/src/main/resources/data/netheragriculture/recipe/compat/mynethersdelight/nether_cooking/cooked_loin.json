@@ -1,27 +1,30 @@
 {
-    "neoforge:conditions": [{
-        "type": "neoforge:item_exists",
-        "item": "mynethersdelight:hoglin_loin"
-    }, {
-        "type": "neoforge:item_exists",
-        "item": "mynethersdelight:cooked_loin"
-    }],
-    "fabric:load_conditions": [{
-        "condition": "fabric:registry_contains",
-        "registry": "minecraft:item",
-        "values": [
-            "mynethersdelight:hoglin_loin",
-            "mynethersdelight:cooked_loin"
-        ]
-    }],
-    "type": "netheragriculture:nether_cooking",
-    "category": "food",
-    "experience": 0.35,
-    "cookingtime": 200,
-    "ingredient": {
-        "item": "mynethersdelight:hoglin_loin"
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:item_exists",
+      "item": "mynethersdelight:hoglin_loin"
     },
-    "result": {
-        "id": "mynethersdelight:cooked_loin"
+    {
+      "type": "neoforge:item_exists",
+      "item": "mynethersdelight:cooked_loin"
     }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:registry_contains",
+      "registry": "minecraft:item",
+      "values": [
+        "mynethersdelight:hoglin_loin",
+        "mynethersdelight:cooked_loin"
+      ]
+    }
+  ],
+  "type": "netheragriculture:nether_cooking",
+  "category": "food",
+  "experience": 0.35,
+  "cookingtime": 200,
+  "ingredient": "mynethersdelight:hoglin_loin",
+  "result": {
+    "id": "mynethersdelight:cooked_loin"
+  }
 }

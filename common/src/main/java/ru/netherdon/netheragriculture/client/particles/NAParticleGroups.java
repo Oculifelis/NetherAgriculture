@@ -1,8 +1,8 @@
 package ru.netherdon.netheragriculture.client.particles;
 
-import net.minecraft.core.particles.ParticleGroup;
+import net.minecraft.core.particles.ParticleLimit;
 
 public class NAParticleGroups
 {
-    public static final ParticleGroup GLOWING_SPORES = new ParticleGroup(1000);
+    public static final ParticleLimit GLOWING_SPORES = new ParticleLimit(1000);
 }

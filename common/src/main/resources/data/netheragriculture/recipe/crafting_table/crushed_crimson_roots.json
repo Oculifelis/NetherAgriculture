@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:crimson_roots"
-  }],
+  "ingredients": [
+    "minecraft:crimson_roots"
+  ],
   "result": {
     "id": "netheragriculture:crushed_crimson_roots",
     "count": 1

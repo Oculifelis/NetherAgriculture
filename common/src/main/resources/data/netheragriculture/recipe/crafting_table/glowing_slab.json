@@ -1,15 +1,13 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-		"PPP"
-    ],
-    "key": {
-		"P": {
-			"item": "netheragriculture:glowing_planks"
-		}
-    },
-    "result": {
-		"id": "netheragriculture:glowing_slab",
-		"count": 6
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP"
+  ],
+  "key": {
+    "P": "netheragriculture:glowing_planks"
+  },
+  "result": {
+    "id": "netheragriculture:glowing_slab",
+    "count": 6
+  }
 }

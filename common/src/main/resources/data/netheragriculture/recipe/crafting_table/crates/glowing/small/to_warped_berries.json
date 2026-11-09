@@ -1,8 +1,6 @@
 {
   "type": "netheragriculture:emptying_storage",
-  "input": {
-    "item": "netheragriculture:small_glowing_crate_of_warped_berries"
-  },
+  "input": "netheragriculture:small_glowing_crate_of_warped_berries",
   "storage": {
     "id": "netheragriculture:small_glowing_crate"
   },

@@ -14,17 +14,17 @@ public class ReplaceItemLootModifier extends LootModifier
 {
     public static final MapCodec<ReplaceItemLootModifier> CODEC = RecordCodecBuilder.mapCodec((instance) ->
         codecStart(instance).and(instance.group(
-            Ingredient.CODEC_NONEMPTY.fieldOf("from").forGetter(ReplaceItemLootModifier::getInput),
-            ItemStack.SINGLE_ITEM_CODEC.fieldOf("to").forGetter(ReplaceItemLootModifier::getReplacement))
+            Ingredient.CODEC.fieldOf("from").forGetter(ReplaceItemLootModifier::getInput),
+            ItemStack.CODEC.fieldOf("to").forGetter(ReplaceItemLootModifier::getReplacement))
         ).apply(instance, ReplaceItemLootModifier::new)
     );
 
     private final Ingredient input;
     private final ItemStack replacement;
 
-    public ReplaceItemLootModifier(LootItemCondition[] conditionsIn, Ingredient input, ItemStack replacement)
+    public ReplaceItemLootModifier(LootItemCondition[] conditionsIn, int priority, Ingredient input, ItemStack replacement)
     {
-        super(conditionsIn);
+        super(conditionsIn, priority);
         this.input = input;
         this.replacement = replacement;
     }

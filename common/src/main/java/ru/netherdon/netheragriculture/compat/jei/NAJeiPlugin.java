@@ -8,20 +8,22 @@ import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
+import mezz.jei.common.Internal;
+import net.minecraft.resources.Identifier;
 import ru.netherdon.netheragriculture.NetherAgriculture;
 import ru.netherdon.netheragriculture.client.screen.BlackFurnaceScreen;
 import ru.netherdon.netheragriculture.registries.NAItems;
 import ru.netherdon.netheragriculture.registries.NARecipeTypes;
 
+import java.util.List;
+
 @JeiPlugin
 public class NAJeiPlugin implements IModPlugin
 {
-    private static final ResourceLocation UID = NetherAgriculture.location("jei_plugin");
+    private static final Identifier UID = NetherAgriculture.location("jei_plugin");
 
     @Override
-    public ResourceLocation getPluginUid()
+    public Identifier getPluginUid()
     {
         return UID;
     }
@@ -38,14 +40,14 @@ public class NAJeiPlugin implements IModPlugin
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
     {
         IModPlugin.super.registerRecipeCatalysts(registration);
-        registration.addRecipeCatalyst(NAItems.BLACK_FURNACE.value().getDefaultInstance(), NetherCookingCategory.TYPE);
+        registration.addCraftingStation(NetherCookingCategory.TYPE, NAItems.BLACK_FURNACE.value());
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration)
     {
         IModPlugin.super.registerGuiHandlers(registration);
-        registration.addRecipeClickArea(BlackFurnaceScreen.class, 78, 32, 28, 23, NetherCookingCategory.TYPE, RecipeTypes.FUELING);
+        registration.addRecipeClickArea(BlackFurnaceScreen.class, 78, 32, 28, 23, NetherCookingCategory.TYPE, RecipeTypes.SMELTING_FUEL);
     }
 
     @Override
@@ -53,7 +55,8 @@ public class NAJeiPlugin implements IModPlugin
     {
         IModPlugin.super.registerRecipes(registration);
         registration.addRecipes(NetherCookingCategory.TYPE,
-            Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(NARecipeTypes.NETHER_COOKING.value())
+            // 26.x: the client has no recipe manager; JEI keeps the recipes the server synced
+            List.copyOf(Internal.getClientSyncedRecipes().byType(NARecipeTypes.NETHER_COOKING.value()))
         );
     }
 }

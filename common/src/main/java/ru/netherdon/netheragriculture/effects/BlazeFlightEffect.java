@@ -1,5 +1,6 @@
 package ru.netherdon.netheragriculture.effects;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,7 +17,8 @@ public class BlazeFlightEffect extends MobEffect
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int tick)
+    // 26.x: effect ticks run on the server only
+    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int tick)
     {
         MobEffectService.fireBlazeFlightTick(entity, tick);
 
@@ -31,7 +33,7 @@ public class BlazeFlightEffect extends MobEffect
             player.igniteForTicks(20);
         }
 
-        return super.applyEffectTick(entity, tick);
+        return super.applyEffectTick(level, entity, tick);
     }
 
     @Override

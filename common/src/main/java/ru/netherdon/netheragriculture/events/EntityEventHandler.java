@@ -12,7 +12,7 @@ public final class EntityEventHandler
     {
         if (entity instanceof EnderMan enderMan)
         {
-            enderMan.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(enderMan, LivingEntity.class, 10, true, false, (target) ->
+            enderMan.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(enderMan, LivingEntity.class, 10, true, false, (target, serverLevel) ->
                 target instanceof LivingEntity livingTarget && livingTarget.hasEffect(NAMobEffects.WARP))
             );
         }

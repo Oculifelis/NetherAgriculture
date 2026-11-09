@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-	  "PSP",
-      "PSP"
-    ],
-    "key": {
-		"P": {
-			"item": "netheragriculture:glowing_planks"
-		},
-        "S": {
-            "tag": "c:rods/wooden"
-        }
-    },
-    "result": {
-		"id": "netheragriculture:glowing_fence",
-		"count": 3
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PSP",
+    "PSP"
+  ],
+  "key": {
+    "P": "netheragriculture:glowing_planks",
+    "S": "#c:rods/wooden"
+  },
+  "result": {
+    "id": "netheragriculture:glowing_fence",
+    "count": 3
+  }
 }

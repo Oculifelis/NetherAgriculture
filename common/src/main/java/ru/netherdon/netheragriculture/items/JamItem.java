@@ -1,24 +1,10 @@
 package ru.netherdon.netheragriculture.items;
 
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-
+// 26.x: the honey drink sound is set in the item's Consumable (see NAFoods)
 public class JamItem extends DrinkItem
 {
     public JamItem(Properties properties)
     {
         super(properties);
-    }
-
-    @Override
-    public SoundEvent getDrinkingSound()
-    {
-        return SoundEvents.HONEY_DRINK;
-    }
-
-    @Override
-    public SoundEvent getEatingSound()
-    {
-        return SoundEvents.HONEY_DRINK;
     }
 }

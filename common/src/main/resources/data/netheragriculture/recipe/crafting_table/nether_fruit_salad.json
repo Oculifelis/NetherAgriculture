@@ -1,18 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-    "item": "minecraft:bowl"
-  }, {
-    "item": "netheragriculture:crimson_berry"
-  }, {
-    "item": "netheragriculture:warped_berry"
-  }, {
-    "item": "netheragriculture:mortofruct_half"
-  }, {
-    "item": "netheragriculture:blaze_fruit"
-  }, {
-    "item": "netheragriculture:azure_melon_slice"
-  }],
+  "ingredients": [
+    "minecraft:bowl",
+    "netheragriculture:crimson_berry",
+    "netheragriculture:warped_berry",
+    "netheragriculture:mortofruct_half",
+    "netheragriculture:blaze_fruit",
+    "netheragriculture:azure_melon_slice"
+  ],
   "result": {
     "id": "netheragriculture:nether_fruit_salad",
     "count": 1

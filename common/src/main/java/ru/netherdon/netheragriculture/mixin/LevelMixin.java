@@ -13,7 +13,7 @@ import ru.netherdon.netheragriculture.client.particles.event.SourcedParticleMana
 @Mixin(Level.class)
 public class LevelMixin
 {
-    @Inject(method = "onBlockStateChange", at = @At("HEAD"))
+    @Inject(method = "updatePOIOnBlockStateChange", at = @At("HEAD"))
     public void applyBlockChangeListeners(BlockPos pos, BlockState state, BlockState state2, CallbackInfo ci)
     {
         if ((Object)this instanceof ClientLevel)

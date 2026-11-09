@@ -1,16 +1,14 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-		"SS",
-		"SS"
-    ],
-    "key": {
-		"S": {
-			"item": "netheragriculture:glowing_stem"
-		}
-    },
-    "result": {
-		"id": "netheragriculture:glowing_hyphae",
-		"count": 3
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": "netheragriculture:glowing_stem"
+  },
+  "result": {
+    "id": "netheragriculture:glowing_hyphae",
+    "count": 3
+  }
 }

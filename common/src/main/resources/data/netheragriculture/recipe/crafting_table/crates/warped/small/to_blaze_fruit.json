@@ -1,8 +1,6 @@
 {
   "type": "netheragriculture:emptying_storage",
-  "input": {
-    "item": "netheragriculture:small_warped_crate_of_blaze_fruit"
-  },
+  "input": "netheragriculture:small_warped_crate_of_blaze_fruit",
   "storage": {
     "id": "netheragriculture:small_warped_crate"
   },

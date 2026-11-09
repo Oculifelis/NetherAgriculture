@@ -1,8 +1,6 @@
 {
   "type": "netheragriculture:emptying_storage",
-  "input": {
-    "item": "netheragriculture:glowing_crate_of_blazing_golden_lothun"
-  },
+  "input": "netheragriculture:glowing_crate_of_blazing_golden_lothun",
   "storage": {
     "id": "netheragriculture:glowing_crate"
   },

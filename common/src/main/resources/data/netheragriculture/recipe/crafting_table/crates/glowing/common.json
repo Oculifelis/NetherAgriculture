@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-		" S ",
-		"SPS",
-		" S "
-    ],
-    "key": {
-		"P": {
-			"item": "netheragriculture:glowing_planks"
-		},
-		"S": {
-			"item": "netheragriculture:glowing_slab"
-		}
-    },
-    "result": {
-		"id": "netheragriculture:glowing_crate",
-		"count": 2
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "P": "netheragriculture:glowing_planks",
+    "S": "netheragriculture:glowing_slab"
+  },
+  "result": {
+    "id": "netheragriculture:glowing_crate",
+    "count": 2
+  }
 }

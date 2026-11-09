@@ -5,8 +5,6 @@ import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -20,7 +18,6 @@ import java.util.List;
 import static ru.netherdon.netheragriculture.misc.TranslationHelper.text;
 import static ru.netherdon.netheragriculture.compat.clothconfig.ConfigScreenHelper.*;
 
-@Environment(EnvType.CLIENT)
 public class ConfigScreenBuilder
 {
     private static final String CATEGORY_NAMESPACE = "config.category";

@@ -1,9 +1,9 @@
 package ru.netherdon.netheragriculture.fabric;
 
-import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
+import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
-import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
+import net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.config.ModConfig;
@@ -29,10 +29,10 @@ public final class NetherAgricultureFabric implements ModInitializer
         NACompostables.initialize();
         NAResourceConditions.initialize();
 
-        NeoForgeConfigRegistry.INSTANCE.register(NetherAgriculture.ID, ModConfig.Type.SERVER, NAServerConfig.getSpec(), NAServerConfig.FILE_NAME);
-        NeoForgeConfigRegistry.INSTANCE.register(NetherAgriculture.ID, ModConfig.Type.COMMON, NACommonConfig.getSpec(), NACommonConfig.FILE_NAME);
+        ConfigRegistry.INSTANCE.register(NetherAgriculture.ID, ModConfig.Type.SERVER, NAServerConfig.getSpec(), NAServerConfig.FILE_NAME);
+        ConfigRegistry.INSTANCE.register(NetherAgriculture.ID, ModConfig.Type.COMMON, NACommonConfig.getSpec(), NACommonConfig.FILE_NAME);
 
-        FabricBrewingRecipeRegistryBuilder.BUILD.register(NAPotions::registerRecipes);
+        FabricPotionBrewingBuilder.BUILD.register(NAPotions::registerRecipes);
 
         UseEntityCallback.EVENT.register((player, level, hand, entity, hit) ->
         {

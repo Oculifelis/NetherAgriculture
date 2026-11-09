@@ -1,7 +1,7 @@
 package ru.netherdon.netheragriculture.registries;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -32,10 +32,10 @@ public final class NATags
 
         private static TagKey<Block> c(String id)
         {
-            return tag(ResourceLocation.fromNamespaceAndPath("c", id));
+            return tag(Identifier.fromNamespaceAndPath("c", id));
         }
 
-        private static TagKey<Block> tag(ResourceLocation name)
+        private static TagKey<Block> tag(Identifier name)
         {
             return TagKey.create(Registries.BLOCK, name);
         }
@@ -47,7 +47,7 @@ public final class NATags
 
         private static TagKey<Enchantment> c(String id)
         {
-            return TagKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath("c", id));
+            return TagKey.create(Registries.ENCHANTMENT, Identifier.fromNamespaceAndPath("c", id));
         }
     }
 }

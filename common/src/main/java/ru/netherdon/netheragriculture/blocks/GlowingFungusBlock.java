@@ -9,11 +9,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FungusBlock;
+import net.minecraft.world.level.block.NetherFungusBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-public class GlowingFungusBlock extends FungusBlock
+public class GlowingFungusBlock extends NetherFungusBlock
 {
     public static final MapCodec<GlowingFungusBlock> CODEC = RecordCodecBuilder.mapCodec(
         instance -> instance.group(
@@ -27,7 +27,8 @@ public class GlowingFungusBlock extends FungusBlock
 
     protected GlowingFungusBlock(ResourceKey<ConfiguredFeature<?, ?>> resourceKey, Properties properties)
     {
-        super(resourceKey, Blocks.CRIMSON_NYLIUM, properties);
+        // 1.21.1 FungusBlock.mayPlaceOn = nylium, mycelium, soul soil, dirt, farmland: the vanilla crimson fungus support tag
+        super(resourceKey, Blocks.CRIMSON_NYLIUM, BlockTags.SUPPORTS_CRIMSON_FUNGUS, properties);
         this.feature = resourceKey;
     }
 

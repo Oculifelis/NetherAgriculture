@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [{
-      "item": "netheragriculture:glowing_planks"
-  }],
+  "ingredients": [
+    "netheragriculture:glowing_planks"
+  ],
   "result": {
     "id": "netheragriculture:glowing_button",
     "count": 1

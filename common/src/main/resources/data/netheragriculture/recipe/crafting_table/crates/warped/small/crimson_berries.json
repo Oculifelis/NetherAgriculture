@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "netheragriculture:small_warped_crate" },
-    { "item": "netheragriculture:crimson_berry" },
-    { "item": "netheragriculture:crimson_berry" },
-    { "item": "netheragriculture:crimson_berry" },
-    { "item": "netheragriculture:crimson_berry" }
+    "netheragriculture:small_warped_crate",
+    "netheragriculture:crimson_berry",
+    "netheragriculture:crimson_berry",
+    "netheragriculture:crimson_berry",
+    "netheragriculture:crimson_berry"
   ],
   "result": {
     "id": "netheragriculture:small_warped_crate_of_crimson_berries",
