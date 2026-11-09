@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -24,7 +23,6 @@ import ru.netherdon.netheragriculture.registries.NAWoodTypes;
 
 import java.util.function.Function;
 
-@OnlyIn(Dist.CLIENT)
 @Mod(value = NetherAgriculture.ID, dist = Dist.CLIENT)
 public class NetherAgricultureNeoForgeClient
 {
