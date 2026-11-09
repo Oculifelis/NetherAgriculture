@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
@@ -13,7 +12,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class NetherBerrySproutsBlock extends VegetationBlock
 {
-    public static final MapCodec<NetherBerrySproutsBlock> CODEC = Block.simpleCodec(NetherBerrySproutsBlock::new);
 
     protected static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 4, 14);
 
@@ -34,9 +32,4 @@ public class NetherBerrySproutsBlock extends VegetationBlock
         return state.is(BlockTags.NYLIUM) || state.is(Blocks.SOUL_SOIL) || super.mayPlaceOn(state, level, pos);
     }
 
-    @Override
-    public MapCodec<? extends NetherBerrySproutsBlock> codec()
-    {
-        return CODEC;
-    }
 }

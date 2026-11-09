@@ -1,6 +1,6 @@
 package ru.netherdon.netheragriculture.items;
 
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.LivingEntity;
@@ -39,7 +39,7 @@ public class DrinkItem extends Item
                 ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
                 if (!player.getInventory().add(itemstack))
                 {
-                    player.drop(itemstack, false);
+                    player.drop(itemstack, false, net.minecraft.util.Prediction.SERVER_ONLY);
                 }
             }
             return stack;

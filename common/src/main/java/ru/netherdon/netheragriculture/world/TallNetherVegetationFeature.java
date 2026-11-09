@@ -1,29 +1,39 @@
 package ru.netherdon.netheragriculture.world;
 
-import com.mojang.serialization.Codec;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
-public class TallNetherVegetationFeature extends Feature<TallNetherVegetationConfig>
+public class TallNetherVegetationFeature implements Feature
 {
-    public TallNetherVegetationFeature(Codec<TallNetherVegetationConfig> codec)
+    public static final MapCodec<TallNetherVegetationFeature> CODEC = TallNetherVegetationConfig.CODEC.xmap(TallNetherVegetationFeature::new, (feature) -> feature.config);
+
+    private final TallNetherVegetationConfig config;
+
+    public TallNetherVegetationFeature(TallNetherVegetationConfig config)
     {
-        super(codec);
+        this.config = config;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<TallNetherVegetationConfig> featurePlaceContext)
+    public MapCodec<TallNetherVegetationFeature> codec()
     {
-        WorldGenLevel level = featurePlaceContext.level();
-        BlockPos pos = featurePlaceContext.origin();
+        return CODEC;
+    }
+
+    @Override
+    public boolean place(WorldGenLevel levelIn, ChunkGenerator chunkGeneratorIn, RandomSource randomIn, BlockPos originIn)
+    {
+        WorldGenLevel level = levelIn;
+        BlockPos pos = originIn;
         BlockState state = level.getBlockState(pos.below());
-        TallNetherVegetationConfig config = featurePlaceContext.config();
-        RandomSource randomSource = featurePlaceContext.random();
+        TallNetherVegetationConfig config = this.config;
+        RandomSource randomSource = randomIn;
         if (!state.is(BlockTags.NYLIUM))
         {
             return false;

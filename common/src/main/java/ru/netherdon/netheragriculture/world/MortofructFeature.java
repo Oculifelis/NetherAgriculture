@@ -1,31 +1,41 @@
 package ru.netherdon.netheragriculture.world;
 
-import com.mojang.serialization.Codec;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import ru.netherdon.netheragriculture.blocks.DeadVinesBlock;
 import ru.netherdon.netheragriculture.blocks.MortofructBlock;
 import ru.netherdon.netheragriculture.registries.NABlocks;
 import ru.netherdon.netheragriculture.registries.NATags;
 
-public class MortofructFeature extends Feature<MortofructFeatureConfiguration>
+public class MortofructFeature implements Feature
 {
-    public MortofructFeature(Codec<MortofructFeatureConfiguration> codec)
+    public static final MapCodec<MortofructFeature> CODEC = MortofructFeatureConfiguration.CODEC.xmap(MortofructFeature::new, (feature) -> feature.config);
+
+    private final MortofructFeatureConfiguration config;
+
+    public MortofructFeature(MortofructFeatureConfiguration config)
     {
-        super(codec);
+        this.config = config;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<MortofructFeatureConfiguration> featurePlaceContext)
+    public MapCodec<MortofructFeature> codec()
     {
-        WorldGenLevel level = featurePlaceContext.level();
-        BlockPos pos = featurePlaceContext.origin();
-        MortofructFeatureConfiguration config = featurePlaceContext.config();
-        RandomSource random = featurePlaceContext.random();
+        return CODEC;
+    }
+
+    @Override
+    public boolean place(WorldGenLevel levelIn, ChunkGenerator chunkGeneratorIn, RandomSource randomIn, BlockPos originIn)
+    {
+        WorldGenLevel level = levelIn;
+        BlockPos pos = originIn;
+        MortofructFeatureConfiguration config = this.config;
+        RandomSource random = randomIn;
 
         if (!this.canPlace(level, pos))
         {

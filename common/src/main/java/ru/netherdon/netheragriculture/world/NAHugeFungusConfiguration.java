@@ -1,16 +1,15 @@
 package ru.netherdon.netheragriculture.world;
 
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.feature.HugeFungusConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 
-public class NAHugeFungusConfiguration implements FeatureConfiguration
+public class NAHugeFungusConfiguration
 {
-    public static final Codec<NAHugeFungusConfiguration> CODEC = RecordCodecBuilder.create((instance) ->
+    public static final MapCodec<NAHugeFungusConfiguration> CODEC = RecordCodecBuilder.mapCodec((instance) ->
         instance.group(
             BlockState.CODEC.fieldOf("stem_state").forGetter(hugeFungusConfiguration -> hugeFungusConfiguration.stemState),
             BlockState.CODEC.fieldOf("hat_state").forGetter(hugeFungusConfiguration -> hugeFungusConfiguration.hatState),

@@ -4,8 +4,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionBrewing;
-import net.minecraft.world.item.alchemy.Potions;
 import ru.netherdon.netheragriculture.services.RegistryManager;
 
 public final class NAPotions
@@ -20,11 +18,7 @@ public final class NAPotions
         () -> new Potion("warp", new MobEffectInstance(NAMobEffects.WARP, 3600))
     );
 
-    public static void registerRecipes(PotionBrewing.Builder builder)
-    {
-        builder.addMix(Potions.SLOW_FALLING, NAItems.BLAZING_GOLDEN_LOTHUN.value(), BLAZE_FLIGHT);
-        builder.addMix(Potions.AWKWARD, NAItems.WARPED_BERRY.value(), WARP);
-    }
+    // 26.3: brewing mixes are data recipes in data/netheragriculture/recipe/brewing.
 
     public static void initialize() {}
 }

@@ -1,6 +1,8 @@
 package ru.netherdon.netheragriculture.recipes.furnace;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
@@ -12,7 +14,18 @@ import ru.netherdon.netheragriculture.registries.NARecipeTypes;
 
 public class NetherCookingRecipe extends AbstractCookingRecipe
 {
-    public static final MapCodec<NetherCookingRecipe> MAP_CODEC = cookingMapCodec(NetherCookingRecipe::new, 100);
+    public static final MapCodec<NetherCookingRecipe> MAP_CODEC = RecordCodecBuilder.mapCodec(
+        (instance) -> instance.group(
+                Recipe.CommonInfo.MAP_CODEC.forGetter((NetherCookingRecipe recipe) -> recipe.commonInfo),
+                AbstractCookingRecipe.CookingBookInfo.MAP_CODEC.forGetter((NetherCookingRecipe recipe) -> recipe.bookInfo),
+                Ingredient.CODEC.fieldOf("ingredient").forGetter(NetherCookingRecipe::input),
+                ItemStackTemplate.CODEC.fieldOf("result").forGetter(NetherCookingRecipe::result),
+                Codec.FLOAT.optionalFieldOf("experience", 0.0F).forGetter(NetherCookingRecipe::experience),
+                // 26.3 made cookingtime required in vanilla; the black furnace keeps its default of 100.
+                Codec.INT.optionalFieldOf("cookingtime", 100).forGetter(NetherCookingRecipe::cookingTime)
+            )
+            .apply(instance, NetherCookingRecipe::new)
+    );
     public static final StreamCodec<RegistryFriendlyByteBuf, NetherCookingRecipe> STREAM_CODEC = cookingStreamCodec(NetherCookingRecipe::new);
     public static final RecipeSerializer<NetherCookingRecipe> SERIALIZER = new RecipeSerializer<>(MAP_CODEC, STREAM_CODEC);
 

@@ -7,22 +7,20 @@
         {
           "type": "minecraft:item",
           "name": "netheragriculture:small_warped_crate_of_sinful_eyes",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": 2,
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "netheragriculture:small_warped_crate_of_sinful_eyes",
-                  "properties": {
-                    "type": "double"
-                  }
+              "condition": {
+                "type": "minecraft:match_block",
+                "blocks": "netheragriculture:small_warped_crate_of_sinful_eyes",
+                "state": {
+                  "type": "double"
                 }
-              ]
+              }
             },
             {
-              "function": "minecraft:explosion_decay"
+              "type": "minecraft:explosion_decay"
             }
           ]
         }

@@ -4,7 +4,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Endermite;
 import net.minecraft.world.level.Level;
@@ -25,7 +25,7 @@ public class WarpMobEffect extends MobEffect
             RandomSource rand = RandomSource.create();
             if (rand.nextInt(10) == 0)
             {
-                Endermite endermite = new Endermite(EntityType.ENDERMITE, level);
+                Endermite endermite = new Endermite(EntityTypes.ENDERMITE, level);
                 endermite.setPos(livingEntity.position());
                 endermite.setTarget(livingEntity);
                 level.addFreshEntity(endermite);

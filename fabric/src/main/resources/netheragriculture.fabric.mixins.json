@@ -7,7 +7,6 @@
   ],
   "mixins": [
     "BoneMealItemMixin",
-    "HoeItemMixin",
     "PersistentEntitySectionManagerMixin",
     "RegistryDataLoaderMixin",
     "ServerPlayerMixin"

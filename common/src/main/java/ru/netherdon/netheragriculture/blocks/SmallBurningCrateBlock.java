@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 
 public class SmallBurningCrateBlock extends SlabBlock
 {
-    public static final MapCodec<SmallBurningCrateBlock> CODEC = Block.simpleCodec(SmallBurningCrateBlock::new);
 
     public SmallBurningCrateBlock(Properties properties)
     {
@@ -37,9 +35,4 @@ public class SmallBurningCrateBlock extends SlabBlock
         }
     }
 
-    @Override
-    public MapCodec<? extends SmallBurningCrateBlock> codec()
-    {
-        return CODEC;
-    }
 }

@@ -9,12 +9,10 @@
     }
   ],
   "type": "netheragriculture:replace_item",
-  "conditions": [
-    {
-      "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/bastion_hoglin_stable"
-    }
-  ],
+  "condition": {
+    "type": "neoforge:loot_table_id",
+    "loot_table_id": "minecraft:chests/bastion_hoglin_stable"
+  },
   "from": "minecraft:porkchop",
   "to": {
     "id": "netheragriculture:hoglin_meat"

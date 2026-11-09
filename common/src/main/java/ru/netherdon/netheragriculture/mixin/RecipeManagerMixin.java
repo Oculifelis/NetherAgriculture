@@ -3,8 +3,8 @@ package ru.netherdon.netheragriculture.mixin;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.crafting.*;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import ru.netherdon.netheragriculture.compat.OtherModNames;
 import ru.netherdon.netheragriculture.config.NACommonConfig;
 import ru.netherdon.netheragriculture.recipes.furnace.NetherCookingRecipe;
@@ -38,22 +38,22 @@ public abstract class RecipeManagerMixin
     @Shadow
     private Map<ResourceKey<RecipePropertySet>, RecipePropertySet> propertySets;
 
-    // 26.x: recipes are parsed in prepare(); the same ids are dropped from its result instead of from the JSON map.
-    @Inject(
-        method = "prepare(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Lnet/minecraft/world/item/crafting/RecipeMap;",
-        at = @At("RETURN"),
-        cancellable = true
+    // 26.3: recipes are a registry; the same ids are left out of the map the manager builds from it.
+    @ModifyArg(
+        method = "<init>",
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/crafting/RecipeMap;create(Lnet/minecraft/core/HolderLookup;)Lnet/minecraft/world/item/crafting/RecipeMap;")
     )
-    private void na$removeRecipes(ResourceManager resourceManager, ProfilerFiller profilerFiller, CallbackInfoReturnable<RecipeMap> cir)
+    private static HolderLookup<Recipe<?>> na$removeRecipes(HolderLookup<Recipe<?>> recipes)
     {
         if (NACommonConfig.get().modCompatibility.nethersDelight().isOnlyBlackFurnaceUsed())
         {
-            cir.setReturnValue(na$removeRecipesFor(OtherModNames.MY_NETHERS_DELIGHT, cir.getReturnValue(), NA$MYNETHERSDELIGHT_RECIPES));
+            return na$removeRecipesFor(OtherModNames.MY_NETHERS_DELIGHT, (HolderLookup.RegistryLookup<Recipe<?>>) recipes, NA$MYNETHERSDELIGHT_RECIPES);
         }
+        return recipes;
     }
 
     @Unique
-    private static RecipeMap na$removeRecipesFor(String modId, RecipeMap map, Collection<String> recipeIds)
+    private static HolderLookup.RegistryLookup<Recipe<?>> na$removeRecipesFor(String modId, HolderLookup.RegistryLookup<Recipe<?>> lookup, Collection<String> recipeIds)
     {
         Set<Identifier> removed = new HashSet<>();
         for (String recipeId : recipeIds)
@@ -61,15 +61,20 @@ public abstract class RecipeManagerMixin
             removed.add(Identifier.fromNamespaceAndPath(modId, recipeId));
         }
 
-        List<RecipeHolder<?>> kept = new ArrayList<>();
-        for (RecipeHolder<?> holder : map.values())
+        return new HolderLookup.RegistryLookup.Delegate<>()
         {
-            if (!removed.contains(holder.id().identifier()))
+            @Override
+            public HolderLookup.RegistryLookup<Recipe<?>> parent()
             {
-                kept.add(holder);
+                return lookup;
             }
-        }
-        return kept.size() == map.values().size() ? map : RecipeMap.create(kept);
+
+            @Override
+            public java.util.stream.Stream<Holder.Reference<Recipe<?>>> listElements()
+            {
+                return lookup.listElements().filter((holder) -> !removed.contains(holder.key().identifier()));
+            }
+        };
     }
 
     // Black furnace input slot filter (the 1.21.1 menu asked the recipe manager directly).

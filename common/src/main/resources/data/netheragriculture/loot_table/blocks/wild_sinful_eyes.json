@@ -1,60 +1,84 @@
 {
   "type": "minecraft:block",
-  "functions": [{
-    "function": "minecraft:explosion_decay"
-  }],
-  "pools": [{
-    "rolls": 1,
-    "entries": [{
-      "type": "minecraft:alternatives",
-      "children": [{
-        "type": "minecraft:item",
-        "name": "netheragriculture:wild_sinful_eyes",
-        "conditions": [{
-          "condition": "minecraft:any_of",
-          "terms": [{
-            "condition": "minecraft:match_tool",
-            "predicate": { "items": "#c:tools/shear" }
-          }, {
-            "condition": "minecraft:match_tool",
-            "predicate": {
-              "predicates": {
-                "minecraft:enchantments": [{
-                  "enchantments": "minecraft:silk_touch"
-                }]
+  "modifier": {
+    "type": "minecraft:explosion_decay"
+  },
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "netheragriculture:wild_sinful_eyes",
+              "condition": {
+                "type": "minecraft:any_of",
+                "terms": [
+                  {
+                    "type": "minecraft:match_tool",
+                    "predicate": {
+                      "items": "#c:tools/shear"
+                    }
+                  },
+                  {
+                    "type": "minecraft:match_tool",
+                    "predicate": {
+                      "predicates": {
+                        "minecraft:enchantments": [
+                          {
+                            "enchantments": "minecraft:silk_touch"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
               }
+            },
+            {
+              "type": "minecraft:item",
+              "name": "netheragriculture:sinful_eyes"
             }
-          }]
-        }]
-      }, {
-        "type": "minecraft:item",
-        "name": "netheragriculture:sinful_eyes"
-      }]
-    }]
-  }, {
-    "rolls": 1,
-    "entries": [{
-      "type": "minecraft:item",
-      "name": "minecraft:crimson_fungus",
-      "conditions": [{
-        "condition": "minecraft:inverted",
-        "term": {
-          "condition": "minecraft:any_of",
-          "terms": [{
-            "condition": "minecraft:match_tool",
-            "predicate": { "items": "#c:tools/shear" }
-          }, {
-            "condition": "minecraft:match_tool",
-            "predicate": {
-              "predicates": {
-                "minecraft:enchantments": [{
-                  "enchantments": "minecraft:silk_touch"
-                }]
-              }
-            }
-          }]
+          ]
         }
-      }]
-    }]
-  }]
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_fungus",
+          "condition": {
+            "type": "minecraft:inverted",
+            "term": {
+              "type": "minecraft:any_of",
+              "terms": [
+                {
+                  "type": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:tools/shear"
+                  }
+                },
+                {
+                  "type": "minecraft:match_tool",
+                  "predicate": {
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

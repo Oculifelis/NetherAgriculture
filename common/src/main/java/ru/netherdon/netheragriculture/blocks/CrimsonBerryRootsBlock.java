@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,7 +18,6 @@ import ru.netherdon.netheragriculture.registries.NATags;
 
 public class CrimsonBerryRootsBlock extends NetherCropBlock
 {
-    public static final MapCodec<CrimsonBerryRootsBlock> CODEC = simpleCodec(CrimsonBerryRootsBlock::new);
 
     private static final VoxelShape SHAPE0 = box(0f, 0f, 0f, 16f, 2f,16f);
     private static final VoxelShape SHAPE1 = box(0f, 0f, 0f, 16f, 5f,16f);
@@ -63,9 +61,4 @@ public class CrimsonBerryRootsBlock extends NetherCropBlock
         return SHAPE_BY_AGE[age];
     }
 
-    @Override
-    public MapCodec<? extends CrimsonBerryRootsBlock> codec()
-    {
-        return CODEC;
-    }
 }

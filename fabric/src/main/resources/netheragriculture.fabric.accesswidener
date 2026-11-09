@@ -4,18 +4,13 @@ accessible field net/minecraft/world/level/storage/loot/LootContext params Lnet/
 accessible field net/minecraft/world/level/storage/loot/LootContext random Lnet/minecraft/util/RandomSource;
 
 accessible field net/minecraft/world/level/storage/loot/entries/LootItem item Lnet/minecraft/core/Holder;
-mutable field net/minecraft/world/level/storage/loot/entries/LootItem item Lnet/minecraft/core/Holder;
 
-accessible field net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer functions Ljava/util/List;
-mutable field net/minecraft/world/level/storage/loot/entries/LootPoolSingletonContainer functions Ljava/util/List;
 
 accessible field net/minecraft/world/level/storage/loot/LootPool$Builder entries Lcom/google/common/collect/ImmutableList$Builder;
 mutable field net/minecraft/world/level/storage/loot/LootPool$Builder entries Lcom/google/common/collect/ImmutableList$Builder;
 
 accessible field net/minecraft/world/level/storage/loot/LootTable$Builder pools Lcom/google/common/collect/ImmutableList$Builder;
 
-accessible method net/minecraft/client/renderer/Sheets createSignSprite (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/resources/model/sprite/SpriteId;
-accessible method net/minecraft/client/renderer/Sheets createHangingSignSprite (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/resources/model/sprite/SpriteId;
 
 #===== COMMON =====#
 accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
@@ -28,11 +23,16 @@ accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
 accessible field net/minecraft/world/level/storage/loot/LootPool entries Ljava/util/List;
 mutable field net/minecraft/world/level/storage/loot/LootPool entries Ljava/util/List;
 
-accessible field net/minecraft/world/level/levelgen/feature/stateproviders/WeightedStateProvider weightedList Lnet/minecraft/util/random/WeightedList;
-mutable field net/minecraft/world/level/levelgen/feature/stateproviders/WeightedStateProvider weightedList Lnet/minecraft/util/random/WeightedList;
 
 accessible method net/minecraft/world/level/block/entity/BlockEntityType <init> (Lnet/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier;Ljava/util/Set;)V
 
 accessible class net/minecraft/world/item/CreativeModeTab$Output
 accessible method net/minecraft/client/particle/SpellParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDDLnet/minecraft/client/particle/SpriteSet;)V
 accessible method net/minecraft/client/particle/SuspendedParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDDLnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+accessible method net/minecraft/world/level/storage/loot/entries/LootItem <init> (Lnet/minecraft/core/Holder;IILjava/util/Optional;Ljava/util/Optional;)V
+accessible field net/minecraft/world/level/storage/loot/entries/UniformContainerBase weight I
+accessible field net/minecraft/world/level/storage/loot/entries/UniformContainerBase quality I
+accessible field net/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer condition Ljava/util/Optional;
+accessible field net/minecraft/world/level/storage/loot/entries/LootPoolEntryContainer modifier Ljava/util/Optional;
+accessible field net/minecraft/world/level/storage/loot/functions/SequenceFunction functions Lnet/minecraft/core/HolderSet;
+accessible field net/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction condition Ljava/util/Optional;

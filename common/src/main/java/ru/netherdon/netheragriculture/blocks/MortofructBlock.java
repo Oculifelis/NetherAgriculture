@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -20,7 +19,6 @@ import ru.netherdon.netheragriculture.registries.NADamageSources;
 
 public class MortofructBlock extends Block implements Fallable
 {
-    public static final MapCodec<MortofructBlock> CODEC = Block.simpleCodec(MortofructBlock::new);
 
     public static final BooleanProperty WILD = BooleanProperty.create("wild");
 
@@ -80,9 +78,4 @@ public class MortofructBlock extends Block implements Fallable
         builder.add(WILD);
     }
 
-    @Override
-    protected MapCodec<? extends MortofructBlock> codec()
-    {
-        return CODEC;
-    }
 }

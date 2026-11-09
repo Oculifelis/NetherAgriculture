@@ -1,9 +1,0 @@
-{
-  "type": "netheragriculture:mortofruct",
-  "config": {
-    "spread_height": 4,
-    "spread_width": 4,
-    "crop_chance": 3,
-    "tries": 32
-  }
-}

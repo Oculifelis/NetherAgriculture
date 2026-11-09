@@ -25,7 +25,7 @@ public class ConfigPermission
 
     public boolean isSingleplayer()
     {
-        return minecraft == null || minecraft.isSingleplayer();
+        return minecraft == null || (minecraft.getSingleplayerServer() != null && !minecraft.getSingleplayerServer().isPublished()); // 26.2 removed Minecraft.isSingleplayer(); same check inlined
     }
 
     public boolean entryAvailable()

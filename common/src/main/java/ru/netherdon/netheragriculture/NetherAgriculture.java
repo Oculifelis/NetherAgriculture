@@ -10,7 +10,6 @@ public class NetherAgriculture
     public static void initialize()
     {
         NABlocks.initialize();
-        NABlockTypes.initialize();
         NAMobEffects.initialize();
         NAPotions.initialize();
         NAItems.initialize();

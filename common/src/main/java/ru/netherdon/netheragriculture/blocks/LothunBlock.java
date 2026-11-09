@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
@@ -10,7 +9,6 @@ import ru.netherdon.netheragriculture.registries.NATags;
 
 public class LothunBlock extends NetherCropBlock
 {
-    public static final MapCodec<LothunBlock> CODEC = simpleCodec(LothunBlock::new);
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]
     {
@@ -36,9 +34,4 @@ public class LothunBlock extends NetherCropBlock
         return SHAPE_BY_AGE[age];
     }
 
-    @Override
-    public MapCodec<? extends LothunBlock> codec()
-    {
-        return CODEC;
-    }
 }

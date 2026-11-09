@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
@@ -14,7 +13,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class WildSinfulEyesBlock extends VegetationBlock
 {
-    public static final MapCodec<WildSinfulEyesBlock> CODEC = Block.simpleCodec(WildSinfulEyesBlock::new);
 
     public static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 12, 13);
 
@@ -36,9 +34,4 @@ public class WildSinfulEyesBlock extends VegetationBlock
         return state.is(BlockTags.NYLIUM) || state.is(Blocks.SOUL_SOIL) || super.mayPlaceOn(state, level, pos);
     }
 
-    @Override
-    protected MapCodec<? extends WildSinfulEyesBlock> codec()
-    {
-        return CODEC;
-    }
 }

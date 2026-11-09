@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -21,7 +20,6 @@ import java.util.Objects;
 
 public class NetherCropBlock extends CropBlock implements INetherCrop
 {
-    public static final MapCodec<NetherCropBlock> CODEC = Block.simpleCodec(NetherCropBlock::new);
 
     @Nullable
     private final TagKey<Block> fertileSoilsTag;
@@ -104,12 +102,6 @@ public class NetherCropBlock extends CropBlock implements INetherCrop
         }
 
         return super.getBaseSeedId();
-    }
-
-    @Override
-    public MapCodec<? extends NetherCropBlock> codec()
-    {
-        return CODEC;
     }
 
     @Override

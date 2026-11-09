@@ -1,0 +1,18 @@
+{
+  "type": "netheragriculture:tall_nether_vegetation",
+  "spread_height": 4,
+  "spread_width": 8,
+  "chance": 6,
+  "state_below": {
+    "id": "netheragriculture:tall_warped_roots",
+    "properties": {
+      "half": "lower"
+    }
+  },
+  "state_above": {
+    "id": "netheragriculture:tall_warped_roots",
+    "properties": {
+      "half": "upper"
+    }
+  }
+}

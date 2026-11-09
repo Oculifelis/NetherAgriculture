@@ -59,7 +59,7 @@ public final class NABlocks
             .mapColor(MapColor.COLOR_RED)
             .strength(1.5f)
             .sound(SoundType.WOOD)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<DeadVinesBlock> DEAD_VINES = registerBlock("dead_vines", DeadVinesBlock::new,
@@ -69,7 +69,7 @@ public final class NABlocks
             .noCollision()
             .randomTicks()
             .sound(SoundType.TWISTING_VINES)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<NetherCropBlock> CRIMSON_BERRY_ROOTS = registerBlock("crimson_berry_roots", CrimsonBerryRootsBlock::new,
@@ -78,7 +78,7 @@ public final class NABlocks
             .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<NetherBerrySproutsBlock> CRIMSON_BERRY_SPROUTS = registerBlock("crimson_berry_sprouts", NetherBerrySproutsBlock::new,
@@ -88,7 +88,7 @@ public final class NABlocks
             .instabreak()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<NetherCropBlock> WARPED_BERRY_ROOTS = registerBlock("warped_berry_roots", WarpedBerryRootsBlock::new,
@@ -97,7 +97,7 @@ public final class NABlocks
             .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<NetherBerrySproutsBlock> WARPED_BERRY_SPROUTS = registerBlock("warped_berry_sprouts", NetherBerrySproutsBlock::new,
@@ -107,7 +107,7 @@ public final class NABlocks
             .instabreak()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<NetherCropBlock> LOTHUNS = registerBlock("lothuns", LothunBlock::new,
@@ -116,7 +116,7 @@ public final class NABlocks
             .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<WildLothunBlock> WILD_LOTHUN = registerBlock("wild_lothun", WildLothunBlock::new,
@@ -126,7 +126,7 @@ public final class NABlocks
             .instabreak()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<NetherCropBlock> BLAZE_FRUIT = registerBlock("blaze_fruit", BlazeFruitBlock::new,
@@ -135,7 +135,7 @@ public final class NABlocks
             .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
             .lightLevel((state) -> ((NetherCropBlock)state.getBlock()).isMaxAge(state) ? 10 : 0)
     );
 
@@ -145,7 +145,7 @@ public final class NABlocks
             .noCollision()
             .instabreak()
             .sound(SoundType.ROOTS)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<WildSinfulEyesBlock> WILD_SINFUL_EYES = registerBlock("wild_sinful_eyes", WildSinfulEyesBlock::new,
@@ -155,7 +155,7 @@ public final class NABlocks
             .instabreak()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<NetherRootsBlock> NETHER_ROOTS = registerBlock("nether_roots", NetherRootsBlock::new,
@@ -166,7 +166,7 @@ public final class NABlocks
             .replaceable()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<TallRootsBlock> TALL_CRIMSON_ROOTS = registerBlock("tall_crimson_roots", TallRootsBlock::new,
@@ -177,7 +177,7 @@ public final class NABlocks
             .replaceable()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<TallRootsBlock> TALL_WARPED_ROOTS = registerBlock("tall_warped_roots", TallRootsBlock::new,
@@ -188,7 +188,7 @@ public final class NABlocks
             .replaceable()
             .sound(SoundType.ROOTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<NetherFungusBlock> GLOWING_FUNGUS = REGISTER.register("glowing_fungus", (id) -> new GlowingFungusBlock(
@@ -199,7 +199,7 @@ public final class NABlocks
             .noCollision()
             .sound(SoundType.FUNGUS)
             .lightLevel(maxLight())
-            .pushReaction(PushReaction.DESTROY))
+            .pushReaction(PushReaction.POPPED))
     ) {});
 
     public static final Holder<Block> GLOWING_WART_BLOCK = registerSimpleBlock("glowing_wart_block",
@@ -281,7 +281,7 @@ public final class NABlocks
             .strength(3f)
             .lightLevel(maxLight())
             .noOcclusion()
-            .pushReaction(PushReaction.DESTROY))
+            .pushReaction(PushReaction.POPPED))
     ) {});
 
     public static final Holder<TrapDoorBlock> GLOWING_TRAPDOOR = REGISTER.register("glowing_trapdoor", (id) -> new TrapDoorBlock(
@@ -304,7 +304,7 @@ public final class NABlocks
             .noCollision()
             .strength(0.5f)
             .lightLevel(maxLight())
-            .pushReaction(PushReaction.DESTROY))
+            .pushReaction(PushReaction.POPPED))
     ) {});
 
     public static final Holder<ButtonBlock> GLOWING_BUTTON = REGISTER.register("glowing_button", (id) -> new ButtonBlock(
@@ -314,7 +314,7 @@ public final class NABlocks
             .noCollision()
             .strength(0.5f)
             .lightLevel(maxLight())
-            .pushReaction(PushReaction.DESTROY))
+            .pushReaction(PushReaction.POPPED))
     ) {});
 
     public static final Holder<CustomStandingSignBlock> GLOWING_SIGN = REGISTER.register("glowing_sign", (id) -> new CustomStandingSignBlock(
@@ -359,7 +359,7 @@ public final class NABlocks
             .lightLevel(maxLight())
             .randomTicks()
             .replaceable()
-            .pushReaction(PushReaction.DESTROY)
+            .pushReaction(PushReaction.POPPED)
     );
 
     public static final Holder<AzureMelonBlock> AZURE_MELON = registerBlock("azure_melon", AzureMelonBlock::new, NABlockProperties.AZURE_MELON);

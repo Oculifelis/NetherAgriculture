@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,7 +13,6 @@ import ru.netherdon.netheragriculture.registries.NATags;
 
 public class AzureMelonStemBlock extends NetherCropBlock
 {
-    public static final MapCodec<AzureMelonStemBlock> CODEC = simpleCodec(AzureMelonStemBlock::new);
 
     public static final VoxelShape SHAPE0 = box(5, 0, 5, 11, 2, 11);
     public static final VoxelShape SHAPE1 = box(5, 0, 5, 11, 5, 11);
@@ -81,9 +79,4 @@ public class AzureMelonStemBlock extends NetherCropBlock
         return true;
     }
 
-    @Override
-    public MapCodec<? extends AzureMelonStemBlock> codec()
-    {
-        return CODEC;
-    }
 }

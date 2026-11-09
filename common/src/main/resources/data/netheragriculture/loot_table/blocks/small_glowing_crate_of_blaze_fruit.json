@@ -7,22 +7,20 @@
         {
           "type": "minecraft:item",
           "name": "netheragriculture:small_glowing_crate_of_blaze_fruit",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": 2,
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "netheragriculture:small_glowing_crate_of_blaze_fruit",
-                  "properties": {
-                    "type": "double"
-                  }
+              "condition": {
+                "type": "minecraft:match_block",
+                "blocks": "netheragriculture:small_glowing_crate_of_blaze_fruit",
+                "state": {
+                  "type": "double"
                 }
-              ]
+              }
             },
             {
-              "function": "minecraft:explosion_decay"
+              "type": "minecraft:explosion_decay"
             }
           ]
         }

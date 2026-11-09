@@ -1,21 +1,25 @@
 {
   "type": "minecraft:block",
-  "pools": [{
-    "rolls": 1,
-    "bonus_rolls": 0,
-    "conditions": [{
-      "condition": "minecraft:survives_explosion"
-    }],
-    "entries": [{
-      "type": "minecraft:item",
-      "conditions": [{
-        "block": "netheragriculture:glowing_door",
-        "condition": "minecraft:block_state_property",
-        "properties": {
-          "half": "lower"
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:match_block",
+            "blocks": "netheragriculture:glowing_door",
+            "state": {
+              "half": "lower"
+            }
+          },
+          "name": "netheragriculture:glowing_door"
         }
-      }],
-      "name": "netheragriculture:glowing_door"
-    }]
-  }]
+      ]
+    }
+  ]
 }

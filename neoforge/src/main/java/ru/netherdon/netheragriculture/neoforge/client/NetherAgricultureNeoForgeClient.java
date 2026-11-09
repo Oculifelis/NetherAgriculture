@@ -2,16 +2,13 @@ package ru.netherdon.netheragriculture.neoforge.client;
 
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
@@ -20,11 +17,9 @@ import ru.netherdon.netheragriculture.NetherAgriculture;
 import ru.netherdon.netheragriculture.client.NetherAgricultureClient;
 import ru.netherdon.netheragriculture.client.particles.IParticleProviderRegister;
 import ru.netherdon.netheragriculture.compat.clothconfig.ConfigScreenLoader;
-import ru.netherdon.netheragriculture.registries.NAWoodTypes;
 
 import java.util.function.Function;
 
-@OnlyIn(Dist.CLIENT)
 @Mod(value = NetherAgriculture.ID, dist = Dist.CLIENT)
 public class NetherAgricultureNeoForgeClient
 {
@@ -38,15 +33,6 @@ public class NetherAgricultureNeoForgeClient
         {
             modContainer.registerExtensionPoint(IConfigScreenFactory.class, (mod, parent) -> configScreenLoader.apply(parent));
         }
-    }
-
-    @SubscribeEvent
-    public void setup(FMLClientSetupEvent event)
-    {
-        event.enqueueWork(() ->
-        {
-            Sheets.addWoodType(NAWoodTypes.GLOWING);
-        });
     }
 
     @SubscribeEvent

@@ -1,7 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SignBlock;
@@ -20,25 +18,10 @@ import java.util.function.Function;
 
 public class CustomStandingSignBlock extends StandingSignBlock
 {
-    public static final MapCodec<CustomStandingSignBlock> CODEC = RecordCodecBuilder.mapCodec((instance) ->
-        instance.group(
-            WoodType.CODEC.fieldOf("wood_type").forGetter(SignBlock::getWoodType),
-            propertiesCodec()
-        ).apply(instance, CustomStandingSignBlock::new)
-    );
 
     public CustomStandingSignBlock(WoodType woodType, Properties properties)
     {
         super(woodType, properties);
-    }
-
-    @Override
-    public MapCodec<StandingSignBlock> codec()
-    {
-        return CODEC.xmap(
-            Function.identity(),
-            (block) -> (CustomStandingSignBlock)block
-        );
     }
 
     @Override

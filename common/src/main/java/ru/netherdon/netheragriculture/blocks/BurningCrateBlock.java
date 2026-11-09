@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,7 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class BurningCrateBlock extends Block
 {
-    public static final MapCodec<BurningCrateBlock> CODEC = simpleCodec(BurningCrateBlock::new);
 
     private static final float FLAME_OFFSET = 3.5f;
     private static final float FLAME_SPREAD = 9f;
@@ -38,12 +36,6 @@ public class BurningCrateBlock extends Block
     {
         super.animateTick(blockState, level, blockPos, randomSource);
         spawnFlameParticle(level, blockPos, randomSource, false);
-    }
-
-    @Override
-    protected MapCodec<? extends BurningCrateBlock> codec()
-    {
-        return CODEC;
     }
 
     public static void damageWhileWalking(Level level, Entity entity)

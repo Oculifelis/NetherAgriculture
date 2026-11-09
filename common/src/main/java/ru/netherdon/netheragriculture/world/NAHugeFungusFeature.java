@@ -1,6 +1,6 @@
 package ru.netherdon.netheragriculture.world;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -12,29 +12,37 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.WeepingVinesFeature;
 
-public class NAHugeFungusFeature extends Feature<NAHugeFungusConfiguration>
+public class NAHugeFungusFeature implements Feature
 {
 
-    public NAHugeFungusFeature(Codec<NAHugeFungusConfiguration> codec)
+    public static final MapCodec<NAHugeFungusFeature> CODEC = NAHugeFungusConfiguration.CODEC.xmap(NAHugeFungusFeature::new, (feature) -> feature.config);
+
+    private final NAHugeFungusConfiguration config;
+
+    public NAHugeFungusFeature(NAHugeFungusConfiguration config)
     {
-        super(codec);
+        this.config = config;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NAHugeFungusConfiguration> context)
+    public MapCodec<NAHugeFungusFeature> codec()
     {
-        WorldGenLevel worldGenLevel = context.level();
-        BlockPos blockPos = context.origin();
-        RandomSource randomSource = context.random();
-        ChunkGenerator chunkGenerator = context.chunkGenerator();
-        NAHugeFungusConfiguration hugeFungusConfiguration = context.config();
+        return CODEC;
+    }
+
+    @Override
+    public boolean place(WorldGenLevel levelIn, ChunkGenerator chunkGeneratorIn, RandomSource randomIn, BlockPos originIn)
+    {
+        WorldGenLevel worldGenLevel = levelIn;
+        BlockPos blockPos = originIn;
+        RandomSource randomSource = randomIn;
+        ChunkGenerator chunkGenerator = chunkGeneratorIn;
+        NAHugeFungusConfiguration hugeFungusConfiguration = this.config;
 
         BlockPos blockPos2 = null;
         BlockState blockState = worldGenLevel.getBlockState(blockPos.below());
-        if (hugeFungusConfiguration.validBaseTest.test(blockState, context.random()))
+        if (hugeFungusConfiguration.validBaseTest.test(blockState, blockPos, randomIn))
         {
             blockPos2 = blockPos;
         }

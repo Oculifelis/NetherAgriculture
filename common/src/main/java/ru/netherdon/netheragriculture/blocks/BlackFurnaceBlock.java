@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -20,7 +19,6 @@ import ru.netherdon.netheragriculture.registries.NABlockEntityTypes;
 
 public class BlackFurnaceBlock extends AbstractFurnaceBlock
 {
-    public static final MapCodec<BlackFurnaceBlock> CODEC = simpleCodec(BlackFurnaceBlock::new);
 
     public BlackFurnaceBlock(Properties properties)
     {
@@ -82,9 +80,4 @@ public class BlackFurnaceBlock extends AbstractFurnaceBlock
         return createFurnaceTicker(level, blockEntityType, NABlockEntityTypes.BLACK_FURNACE.value());
     }
 
-    @Override
-    protected MapCodec<? extends BlackFurnaceBlock> codec()
-    {
-        return CODEC;
-    }
 }

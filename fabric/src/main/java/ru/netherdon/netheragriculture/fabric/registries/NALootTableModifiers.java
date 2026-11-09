@@ -15,10 +15,15 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
+import net.minecraft.world.level.storage.loot.entries.UniformContainerBase;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
+import net.minecraft.world.level.storage.loot.functions.SequenceFunction;
 import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
+import net.minecraft.core.HolderSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import ru.netherdon.netheragriculture.NetherAgriculture;
 import ru.netherdon.netheragriculture.compat.OtherModNames;
 import ru.netherdon.netheragriculture.config.NACommonConfig;
@@ -50,14 +55,14 @@ public final class NALootTableModifiers
         {
             if (config().fabric().isNetherBridgeEnabled())
             {
-                builder.withPool(LootPool.lootPool().add(reference("modifiers/chests/nether_bridge")));
+                builder.withPool(LootPool.lootPool().add(reference(registries, "modifiers/chests/nether_bridge")));
             }
         }
         else if (tableId.equals(STRIDER))
         {
             if (config().fabric().isStriderEnabled())
             {
-                builder.withPool(LootPool.lootPool().add(reference("modifiers/strider_leg")));
+                builder.withPool(LootPool.lootPool().add(reference(registries, "modifiers/strider_leg")));
             }
         }
         else if (tableId.equals(PIGLIN_BARTERING))
@@ -103,30 +108,57 @@ public final class NALootTableModifiers
         };
     }
 
+    // 26.3: loot entries are immutable records of holders, so the modifiers build a new LootItem
+    // with the same weight, quality, condition and functions instead of mutating fields.
     private static Modifier toItem(Holder<Item> item)
     {
-        return (loot) ->
-        {
-            loot.item = item;
-            return loot;
-        };
+        return (loot) -> new LootItem(item, loot.weight, loot.quality, loot.condition, loot.modifier);
     }
 
     private static Modifier removeSmelting()
     {
-        return (loot) ->
+        return (loot) -> new LootItem(loot.item, loot.weight, loot.quality, loot.condition, withoutSmelting(loot.modifier));
+    }
+
+    private static Optional<Holder<LootItemFunction>> withoutSmelting(Optional<Holder<LootItemFunction>> modifier)
+    {
+        if (modifier.isEmpty())
         {
-            ImmutableList.Builder<LootItemFunction> newFunctions = ImmutableList.builder();
-            for (LootItemFunction function : loot.functions)
+            return modifier;
+        }
+        LootItemFunction function = modifier.get().value();
+        if (function instanceof SmeltItemFunction)
+        {
+            return Optional.empty();
+        }
+        if (function instanceof SequenceFunction sequence)
+        {
+            List<Holder<LootItemFunction>> kept = new ArrayList<>();
+            for (Holder<LootItemFunction> holder : sequence.functions)
             {
-                if (!(function instanceof SmeltItemFunction))
+                if (!(holder.value() instanceof SmeltItemFunction))
                 {
-                    newFunctions.add(function);
+                    kept.add(holder);
                 }
             }
-            loot.functions = newFunctions.build();
-            return loot;
-        };
+            if (kept.size() == sequence.functions.size())
+            {
+                return modifier;
+            }
+            if (sequence.condition.isEmpty())
+            {
+                if (kept.isEmpty())
+                {
+                    return Optional.empty();
+                }
+                if (kept.size() == 1)
+                {
+                    return Optional.of(kept.getFirst());
+                }
+            }
+            return Optional.of(Holder.direct(new SequenceFunction(sequence.condition, HolderSet.direct(kept))));
+        }
+        return modifier;
     }
 
     private static void replaceItem(LootTable.Builder tableBuilder, Map<Item, Modifier> modifiers)
@@ -136,15 +168,19 @@ public final class NALootTableModifiers
             ImmutableList<LootPoolEntryContainer> oldEntries = poolBuilder.entries.build();
             poolBuilder.entries = ImmutableList.builder();
 
+            // Quirk kept: upstream added every entry twice (the first copy was the same LootItem it then
+            // mutated), so matching entries become two copies of the replacement and the others two copies.
             for (LootPoolEntryContainer container : oldEntries)
             {
-                poolBuilder.add(container);
                 if (container instanceof LootItem lootItem && modifiers.containsKey(lootItem.item.value()))
                 {
-                    poolBuilder.add(modifiers.get(lootItem.item.value()).modify(lootItem));
+                    LootItem replaced = modifiers.get(lootItem.item.value()).modify(lootItem);
+                    poolBuilder.add(replaced);
+                    poolBuilder.add(replaced);
                 }
                 else
                 {
+                    poolBuilder.add(container);
                     poolBuilder.add(container);
                 }
             }
@@ -161,9 +197,9 @@ public final class NALootTableModifiers
         return NACommonConfig.get().overrides.lootModifier();
     }
 
-    private static LootPoolSingletonContainer.Builder<?> reference(String name)
+    private static UniformContainerBase.Builder<?> reference(HolderLookup.Provider registries, String name)
     {
-        return NestedLootTable.lootTableReference(key(name));
+        return NestedLootTable.lootTableReference(registries.lookupOrThrow(Registries.LOOT_TABLE).getOrThrow(key(name)));
     }
 
     private interface Modifier

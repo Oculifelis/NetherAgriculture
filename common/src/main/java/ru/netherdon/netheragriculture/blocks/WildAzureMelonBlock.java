@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +14,6 @@ import ru.netherdon.netheragriculture.registries.NAItems;
 
 public class WildAzureMelonBlock extends Block
 {
-    public static final MapCodec<WildAzureMelonBlock> CODEC = simpleCodec(WildAzureMelonBlock::new);
 
     public static final VoxelShape SHAPE = box(5, 0, 5, 11, 9, 11);
 
@@ -45,9 +43,4 @@ public class WildAzureMelonBlock extends Block
         return stateBelow.is(BlockTags.NYLIUM);
     }
 
-    @Override
-    protected MapCodec<? extends WildAzureMelonBlock> codec()
-    {
-        return CODEC;
-    }
 }

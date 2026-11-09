@@ -136,11 +136,11 @@ public final class NAItems
     public static final Holder<BlockItem> GLOWING_PRESSURE_PLATE = registerSimpleBlockItem(NABlocks.GLOWING_PRESSURE_PLATE);
     public static final Holder<BlockItem> GLOWING_BUTTON = registerSimpleBlockItem(NABlocks.GLOWING_BUTTON);
     public static final Holder<BlockItem> GLOWING_SIGN = registerItem("glowing_sign", (properties) ->
-        new SignItem(NABlocks.GLOWING_SIGN.value(), NABlocks.GLOWING_WALL_SIGN.value(), properties)
-    , new Item.Properties().useBlockDescriptionPrefix());
+        new StandingAndWallBlockItem(NABlocks.GLOWING_SIGN.value(), NABlocks.GLOWING_WALL_SIGN.value(), net.minecraft.core.Direction.DOWN, properties)
+    , new Item.Properties().useBlockDescriptionPrefix().signText());
     public static final Holder<BlockItem> GLOWING_HANGING_SIGN = registerItem("glowing_hanging_sign", (properties) ->
         new HangingSignItem(NABlocks.GLOWING_HANGING_SIGN.value(), NABlocks.GLOWING_WALL_HANGING_SIGN.value(), properties)
-    , new Item.Properties().useBlockDescriptionPrefix());
+    , new Item.Properties().useBlockDescriptionPrefix().signText());
 
     public static final Holder<BlockItem> CRIMSON_CRATE = registerSimpleBlockItem(NABlocks.CRIMSON_CRATE);
     public static final Holder<BlockItem> SMALL_CRIMSON_CRATE = registerSimpleBlockItem(NABlocks.SMALL_CRIMSON_CRATE);

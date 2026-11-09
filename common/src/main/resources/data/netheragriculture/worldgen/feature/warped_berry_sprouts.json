@@ -1,0 +1,8 @@
+{
+  "type": "netheragriculture:nether_forest_vegetation",
+  "spread_height": 4,
+  "spread_width": 6,
+  "state_provider": {
+    "id": "netheragriculture:warped_berry_sprouts"
+  }
+}

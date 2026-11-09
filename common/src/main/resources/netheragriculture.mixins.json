@@ -10,6 +10,7 @@
     "ParticleGroupMixin"
   ],
   "mixins": [
+    "BlockTransformerMixin",
     "LevelMixin",
     "RecipeManagerMixin",
     "RecipePropertySetAccessor",

@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -18,7 +17,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class CrateBlock extends Block
 {
-    public static final MapCodec<CrateBlock> CODEC = simpleCodec(CrateBlock::new);
 
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
@@ -67,9 +65,4 @@ public class CrateBlock extends Block
         return false;
     }
 
-    @Override
-    protected MapCodec<? extends CrateBlock> codec()
-    {
-        return CODEC;
-    }
 }

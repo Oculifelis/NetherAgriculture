@@ -2,7 +2,7 @@ package ru.netherdon.netheragriculture.registries;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import ru.netherdon.netheragriculture.NetherAgriculture;
 

@@ -2,7 +2,6 @@ package ru.netherdon.netheragriculture.blocks;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ScheduledTickAccess;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +22,6 @@ import java.util.Map;
 
 public class AttachedAzureMelonStemBlock extends VegetationBlock
 {
-    public static final MapCodec<AttachedAzureMelonStemBlock> CODEC = simpleCodec(AttachedAzureMelonStemBlock::new);
 
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
@@ -96,9 +94,4 @@ public class AttachedAzureMelonStemBlock extends VegetationBlock
         return state.setValue(FACING, mirror.mirror(facing));
     }
 
-    @Override
-    protected MapCodec<? extends AttachedAzureMelonStemBlock> codec()
-    {
-        return CODEC;
-    }
 }

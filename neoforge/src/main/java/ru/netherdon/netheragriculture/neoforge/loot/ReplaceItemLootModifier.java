@@ -3,7 +3,10 @@ package ru.netherdon.netheragriculture.neoforge.loot;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import java.util.Optional;
+import net.minecraft.core.Holder;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -15,14 +18,14 @@ public class ReplaceItemLootModifier extends LootModifier
     public static final MapCodec<ReplaceItemLootModifier> CODEC = RecordCodecBuilder.mapCodec((instance) ->
         codecStart(instance).and(instance.group(
             Ingredient.CODEC.fieldOf("from").forGetter(ReplaceItemLootModifier::getInput),
-            ItemStack.CODEC.fieldOf("to").forGetter(ReplaceItemLootModifier::getReplacement))
+            ItemStackTemplate.CODEC.fieldOf("to").forGetter(ReplaceItemLootModifier::getReplacement))
         ).apply(instance, ReplaceItemLootModifier::new)
     );
 
     private final Ingredient input;
-    private final ItemStack replacement;
+    private final ItemStackTemplate replacement;
 
-    public ReplaceItemLootModifier(LootItemCondition[] conditionsIn, int priority, Ingredient input, ItemStack replacement)
+    public ReplaceItemLootModifier(Optional<Holder<LootItemCondition>> conditionsIn, int priority, Ingredient input, ItemStackTemplate replacement)
     {
         super(conditionsIn, priority);
         this.input = input;
@@ -37,7 +40,7 @@ public class ReplaceItemLootModifier extends LootModifier
             ItemStack stack = generatedLoot.get(i);
             if (this.getInput().test(stack))
             {
-                ItemStack newStack = this.getReplacement().copyWithCount(stack.getCount());
+                ItemStack newStack = this.getReplacement().create().copyWithCount(stack.getCount());
                 generatedLoot.set(i, newStack);
             }
         }
@@ -49,7 +52,7 @@ public class ReplaceItemLootModifier extends LootModifier
         return this.input;
     }
 
-    public ItemStack getReplacement()
+    public ItemStackTemplate getReplacement()
     {
         return this.replacement;
     }

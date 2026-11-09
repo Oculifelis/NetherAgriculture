@@ -1,7 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
@@ -21,25 +19,10 @@ import java.util.function.Function;
 
 public class CustomCeilingHangingSignBlock extends CeilingHangingSignBlock
 {
-    public static final MapCodec<CustomCeilingHangingSignBlock> CODEC = RecordCodecBuilder.mapCodec((instance) ->
-        instance.group(
-            WoodType.CODEC.fieldOf("wood_type").forGetter(SignBlock::getWoodType),
-            propertiesCodec()
-        ).apply(instance, CustomCeilingHangingSignBlock::new)
-    );
 
     public CustomCeilingHangingSignBlock(WoodType woodType, Properties properties)
     {
         super(woodType, properties);
-    }
-
-    @Override
-    public MapCodec<CeilingHangingSignBlock> codec()
-    {
-        return CODEC.xmap(
-            Function.identity(),
-            (block) -> (CustomCeilingHangingSignBlock)block
-        );
     }
 
     @Override

@@ -1,7 +1,7 @@
 package ru.netherdon.netheragriculture.blocks;
 
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.ScheduledTickAccess;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -26,7 +26,6 @@ import ru.netherdon.netheragriculture.registries.NABlocks;
 
 public class DeadVinesBlock extends Block implements BonemealableBlock
 {
-    public static final MapCodec<DeadVinesBlock> CODEC = simpleCodec(DeadVinesBlock::new);
 
     public static final BooleanProperty ATTACHED = BlockStateProperties.ATTACHED;
     public static final BooleanProperty SHOOTS = BooleanProperty.create("shoots");
@@ -150,7 +149,7 @@ public class DeadVinesBlock extends Block implements BonemealableBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state)
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source)
     {
         BlockPos.MutableBlockPos mutablePos = pos.mutable();
         while (true)
@@ -172,7 +171,7 @@ public class DeadVinesBlock extends Block implements BonemealableBlock
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state)
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source)
     {
         BlockPos.MutableBlockPos mutablePos = pos.mutable();
         while (true)
@@ -215,7 +214,7 @@ public class DeadVinesBlock extends Block implements BonemealableBlock
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state)
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source)
     {
         return true;
     }
@@ -227,9 +226,4 @@ public class DeadVinesBlock extends Block implements BonemealableBlock
         builder.add(ATTACHED, SHOOTS, AGE);
     }
 
-    @Override
-    protected MapCodec<? extends DeadVinesBlock> codec()
-    {
-        return CODEC;
-    }
 }

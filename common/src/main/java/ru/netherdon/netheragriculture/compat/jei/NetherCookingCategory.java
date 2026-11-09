@@ -15,6 +15,6 @@ public class NetherCookingCategory extends AbstractCookingCategory<NetherCooking
 
     public NetherCookingCategory(IGuiHelper guiHelper)
     {
-        super(guiHelper, TYPE, NABlocks.BLACK_FURNACE.value(), TRANSLATION_KEY, 100);
+        super(guiHelper, TYPE, NABlocks.BLACK_FURNACE.value(), TRANSLATION_KEY, 100, 116, 54);
     }
 }

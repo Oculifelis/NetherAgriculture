@@ -1,7 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -30,12 +28,6 @@ import java.util.List;
 
 public class GlowingSporesBlock extends Block
 {
-    public static final MapCodec<GlowingSporesBlock> CODEC = RecordCodecBuilder.mapCodec((instance) ->
-        instance.group(
-            ResourceKey.codec(Registries.ITEM).fieldOf("container").forGetter((block) -> block.containerKey),
-            propertiesCodec()
-        ).apply(instance, GlowingSporesBlock::new)
-    );
 
     private final ResourceKey<Item> containerKey;
     private Item container;
@@ -90,7 +82,14 @@ public class GlowingSporesBlock extends Block
     }
 
     @Override
-    protected void spawnDestroyParticles(Level level, Player player, BlockPos blockPos, BlockState blockState) {}
+    public void spawnDestroyByEntityParticles(Level level, net.minecraft.world.entity.Entity entity, BlockPos blockPos, BlockState blockState)
+    {
+        // 1.21.1 only silenced the player-break particles; other breaks keep them.
+        if (!(entity instanceof Player))
+        {
+            super.spawnDestroyByEntityParticles(level, entity, blockPos, blockState);
+        }
+    }
 
     @Override
     protected RenderShape getRenderShape(BlockState blockState)
@@ -101,12 +100,6 @@ public class GlowingSporesBlock extends Block
     public List<Item> getInteractableItems()
     {
         return List.of(this.asItem(), Items.GLASS_BOTTLE);
-    }
-
-    @Override
-    protected MapCodec<? extends GlowingSporesBlock> codec()
-    {
-        return CODEC;
     }
 
     protected Item getContainer()

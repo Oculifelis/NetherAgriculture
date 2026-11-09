@@ -1,21 +1,25 @@
 {
   "type": "minecraft:block",
-  "pools": [{
-    "rolls": 1,
-    "bonus_rolls": 0,
-    "conditions": [{
-      "condition": "minecraft:survives_explosion"
-    }],
-    "entries": [{
-      "type": "minecraft:item",
-      "name": "netheragriculture:tall_crimson_roots",
-      "conditions": [{
-        "block": "netheragriculture:tall_crimson_roots",
-        "condition": "minecraft:block_state_property",
-        "properties": {
-          "half": "lower"
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "netheragriculture:tall_crimson_roots",
+          "condition": {
+            "type": "minecraft:match_block",
+            "blocks": "netheragriculture:tall_crimson_roots",
+            "state": {
+              "half": "lower"
+            }
+          }
         }
-      }]
-    }]
-  }]
+      ]
+    }
+  ]
 }

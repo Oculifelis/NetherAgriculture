@@ -1,6 +1,5 @@
 package ru.netherdon.netheragriculture.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -20,7 +19,6 @@ import ru.netherdon.netheragriculture.registries.NATags;
 
 public class WarpedBerryRootsBlock extends NetherCropBlock
 {
-    public static final MapCodec<WarpedBerryRootsBlock> CODEC = Block.simpleCodec(WarpedBerryRootsBlock::new);
 
     private static final VoxelShape SHAPE0 = box(0f, 0f, 0f, 16f, 2f,16f);
     private static final VoxelShape SHAPE1 = box(0f, 0f, 0f, 16f, 6f,16f);
@@ -64,9 +62,4 @@ public class WarpedBerryRootsBlock extends NetherCropBlock
         return SHAPE_BY_AGE[age];
     }
 
-    @Override
-    public MapCodec<? extends WarpedBerryRootsBlock> codec()
-    {
-        return CODEC;
-    }
 }

@@ -1,12 +1,12 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "mynethersdelight:hoglin_sausage"
+      "type": "neoforge:registered",
+      "value": "mynethersdelight:hoglin_sausage"
     },
     {
-      "type": "neoforge:item_exists",
-      "item": "mynethersdelight:roasted_sausage"
+      "type": "neoforge:registered",
+      "value": "mynethersdelight:roasted_sausage"
     }
   ],
   "fabric:load_conditions": [

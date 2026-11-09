@@ -1,14 +1,13 @@
 package ru.netherdon.netheragriculture.world;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-public class TallNetherVegetationConfig implements FeatureConfiguration
+public class TallNetherVegetationConfig
 {
-    public static final Codec<TallNetherVegetationConfig> CODEC = RecordCodecBuilder.create((instance) ->
+    public static final MapCodec<TallNetherVegetationConfig> CODEC = RecordCodecBuilder.mapCodec((instance) ->
         instance.group(
             BlockState.CODEC.fieldOf("state_below").forGetter((config) -> config.stateBelow),
             BlockState.CODEC.fieldOf("state_above").forGetter((config) -> config.stateAbove),

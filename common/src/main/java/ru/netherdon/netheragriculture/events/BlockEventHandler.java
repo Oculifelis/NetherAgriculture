@@ -24,6 +24,11 @@ public final class BlockEventHandler
         Blocks.WARPED_NYLIUM, NABlocks.WARPED_FARMLAND.value()
     ));
 
+    public static Map<Block, NetherFarmlandBlock> farmlands()
+    {
+        return FARMLANDS.get();
+    }
+
     private static final Lazy<Map<Block, DoublePlantBlock>> DOUBLE_PLANTS = Lazy.lazy(() -> ImmutableMap.of(
         Blocks.CRIMSON_ROOTS, NABlocks.TALL_CRIMSON_ROOTS.value(),
         Blocks.WARPED_ROOTS, NABlocks.TALL_WARPED_ROOTS.value()

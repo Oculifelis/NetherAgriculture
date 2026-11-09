@@ -31,7 +31,7 @@ public class GlowingSporesInBottleItem extends BlockItem
             }
             else if (!player.getInventory().add(emptyStack))
             {
-                player.drop(emptyStack, false);
+                player.drop(emptyStack, false, net.minecraft.util.Prediction.SERVER_ONLY);
             }
         }
 

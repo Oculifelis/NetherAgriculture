@@ -1,13 +1,12 @@
 package ru.netherdon.netheragriculture.world;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.ExtraCodecs;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-public class MortofructFeatureConfiguration implements FeatureConfiguration
+public class MortofructFeatureConfiguration
 {
-    public static final Codec<MortofructFeatureConfiguration> CODEC = RecordCodecBuilder.create((instance) ->
+    public static final MapCodec<MortofructFeatureConfiguration> CODEC = RecordCodecBuilder.mapCodec((instance) ->
         instance.group(
             ExtraCodecs.POSITIVE_INT.fieldOf("spread_height").forGetter((config) -> config.spreadHeight),
             ExtraCodecs.POSITIVE_INT.fieldOf("spread_width").forGetter((config) -> config.spreadWidth),

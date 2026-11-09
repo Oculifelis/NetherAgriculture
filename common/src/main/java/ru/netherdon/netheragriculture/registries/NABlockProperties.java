@@ -48,13 +48,13 @@ public final class NABlockProperties
         .mapColor(MapColor.COLOR_CYAN)
         .strength(0.5f)
         .sound(SoundType.ROOTS)
-        .pushReaction(PushReaction.DESTROY);
+        .pushReaction(PushReaction.POPPED);
 
     public static final Supplier<Properties> WILD_AZURE_MELON = () -> BlockBehaviour.Properties.of()
         .mapColor(MapColor.COLOR_CYAN)
         .strength(0.5f)
         .sound(SoundType.ROOTS)
-        .pushReaction(PushReaction.DESTROY)
+        .pushReaction(PushReaction.POPPED)
         .offsetType(BlockBehaviour.OffsetType.XZ)
         .dynamicShape();
 
@@ -63,5 +63,5 @@ public final class NABlockProperties
         .noCollision()
         .instabreak()
         .sound(SoundType.ROOTS)
-        .pushReaction(PushReaction.DESTROY);
+        .pushReaction(PushReaction.POPPED);
 }
