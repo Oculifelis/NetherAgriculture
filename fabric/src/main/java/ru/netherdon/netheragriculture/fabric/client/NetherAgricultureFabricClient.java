@@ -6,7 +6,6 @@ import net.fabricmc.fabric.impl.client.rendering.BlockEntityRendererRegistryImpl
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -18,7 +17,6 @@ import ru.netherdon.netheragriculture.blocks.entities.IBlockEntityRendererRegist
 import ru.netherdon.netheragriculture.client.NetherAgricultureClient;
 import ru.netherdon.netheragriculture.client.particles.IParticleProviderRegister;
 import ru.netherdon.netheragriculture.fabric.registries.NABlockRenderTypes;
-import ru.netherdon.netheragriculture.registries.NAWoodTypes;
 
 import java.util.function.Function;
 
@@ -41,8 +39,6 @@ public final class NetherAgricultureFabricClient implements ClientModInitializer
         NetherAgricultureClient.registerScreens(MenuScreens::register);
         NetherAgricultureClient.registerParticleProviders(PARTICLE_PROVIDER_REGISTER);
         NetherAgricultureClient.registerBlockEntityRenderers(BlockEntityRenderers::register);
-
-        Sheets.SIGN_SPRITES.put(NAWoodTypes.GLOWING, Sheets.createSignSprite(NAWoodTypes.GLOWING));
-        Sheets.HANGING_SIGN_SPRITES.put(NAWoodTypes.GLOWING, Sheets.createHangingSignSprite(NAWoodTypes.GLOWING));
+        // 26.2: sign boards are block models now (assets/.../models/block/glowing_*sign*), no sprite registration
     }
 }

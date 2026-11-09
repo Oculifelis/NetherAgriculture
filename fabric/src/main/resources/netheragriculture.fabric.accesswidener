@@ -14,8 +14,6 @@ mutable field net/minecraft/world/level/storage/loot/LootPool$Builder entries Lc
 
 accessible field net/minecraft/world/level/storage/loot/LootTable$Builder pools Lcom/google/common/collect/ImmutableList$Builder;
 
-accessible method net/minecraft/client/renderer/Sheets createSignSprite (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/resources/model/sprite/SpriteId;
-accessible method net/minecraft/client/renderer/Sheets createHangingSignSprite (Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/client/resources/model/sprite/SpriteId;
 
 #===== COMMON =====#
 accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier

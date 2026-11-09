@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
-      "model": "netheragriculture:block/glowing_sign"
+    "facing=east": {
+      "model": "netheragriculture:block/glowing_wall_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "netheragriculture:block/glowing_wall_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "netheragriculture:block/glowing_wall_sign"
+    },
+    "facing=west": {
+      "model": "netheragriculture:block/glowing_wall_sign",
+      "y": 90
     }
   }
 }
