@@ -1,12 +1,12 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "mynethersdelight:strider_egg"
+      "type": "neoforge:registered",
+      "value": "mynethersdelight:strider_egg"
     },
     {
-      "type": "neoforge:item_exists",
-      "item": "mynethersdelight:boiled_egg"
+      "type": "neoforge:registered",
+      "value": "mynethersdelight:boiled_egg"
     }
   ],
   "fabric:load_conditions": [
