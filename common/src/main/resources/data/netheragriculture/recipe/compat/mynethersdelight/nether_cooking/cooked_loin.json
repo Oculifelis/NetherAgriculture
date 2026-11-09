@@ -1,12 +1,12 @@
 {
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "mynethersdelight:hoglin_loin"
+      "type": "neoforge:registered",
+      "value": "mynethersdelight:hoglin_loin"
     },
     {
-      "type": "neoforge:item_exists",
-      "item": "mynethersdelight:cooked_loin"
+      "type": "neoforge:registered",
+      "value": "mynethersdelight:cooked_loin"
     }
   ],
   "fabric:load_conditions": [
