@@ -11,6 +11,7 @@ import ru.netherdon.netheragriculture.config.NAServerConfig;
 import ru.netherdon.netheragriculture.registries.NACompostables;
 import ru.netherdon.netheragriculture.neoforge.registries.NADataLoadConditions;
 import ru.netherdon.netheragriculture.neoforge.registries.NALootModifiers;
+import ru.netherdon.netheragriculture.neoforge.registries.NAEntityAttachments;
 import ru.netherdon.netheragriculture.services.neoforge.RegistryManagerImpl;
 
 @Mod(NetherAgriculture.ID)
@@ -18,6 +19,7 @@ public class NetherAgricultureNeoForge
 {
     public NetherAgricultureNeoForge(IEventBus modEventBus, ModContainer modContainer)
     {
+        NAEntityAttachments.TYPES.register(modEventBus);
         NetherAgriculture.initialize();
         NALootModifiers.initialize();
         NADataLoadConditions.initialize();
