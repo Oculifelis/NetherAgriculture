@@ -110,3 +110,29 @@ if (project.hasProperty('selftest')) {
 tasks.withType(Jar).configureEach {
     exclude "ru/netherdon/netheragriculture/validation/CoverageSelfTest*"
 }
+
+// The separate verification mod is loaded only by the GameTest run.
+sourceSets {
+    verification {
+        java.srcDir 'src/selftest/java'
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += output + compileClasspath + sourceSets.main.runtimeClasspath
+    }
+}
+neoForge.addModdingDependenciesTo(sourceSets.verification)
+def checkedMod = neoForge.mods.getByName(mod_id)
+def checksMod = neoForge.mods.create('netheragriculture_checks') { sourceSet sourceSets.verification }
+neoForge.runs {
+    client { loadedMods = [checkedMod] }
+    server { loadedMods = [checkedMod] }
+    gameTestServer {
+        type = 'gameTestServer'
+        gameDirectory = project.file('run/verification-gametest')
+        loadedMods = [checkedMod, checksMod]
+        systemProperty 'neoforge.enabledGameTestNamespaces', 'netheragriculture_checks'
+        systemProperty 'coverage.resources', [rootProject.file('common/src/main/resources'), file('src/main/resources')].collect { it.absolutePath }.join('|')
+        systemProperty 'coverage.result', layout.buildDirectory.file('gametest-coverage-result.json').get().asFile.absolutePath
+        jvmArgument '-Xmx4G'
+        jvmArgument '-XX:ActiveProcessorCount=4'
+    }
+}

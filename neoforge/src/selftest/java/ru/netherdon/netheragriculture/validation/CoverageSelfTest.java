@@ -108,7 +108,15 @@ public final class CoverageSelfTest {
     @SubscribeEvent
     public static void started(ServerStartedEvent event) {
         if (!Boolean.getBoolean("coverage.enabled")) return;
-        MinecraftServer server = event.getServer();
+        try { verify(event.getServer()); }
+        finally { event.getServer().halt(false); }
+    }
+
+    public static JsonObject verify(MinecraftServer server) {
+        errors.clear();
+        counts.clear();
+        passed = 0;
+        JsonObject result = new JsonObject();
         try {
             ServerLevel level = server.overworld();
             var items = BuiltInRegistries.ITEM.stream().filter(item -> BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(MOD)).toList();
@@ -190,7 +198,6 @@ public final class CoverageSelfTest {
             errors.add("suite: " + failure);
             failure.printStackTrace();
         } finally {
-            JsonObject result = new JsonObject();
             result.addProperty("passed", passed);
             result.addProperty("failed", errors.size());
             result.add("counts", new Gson().toJsonTree(counts));
@@ -198,7 +205,7 @@ public final class CoverageSelfTest {
             try { Files.writeString(Path.of(System.getProperty("coverage.result")), new GsonBuilder().setPrettyPrinting().create().toJson(result)); }
             catch (IOException failure) { failure.printStackTrace(); }
             System.out.println("SELFTEST DONE " + passed + "/" + (passed + errors.size()) + " failed=" + errors.size() + " " + counts);
-            server.halt(false);
         }
+        return result;
     }
 }

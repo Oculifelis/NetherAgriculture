@@ -57,6 +57,23 @@ public class NAJeiPlugin implements IModPlugin
     public void registerRecipes(IRecipeRegistration registration)
     {
         IModPlugin.super.registerRecipes(registration);
+        registration.addIngredientInfo(java.util.stream.Stream.of(
+            "hoglin_meat",
+            "cooked_hoglin_meat",
+            "strider_leg",
+            "blaze_fruit_seed",
+            "blaze_fruit",
+            "crimson_berry_seeds",
+            "warped_berry_seeds",
+            "azure_melon_seeds",
+            "lothun",
+            "sinful_eyes",
+            "crimson_berry",
+            "warped_berry",
+            "azure_melon_slice",
+            "blazing_blend"
+        ).map(id -> new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.getValue(NetherAgriculture.location(id)))).toList(),
+            VanillaTypes.ITEM_STACK, Component.translatable("jei.netheragriculture.info.loot_modifiers"));
         registration.addRecipes(NetherCookingCategory.TYPE,
             // 26.x: the client has no recipe manager; JEI keeps the recipes the server synced
             List.copyOf(Internal.getClientSyncedRecipes().byType(NARecipeTypes.NETHER_COOKING.value()))
