@@ -67,3 +67,46 @@ tasks.matching { it.name in ['processResources', 'sourcesJar'] }.configureEach {
         }
     }
 }
+
+// Dedicated-server checks are compiled only for an explicit development test run.
+if (project.hasProperty('selftest')) {
+    sourceSets.main.java.srcDir 'src/selftest/java'
+    def coverageDir = layout.buildDirectory.dir('coverage-run').get().asFile
+    def coverageResult = layout.buildDirectory.file('coverage-result.json').get().asFile
+    neoForge.runs {
+        coverage {
+            server()
+            gameDirectory = coverageDir
+            programArgument '--nogui'
+            jvmArgument '-Xmx4G'
+            jvmArgument '-XX:ActiveProcessorCount=4'
+            systemProperty 'coverage.enabled', 'true'
+            systemProperty 'coverage.result', coverageResult.absolutePath
+            systemProperty 'coverage.resources', [rootProject.file('common/src/main/resources'), file('src/main/resources')].collect { it.absolutePath }.join('|')
+        }
+    }
+    tasks.named('runCoverage') {
+        doFirst {
+            coverageResult.delete()
+            coverageDir.mkdirs()
+            new File(coverageDir, 'eula.txt').text = 'eula=true\n'
+            new File(coverageDir, 'server.properties').text = 'online-mode=false\nserver-port=0\nlevel-seed=0\ngenerate-structures=false\n'
+        }
+    }
+    tasks.register('coverageTest') {
+        group = 'verification'
+        description = 'Check registries, recipes, block placement/loot, item models and English names headlessly.'
+        dependsOn 'runCoverage'
+        doLast {
+            if (!coverageResult.isFile()) throw new GradleException('Missing SELFTEST result')
+            def result = new groovy.json.JsonSlurper().parse(coverageResult)
+            if (result.failed != 0 || result.passed == 0) throw new GradleException("SELFTEST failures: ${result.errors}")
+            logger.lifecycle("SELFTEST PASS: ${result.passed} checks, ${result.counts}")
+        }
+    }
+}
+
+// Keep development checks out of every archive, including explicit test builds.
+tasks.withType(Jar).configureEach {
+    exclude "ru/netherdon/netheragriculture/validation/CoverageSelfTest*"
+}
