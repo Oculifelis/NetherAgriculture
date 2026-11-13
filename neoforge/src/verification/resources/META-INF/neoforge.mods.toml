@@ -1,0 +1,16 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="LGPL-3.0-or-later"
+
+[[mods]]
+modId="netheragriculture_checks"
+version="1.0"
+displayName="Nether Agriculture development checks"
+authors="Oculifelis"
+
+[[dependencies.netheragriculture_checks]]
+modId="netheragriculture"
+type="required"
+versionRange="[2.1.1,)"
+ordering="AFTER"
+side="BOTH"

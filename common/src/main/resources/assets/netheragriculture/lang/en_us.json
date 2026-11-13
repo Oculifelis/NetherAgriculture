@@ -2,7 +2,6 @@
   "itemGroup.netheragriculture.common": "Nether Agriculture",
   "fml.menu.mods.info.description.netheragriculture": "A mod that adds new crops to the Nether.",
   "modmenu.descriptionTranslation.netheragriculture": "A mod that adds new crops to the Nether.",
-
   "item.netheragriculture.mortofruct_half": "Mortofruct Half",
   "item.netheragriculture.crimson_berry": "Crimson Berry",
   "item.netheragriculture.crimson_berry_seeds": "Crimson Berry Seeds",
@@ -40,9 +39,7 @@
   "item.netheragriculture.strider_treat": "Strider Treat",
   "item.netheragriculture.glowing_spores_in_a_bottle": "Glowing Spores in a Bottle",
   "item.netheragriculture.glowing_mushroom_stew": "Glowing Mushroom Stew",
-
   "item.netheragriculture.strider_treat.description": "When fed to strider:",
-
   "item.minecraft.potion.effect.blaze_flight": "Potion of Blaze Flight",
   "item.minecraft.splash_potion.effect.blaze_flight": "Splash Potion of Blaze Flight",
   "item.minecraft.lingering_potion.effect.blaze_flight": "Lingering Potion of Blaze Flight",
@@ -51,7 +48,6 @@
   "item.minecraft.splash_potion.effect.warp": "Splash Potion of Warp",
   "item.minecraft.lingering_potion.effect.warp": "Lingering Potion of Warp",
   "item.minecraft.tipped_arrow.effect.warp": "Arrow of Warp",
-
   "block.netheragriculture.mortofruct": "Mortofruct",
   "block.netheragriculture.crimson_berry_roots": "Crimson Berry Roots",
   "block.netheragriculture.crimson_berry_sprouts": "Crimson Berry Sprouts",
@@ -135,7 +131,6 @@
   "block.netheragriculture.small_glowing_crate_of_blaze_fruit": "Small Glowing Crate of Blaze Fruit",
   "block.netheragriculture.glowing_crate_of_sinful_eyes": "Glowing Crate of Sinful Eyes",
   "block.netheragriculture.small_glowing_crate_of_sinful_eyes": "Small Glowing Crate of Sinful Eyes",
-
   "effect.netheragriculture.warp": "Warp",
   "effect.netheragriculture.warp.description": "Gives a small chance to spawn an Endermite. Enderman become hostile toward the affected entity.",
   "effect.netheragriculture.warp.desc": "Gives a small chance to spawn an Endermite.",
@@ -146,22 +141,17 @@
   "effect.netheragriculture.internal_heat.description": "Strider affected by this effect does not suffocate outside heat sources.",
   "effect.netheragriculture.long_legs": "Long Legs",
   "effect.netheragriculture.long_legs.description": "Slightly increases step height.",
-
   "death.attack.netheragriculture.falling_mortofruct": "%s lived up to the name of the mortofruct",
-
   "emi.category.netheragriculture.nether_cooking": "Nether Cooking",
-
   "config.netheragriculture.inworld_category_description": "Available only in the loaded world",
   "config.netheragriculture.online_mode_category_description": "Available only in single-player mode",
   "config.category.netheragriculture.overrides": "Overrides",
   "config.category.netheragriculture.entity": "Entity",
   "config.category.netheragriculture.mod_compatibility": "Mod Compatibility",
-
   "config.category.netheragriculture.overrides.loot": "Loot Modifiers",
   "config.category.netheragriculture.overrides.configured_feature": "Generation Modifiers",
   "config.category.netheragriculture.mod_compatibility.farmers_delight": "Farmer's Delight",
   "config.category.netheragriculture.mod_compatibility.nethers_delight": "My Nether's Delight",
-
   "config.common.netheragriculture.overrides.loot.piglin_bartering": "Piglin Bartering",
   "config.common.netheragriculture.overrides.loot.piglin_bartering.tooltip": "Modifies the loot table minecraft:gameplay/piglin_bartering",
   "config.common.netheragriculture.overrides.loot.hoglin": "Hoglin",
@@ -184,10 +174,8 @@
   "config.common.netheragriculture.overrides.configured_feature.crimson_nylium_bonemeal.tooltip": "Modifies configured feature minecraft:crimson_forest_vegetation_bonemeal",
   "config.common.netheragriculture.overrides.configured_feature.warped_nylium_bonemeal": "Bonemeal on Warped Nylium",
   "config.common.netheragriculture.overrides.configured_feature.warped_nylium_bonemeal.tooltip": "Modifies configured feature minecraft:warped_forest_vegetation_bonemeal",
-
   "config.server.netheragriculture.entity.burning_from_items": "Burning from Items",
   "config.server.netheragriculture.entity.burning_from_blaze_flight": "Burning from Blaze Flight",
-
   "tag.item.netheragriculture.nether_spices": "Nether Spices",
   "tag.item.netheragriculture.glowing_stems": "Glowing Stems",
   "tag.item.c.ingots.blazing_gold": "Blazing Gold Ingots",
@@ -200,7 +188,6 @@
   "tag.item.c.drinks.blazing_blend": "Blazing Blends",
   "tag.item.c.drinks.crimson_berry_jam": "Crimson Berry Jams",
   "tag.item.c.drinks.warped_berry_jam": "Warped Berry Jams",
-
   "tag.block.netheragriculture.nether_crops": "Nether Crops",
   "tag.block.netheragriculture.fertile_soils": "Nether Fertile Soils",
   "tag.block.netheragriculture.fertile_soils.azure_melon": "Fertile Soils for Azure Melon",
@@ -209,5 +196,6 @@
   "tag.block.netheragriculture.fertile_soils.warped_berry": "Fertile Soils for Warped Berry",
   "tag.block.netheragriculture.fertile_soils.sinful_eyes": "Fertile Soils for Sinful Eyes",
   "tag.block.netheragriculture.fertile_soils.lothun": "Fertile Soils for Lothun",
-  "tag.block.netheragriculture.glowing_stems": "Glowing Stems"
+  "tag.block.netheragriculture.glowing_stems": "Glowing Stems",
+  "jei.netheragriculture.info.loot_modifiers": "The default NeoForge loot modifiers add supplies to Nether Fortress chests and Strider Legs to striders. Without My Nether's Delight, they also replace porkchops from hoglins and Bastion hoglin stable chests with hoglin meat. A pack can change these loot modifiers."
 }
