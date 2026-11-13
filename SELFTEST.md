@@ -9,3 +9,5 @@ The ordinary development guard remains enabled. The older explicit -Pselftest co
 Attachment reference: https://docs.neoforged.net/docs/datastorage/attachments/
 Loot reference: https://github.com/neoforged/NeoForge/blob/26.1.x/src/main/java/net/neoforged/neoforge/common/loot/LootModifierManager.java
 The current loader discovers loot modifiers directly; the excluded old global list is not the active 26.x format. JEI now documents the default source groups.
+
+Glowing Spores retain their original bottle-only collection behavior. Their break loot is explicitly empty, and a separate runtime check verifies that using one glass bottle returns one filled bottle and removes the cloud. The Strider fixture enables ordinary mob behavior so the vanilla warmth update actually runs.
