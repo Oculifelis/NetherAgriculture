@@ -1,5 +1,8 @@
 package ru.netherdon.netheragriculture.compat.jei;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
