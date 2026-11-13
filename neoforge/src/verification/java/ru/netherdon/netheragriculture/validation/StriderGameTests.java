@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.level.storage.TagValueInput;
 import net.minecraft.world.level.storage.TagValueOutput;
 import net.neoforged.bus.api.IEventBus;
@@ -58,7 +58,7 @@ public final class StriderGameTests {
     }
 
     private static void heat(GameTestHelper h) {
-        var strider = h.spawn(EntityType.STRIDER, 1, 1, 1);
+        var strider = h.spawn(EntityTypes.STRIDER, 1, 1, 1);
         strider.setNoAi(false);
         strider.tick();
         h.assertTrue(!strider.getData(NAEntityAttachments.INTERNAL_HEAT), "Default internal heat is false");
@@ -70,7 +70,7 @@ public final class StriderGameTests {
 
         var output = TagValueOutput.createWithContext(ProblemReporter.DISCARDING, h.getLevel().registryAccess());
         strider.saveWithoutId(output);
-        var restored = EntityType.STRIDER.create(h.getLevel(), EntitySpawnReason.COMMAND);
+        var restored = EntityTypes.STRIDER.create(h.getLevel(), EntitySpawnReason.COMMAND);
         h.assertTrue(restored != null, "A fresh Strider can be created");
         restored.load(TagValueInput.create(ProblemReporter.DISCARDING, h.getLevel().registryAccess(), output.buildResult()));
         h.assertTrue(restored.hasEffect(NAMobEffects.INTERNAL_HEAT), "Saved mob effects retain Internal Heat");
