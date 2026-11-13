@@ -27,10 +27,11 @@ import ru.netherdon.netheragriculture.registries.NAMobEffects;
 public final class StriderGameTests {
     public static final String ID = "netheragriculture_checks";
     private static final DeferredRegister<Consumer<GameTestHelper>> FUNCTIONS = DeferredRegister.create(Registries.TEST_FUNCTION, ID);
-    private static final List<String> TESTS = List.of("registries_recipes_loot_and_assets", "internal_heat_and_saved_effects");
+    private static final List<String> TESTS = List.of("registries_recipes_loot_and_assets", "internal_heat_and_saved_effects", "spores_collected_with_a_bottle");
     static {
         FUNCTIONS.register(TESTS.get(0), () -> StriderGameTests::coverage);
         FUNCTIONS.register(TESTS.get(1), () -> StriderGameTests::heat);
+        FUNCTIONS.register(TESTS.get(2), () -> StriderGameTests::spores);
     }
 
     public StriderGameTests(IEventBus bus) {
@@ -58,7 +59,7 @@ public final class StriderGameTests {
 
     private static void heat(GameTestHelper h) {
         var strider = h.spawn(EntityType.STRIDER, 1, 1, 1);
-        strider.setNoAi(true);
+        strider.setNoAi(false);
         strider.tick();
         h.assertTrue(!strider.getData(NAEntityAttachments.INTERNAL_HEAT), "Default internal heat is false");
         h.assertTrue(strider.isSuffocating(), "The dry fixture starts cold");
@@ -82,5 +83,28 @@ public final class StriderGameTests {
         restored.discard();
         strider.discard();
         h.succeed();
+    }
+
+    private static void spores(GameTestHelper h) {
+        var level = h.getLevel();
+        var position = h.absolutePos(new net.minecraft.core.BlockPos(1, 1, 1));
+        var player = net.neoforged.neoforge.common.util.FakePlayerFactory.getMinecraft(level);
+        var previous = player.getMainHandItem().copy();
+        boolean creative = player.getAbilities().instabuild;
+        try {
+            player.getAbilities().instabuild = false;
+            player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.GLASS_BOTTLE));
+            level.setBlock(position, ru.netherdon.netheragriculture.registries.NABlocks.GLOWING_SPORES.value().defaultBlockState(), 3);
+            var state = level.getBlockState(position);
+            var hit = new net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3.atCenterOf(position), net.minecraft.core.Direction.UP, position, false);
+            state.useItemOn(player.getMainHandItem(), level, player, net.minecraft.world.InteractionHand.MAIN_HAND, hit);
+            h.assertTrue(player.getMainHandItem().is(ru.netherdon.netheragriculture.registries.NAItems.GLOWING_SPORES_IN_A_BOTTLE.value()), "A glass bottle collects the spores");
+            h.assertTrue(player.getMainHandItem().getCount() == 1, "One bottle returns one filled bottle");
+            h.assertTrue(level.isEmptyBlock(position), "Collecting removes the spore cloud");
+            h.succeed();
+        } finally {
+            player.getAbilities().instabuild = creative;
+            player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, previous);
+        }
     }
 }
