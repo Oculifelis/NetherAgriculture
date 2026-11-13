@@ -209,5 +209,11 @@
   "tag.block.netheragriculture.fertile_soils.warped_berry": "Fertile Soils for Warped Berry",
   "tag.block.netheragriculture.fertile_soils.sinful_eyes": "Fertile Soils for Sinful Eyes",
   "tag.block.netheragriculture.fertile_soils.lothun": "Fertile Soils for Lothun",
-  "tag.block.netheragriculture.glowing_stems": "Glowing Stems"
+  "tag.block.netheragriculture.glowing_stems": "Glowing Stems",
+
+  "jei.netheragriculture.info.hoglin_meat": "Hoglins drop Raw Hoglin Meat in place of porkchops. It can also replace porkchops in Bastion hoglin stable chests. These sources depend on the pack's loot modifiers.",
+  "jei.netheragriculture.info.strider_leg": "Striders drop Strider Legs through the mod's loot modifier. Cook them in a Black Furnace; its recipes appear in the Nether Cooking category.",
+  "jei.netheragriculture.info.blaze_fruit_seed": "Find Blaze Fruit Seeds in Nether Fortress chests. Growing and harvesting Blaze Fruit also returns seeds. Chest additions depend on the pack's loot modifiers.",
+  "jei.netheragriculture.info.crimson_berries": "Break Crimson Berry Sprouts or harvest Crimson Berry Roots to get Crimson Berries and their seeds. Seeds can also be found in Nether Fortress chests when the chest loot modifier is enabled.",
+  "jei.netheragriculture.info.warped_berries": "Break Warped Berry Sprouts or harvest Warped Berry Roots to get Warped Berries and their seeds. Seeds can also be found in Nether Fortress chests when the chest loot modifier is enabled."
 }
